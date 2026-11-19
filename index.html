@@ -592,7 +592,7 @@ kbd{font:inherit;background:#fff;border:1px solid var(--border);border-radius:4p
     <div class="rad" data-hist="page">В шапке страницы</div>
     <div class="rad" data-hist="sbar">В шапке контента</div>
     <div class="rad" data-hist="tbar">В тулбаре</div>
-    <div class="rad on" data-hist="pager">В пейджинге</div>
+    <div class="rad" data-hist="pager">В пейджинге</div>
    </div>
   </section>
   <section class="pg">
@@ -965,7 +965,7 @@ const histGo = d => { const p=S.hpos+d; if(p<0||p>=S.hist.length) return; S.hpos
 $('#btnBack').onclick=()=>histGo(-1);
 document.querySelectorAll('.hb').forEach(b=>b.onclick=()=>histGo(-1));
 document.querySelectorAll('.hf').forEach(b=>b.onclick=()=>histGo(1));
-S.histAt='pager';
+S.histAt='page';
 function syncHist(){ $('#work').classList.toggle('hpage', S.histAt==='page'); $('.content').classList.toggle('hfix', S.histAt==='sbar'); updateSticky(); document.querySelectorAll('.hgrp').forEach(g=>g.classList.toggle('on',g.dataset.h===S.histAt)); document.querySelectorAll('[data-hist]').forEach(r=>r.classList.toggle('on',r.dataset.hist===S.histAt)); }
 document.querySelectorAll('[data-hist]').forEach(r=>r.onclick=()=>{ S.histAt=r.dataset.hist; syncHist(); });
 syncHist();
@@ -1034,7 +1034,7 @@ function fit(){
   $('#tbar').style.height=h+'px';
   const k=Math.min(innerWidth/1940, innerHeight/1000);
   const pr=$('#proto'); pr.style.transform=`scale(${k})`;
-  pr.style.left=Math.max(0,(innerWidth-1940*k)/2)+'px'; pr.style.top=Math.max(0,(innerHeight-1000*k)/2)+'px';
+  pr.style.left='0px'; pr.style.top='0px';
   const free = w - (S.acc?200:57) - (S.toc?280:55) - 52;
   $('#ntf').classList.toggle('overlay', free - 300 < 560);
   // тулбар: нижние кнопки прижаты к низу экрана
