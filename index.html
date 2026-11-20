@@ -36,6 +36,9 @@ svg{display:block}
 .swcap span{padding-left:6px}
 .pg{background:#f2f2f2;border-radius:8px;padding:6px;display:flex;flex-direction:column;gap:2px}
 .pg.g6{gap:6px}
+.rad.wrap{height:auto;min-height:24px;white-space:normal;align-items:flex-start;padding:2px 0}
+.rad.wrap:before{margin-top:4px}
+.rad.sub{padding-left:16px}
 .ph.exp{cursor:pointer;gap:6px;user-select:none}.ph.exp:hover{color:#313e78}
 .ph .expch{transition:transform .15s}
 .pg.fold .ph .expch{transform:rotate(-90deg)}
@@ -257,7 +260,7 @@ table.vt{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0 20px}
 .bshadow{position:absolute;left:4px;right:8px;bottom:0;height:8px;background:linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,.15));pointer-events:none;z-index:7;display:none}
 .bshadow.on{display:block}
 .sbar .st{min-width:0;display:flex;flex-direction:column;justify-content:center}
-.work.hnone .sbar .stt{transform:translateY(-8px)}
+.work.hnone .sbar .stt{transform:translateY(-4px)}
 .sbar.notitle .stt{visibility:hidden}
 .sbar .stt{font-size:24px;font-weight:600;line-height:28px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.01em}
 .sbar .scrumbs{display:none;font-size:12px;line-height:16px;color:var(--label);white-space:nowrap;overflow:hidden;align-items:center;gap:2px}
@@ -273,7 +276,7 @@ table.vt{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0 20px}
 .wcrumbs a:hover{color:#313e78;text-decoration:underline}
 .wcrumbs svg{flex:none}
 .toc-collapsed .wcrumbs.show{visibility:visible}
-.work .search{flex:0 0 calc(var(--rowW,1000px) * .3);min-width:0}
+.work .search{flex:0 0 calc(var(--rowW,1000px) * .3);min-width:0;max-width:450px}
 .work.toc-collapsed.roomy .search{flex-basis:calc(var(--rowW,1000px) * .5)}
 .sbar .sb{margin-left:auto;display:flex;gap:4px;align-items:center}
 .sbar .sb button{width:32px;height:32px;display:grid;place-items:center;border-radius:50%}
@@ -366,6 +369,244 @@ table.vt{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0 20px}
 
 .ktest{padding:10px 12px 16px;color:var(--label);font-size:12px;line-height:17px}
 kbd{font:inherit;background:#fff;border:1px solid var(--border);border-radius:4px;padding:0 4px}
+
+
+/* ===== Папки в ленте ===== */
+#scroll{--fpad:24px}
+.frow{position:relative;cursor:pointer}
+.frow .ftx{display:flex;align-items:center;gap:4px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fopts{position:absolute;right:8px;top:50%;transform:translateY(-50%);display:none;gap:6px;align-items:center}
+.fopts button{width:28px;height:28px;display:grid;place-items:center;border-radius:50%}
+.fopts button:hover{background:rgba(0,0,0,.05)}
+.frow:hover>.fopts{display:flex}
+.corner{display:inline-block;width:7px;height:8px;border-left:1px solid #8991a9;border-bottom:1px solid #8991a9;margin:-4px 7px 0 0;flex:none}
+/* 1-2 */
+.fbigs{background:#fff;border-radius:12px;margin:0 0 6px;padding:6px 0}
+.fbig{font-weight:600;line-height:1.15;letter-spacing:-.02em;padding:14px var(--fpad) 14px;border-top:1px solid #eaeaea}
+.fbig:first-child{border-top:0}
+.fbig:hover{color:#313e78}
+/* 3-4 */
+.fpill{height:35px;background:#fff;border-radius:12px;margin:0 0 4px;display:flex;align-items:center;padding:0 48px 0 var(--fpad)}
+.fpill:hover{box-shadow:0 0 0 1px #e1e7f0}
+.fcrumb .ftx{font-size:12px;color:#8991a9}
+.fcrumb .ell{letter-spacing:1px}
+.fch{flex:none;margin:0 4px;color:#8991a9}
+.fladder .ftx{font-size:15px;color:#000}
+.findent .ftx.fixed{font-size:15px;padding-left:28px}
+.findent{padding-left:24px}
+.findent.sub:before{content:"";position:absolute;left:-12px;top:-22px;width:11px;height:39px;border-left:1px solid #d9dbe2;border-bottom:1px solid #d9dbe2;border-bottom-left-radius:4px}
+.fplain{padding:10px 0 12px}
+.fpl{height:23px;display:flex;align-items:center;padding-left:var(--fpad);font-size:12px;color:#8991a9}
+.fpl:hover{color:#313e78}
+.fpl .corner{border-color:#b5b9c6}
+/* 5 ярлыки */
+.ftabs{margin:0 0 -6px;position:relative}
+.ftab{height:38px;display:flex;align-items:center;padding:0 48px 0 var(--fpad);border-radius:12px 12px 0 0;box-shadow:0 -1px 3px rgba(0,0,0,.09);font-size:16px;color:#656c87;position:relative}
+.ftab+.ftab{margin-top:0}
+.tabsWhite .ftab{background:#fff}
+.tabsGrey .ftab{background:#eff0f3}
+.ftab:hover .ftx{color:#313e78}
+.ftabs + .card{border-top-left-radius:12px;border-top-right-radius:12px;box-shadow:0 -1px 3px rgba(0,0,0,.09)}
+/* 6 сноски */
+.fnotes{margin:0 0 6px 6px}
+.fnote.in{margin-left:9px;border-left:1px solid #d6d8df;border-radius:0 0 0 8px;padding-left:0}
+.fnrow{height:32px;margin:0 0 4px;display:flex;align-items:center;background:#e9eaee;border-radius:8px;padding:0 48px 0 14px;font-size:15px;color:#656c87}
+.fnote.in>.fnrow{margin-left:0}
+.fnrow:hover{background:#e1e3e9}
+/* 7 окошко */
+.flast{background:#fff;border-radius:12px;margin:0 0 6px;padding:20px var(--fpad) 18px;display:flex;align-items:center;border-bottom:1px solid #eaeaea}
+.flast .fbt{font-size:40px;font-weight:600;letter-spacing:-.02em;line-height:1.15}
+.fwin{position:relative;flex:none;margin:4px 12px 0 -6px;width:30px;height:30px;display:grid;place-items:center;border-radius:8px}
+.fwin:hover{background:#f1f2f6}
+.fpop{display:none;position:absolute;left:0;top:30px;z-index:20;background:#fff;border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,.14),0 0 2px rgba(0,0,0,.06);padding:8px 0;min-width:260px}
+.fwin:hover .fpop{display:block}
+.fpr{display:flex;align-items:center;height:30px;padding-right:16px;font-size:15px;color:#000;white-space:nowrap}
+.fpr:hover{background:#f1f2f6}
+/* 8 крошки */
+.fhead{background:#eff0f3;border-radius:12px 12px 0 0;padding:12px var(--fpad) 10px;margin:0}
+.fhead + .card{border-top-left-radius:0;border-top-right-radius:0}
+.fcr{display:flex;align-items:center;font-size:12px;color:#8991a9;white-space:nowrap;overflow:hidden}
+.fcr a{color:inherit;cursor:pointer}
+.fcr a:hover{color:#313e78;text-decoration:underline}
+.fht{font-size:17px;font-weight:600;margin-top:4px}
+/* 9 блоки */
+.fblocks{background:#fff;border-radius:12px 12px 0 0;padding:26px calc(var(--fpad) - 16px) 4px;margin:0}
+.fblocks + .card{border-top-left-radius:0;border-top-right-radius:0}
+.fblk{height:32px;margin:0 0 4px;display:flex;align-items:center;background:#f5f5f7;border-radius:4px;padding:0 48px 0 16px;font-size:15px;color:#656c87}
+.fblk:hover{background:#eeeff3}
+
+/* ===== Телефон ===== */
+.toast{bottom:auto}
+#phones{display:none;position:absolute;left:0;top:0;width:770px;height:900px}
+#proto.phone #phones{display:block}
+#proto.phone #stage{display:none}
+#proto.phone #panel{left:790px}
+.m-lbl{position:absolute;top:836px;width:375px;text-align:center;font-size:20px;color:#333}
+.m-ph{position:absolute;top:0;width:375px;height:812px;background:#fff;overflow:hidden;display:flex;flex-direction:column;font-size:16px;color:#000;letter-spacing:-.01em}
+.m-ph[data-k="ad"]{left:0}.m-ph[data-k="app"]{left:395px}
+.m-top{background:#f3f3f5;flex:none}
+.m-status{height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 18px 0 32px;font-weight:600;font-size:15px}
+.m-head{height:52px;display:flex;align-items:center;gap:8px;padding:0 10px 0 12px}
+.m-head button{display:grid;place-items:center;flex:none}
+.m-back{width:22px;height:36px}
+.m-back[disabled]{visibility:hidden}
+.m-ava{width:42px;height:42px;border-radius:50%;background:#8b7fe0;display:grid;place-items:center;flex:none}
+.m-ava img{width:24px;height:24px;border-radius:3px}
+.m-ht{flex:1;min-width:0;font-size:20px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.m-hdots,.m-adots{width:32px;height:32px;border-radius:50%}
+.m-hdots{background:#e9eaee}
+.m-big{height:52px;display:flex;align-items:center;padding:0 12px;font-size:24px;font-weight:600}
+.m-search{height:40px;padding:2px 12px 10px;position:relative}
+.m-search input{width:100%;height:28px;border-radius:14px;border:1px solid #dcdde2;background:#fff;padding:0 30px 0 12px;font:inherit;font-size:15px;outline:none;color:#000}
+.m-search input::placeholder{color:#b5b9c6}
+.m-clr{position:absolute;right:18px;top:6px;width:20px;height:20px;border-radius:50%;background:#8991a9;color:#fff;font-size:14px;line-height:20px}
+.m-scroll{flex:1;min-height:0;overflow:auto;position:relative;background:#fff}
+.m-scroll.srch{background:#f3f3f5;padding:4px 8px 90px}
+.m-desc{background:#f3f3f5;padding:4px 24px 14px;font-size:15px;line-height:19px}
+.m-list{padding:10px 0 100px}
+.m-li{display:flex;align-items:center;gap:10px;padding:0 24px;min-height:37px;cursor:pointer}
+.m-li.f{font-size:18px}
+.m-li.f svg{flex:none;color:#8991a9}
+.m-li.a{min-height:44px;padding-left:14px}
+.m-li:active,.m-li:hover{background:#f6f7fa}
+.m-art{position:relative;padding:22px 24px 8px;border-bottom:6px solid #f3f3f5}
+.m-art:last-child{border-bottom:0;padding-bottom:110px}
+.m-adots{position:absolute;right:12px;top:8px}
+.m-art h1{font-size:32px;font-weight:600;line-height:1.15;letter-spacing:-.02em;margin:18px 0 22px;overflow-wrap:anywhere}
+.m-art h2{font-size:22px;font-weight:600;margin:26px 0 10px}
+.m-art h3{font-size:18px;font-weight:600;margin:20px 0 8px}
+.m-art p,.m-art li{font-size:16px;line-height:24px;margin:0 0 12px}
+.m-art ul{padding-left:22px;margin:0 0 14px}
+.m-art .lead{color:#656c87}
+.m-art a.l{color:#2562aa;text-decoration:underline;cursor:pointer}
+.m-art .idx{grid-template-columns:1fr;gap:18px}
+.m-art .idx a,.m-art .nested a{line-height:30px;font-size:16px}
+.m-art .tblw{margin:0;padding:0;overflow-x:auto}
+.m-art .idx{grid-template-columns:minmax(0,1fr)}
+.m-art .idx>div,.m-art .nested{min-width:0;max-width:100%}
+.m-art .nested a{max-width:100%}
+.m-body{min-width:0;overflow-wrap:anywhere}
+.m-afoot{display:flex;gap:16px;color:#8991a9;padding:6px 0 10px}
+.m-afoot svg{width:18px;height:18px}
+.m-mini{position:absolute;left:0;right:0;height:46px;padding-top:2px!important;box-sizing:content-box;background:#f3f3f5;display:none;align-items:center;justify-content:space-between;padding:0 12px 0 24px;font-size:17px;font-weight:600;box-shadow:0 4px 8px rgba(0,0,0,.08);z-index:3}
+.m-mini span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.m-mini.on{display:flex}
+.m-fabs{position:absolute;right:12px;display:flex;gap:12px;z-index:4}
+.m-fabs button{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.m-toc{background:#e6e6e8}
+.m-plus{background:#0a84ef}
+.m-nav{flex:none;height:50px;border-top:1px solid #e6e6e6;display:flex;background:#fff}
+.m-nav div{width:69px;flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#8991a9}
+.m-nav div:first-child{border-right:1px solid #e6e6e6}
+.m-nav img{width:22px;height:22px}
+.m-saf{flex:none;height:128px;background:#f6f6f8;padding:10px 14px 0}
+.m-url{height:42px;border-radius:12px;background:#e5e5ea;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:15px}
+.m-sbtns{display:flex;justify-content:space-between;padding:14px 10px 0}
+.m-home{position:absolute;left:50%;bottom:9px;width:138px;height:5px;margin-left:-69px;border-radius:3px;background:#000;z-index:6}
+.m-ov{position:absolute;inset:0;background:rgba(80,82,76,.6);display:none;z-index:8}
+.m-sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:16px 16px 0 0;z-index:9;transform:translateY(100%);transition:transform .22s ease;max-height:740px;display:flex;flex-direction:column;padding-bottom:28px}
+.m-ph.sheet .m-ov{display:block}
+.m-ph.sheet .m-sheet{transform:none}
+.m-grab{width:40px;height:4px;border-radius:2px;background:#d4d4d8;margin:8px auto 6px;flex:none}
+.m-stitle{display:flex;align-items:center;gap:8px;padding:6px 20px 8px;font-size:22px;font-weight:500}
+.m-stitle button{width:24px;height:30px;display:grid;place-items:center}
+.m-sbody{overflow:auto;min-height:0}
+.m-mi{display:flex;align-items:center;gap:12px;height:44px;padding:0 20px;font-size:17px;cursor:pointer}
+.m-mi:hover{background:#f6f7fa}
+.m-mi .ic{width:24px;height:24px;display:grid;place-items:center;flex:none}
+.m-mi .ic img{width:24px;height:24px}
+.m-mi.two{height:auto;min-height:52px;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;padding-top:6px;padding-bottom:6px}
+.m-mi .hint{color:#b5b9c6;font-size:15px}
+.m-mi .gt{margin-left:auto;color:#8991a9}
+.m-mi .chk{margin-left:auto;color:#f47843}
+.m-msep{height:1px;background:#eaeaea;margin:6px 16px}
+.m-msep.t{height:24px;background:none;margin:0 16px 0 56px;display:flex;align-items:center;gap:8px}
+.m-msep.t:after{content:"";flex:1;height:1px;background:#eaeaea}
+.m-msep.t span{font-size:12px;color:#8991a9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px}
+.m-tr{display:flex;align-items:center;gap:6px;height:44px;padding-right:16px;font-size:17px;cursor:pointer;position:relative;white-space:nowrap}
+.m-tr span:last-child{overflow:hidden;text-overflow:ellipsis}
+.m-tr.root{font-weight:600}
+.m-tr.on{background:#ebf4ff}
+.m-tr.on:before{content:"";position:absolute;left:8px;top:12px;bottom:12px;width:3px;border-radius:2px;background:#cc3d00}
+.m-tw{width:20px;height:44px;display:grid;place-items:center;flex:none;color:#656c87}
+.m-res{background:#fff;border-radius:8px;padding:10px 12px;margin-bottom:8px;cursor:pointer}
+.m-res .cr{font-size:12px;color:#8991a9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.m-res .t{font-size:16px;font-weight:600;margin:4px 0}
+.m-res .sn{font-size:13px;line-height:17px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.m-res mark{background:#fff3a3;color:inherit}
+.m-empty{padding:40px 24px;color:#8991a9;text-align:center}
+
+.pg.mob{display:none}
+#proto.phone .pmain>.pg.dsk{display:none}
+#proto.phone .pg.mob{display:flex}
+.psep{display:block;height:1px;background:#eaeaea;margin:6px 0 6px 6px}
+.pb.prow{display:flex;gap:6px;flex-wrap:wrap}
+.m-ph{font-family:-apple-system,"SF Pro Text","SF UI Text","SF Pro Display",BlinkMacSystemFont,"Helvetica Neue",system-ui,sans-serif;letter-spacing:-.2px}
+.m-ph input,.m-ph button{font-family:inherit}
+.m-regh{justify-content:space-between;font-size:30px;font-weight:700;height:56px}
+.m-regh .m-hdots{width:32px;height:32px;border-radius:50%;background:#e9eaee;display:grid;place-items:center}
+.m-tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:6px 4px 100px}
+.m-tile{height:290px;border-radius:6px;padding:12px 12px 0;position:relative;overflow:hidden;cursor:pointer;display:flex;flex-direction:column}
+.m-tile .tt{font-size:17px;font-weight:600;line-height:20px;margin-bottom:10px}
+.m-tile ul{margin:0;padding-left:2px;font-size:14px;line-height:22px;list-style:disc inside}
+.m-tile li{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.m-tile .td{font-size:14px;line-height:17px}
+.m-tile .tpic{flex:1;margin:10px -12px 0;min-height:60px}
+.t-kb{background:#fff}.t-kb .tpic{background:radial-gradient(circle at 50% 55%,#e5e0ff 0 34%,transparent 35%),linear-gradient(#fff,#f4f2ff);display:grid;place-items:center}
+.t-kb .tpic img{width:56px;height:56px;border-radius:8px}
+.t-w{background:#fff}.t-w .tpic{background:radial-gradient(circle at 45% 55%,#2c6aa8 0 30%,transparent 31%),radial-gradient(circle at 62% 42%,#4a8cc8 0 18%,transparent 19%),#fff}
+.t-dark{background:#1b2638;color:#fff}.t-dark .tpic{background:repeating-linear-gradient(-20deg,#22344f 0 6px,#2d4a6f 6px 8px,#1b2638 8px 14px)}
+.t-pale{background:#eaf3fd}.t-pale .tpic{display:none}
+.t-grey{background:#3b4652;color:#fff}.t-grey .tpic{background:linear-gradient(90deg,#b23a2e 0 12%,#e6c34a 12% 22%,#2f6b8f 22% 34%,#d9d4c7 34% 46%,#8a2c3c 46% 58%,#3d7a4f 58% 70%,#c9772f 70% 82%,#2a2f3a 82%);opacity:.9}
+.m-tabs{flex:none;height:54px;display:flex;border-top:1px solid #eaeaea;background:#fff;margin-bottom:0;padding-bottom:4px}
+.m-tabs div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11px;color:#8991a9}
+.m-tabs div.on{color:#333}
+.m-emp{display:flex;flex-direction:column;align-items:center;padding:50px 30px 0;text-align:center}
+.m-emp .e1{font-size:19px;color:#8991a9;margin-top:24px}
+.m-emp .e2{font-size:15px;color:#8991a9;margin-top:16px;line-height:19px}
+.m-emp a{color:#2562aa;cursor:pointer}
+.m-na{position:absolute;inset:0;background:#e3e3e6;display:grid;place-items:center;text-align:center;color:#8991a9;font-size:19px;line-height:24px}
+#proto.s1024:not(.ntfopen) #ntf{display:none!important}
+#proto.s1024.ntfopen #ntf{display:block!important;position:absolute;right:52px;top:0;bottom:0;width:300px!important;z-index:30;box-shadow:-8px 0 24px rgba(0,0,0,.14)}
+#tbNtf .tbx{display:none}
+#proto.s1024.ntfopen #tbNtf{background:#eeeff2;opacity:1}
+#proto.s1024.ntfopen #tbNtf img{display:none}
+#proto.s1024.ntfopen #tbNtf .tbx{display:grid;place-items:center}
+#proto.s1024.ntfopen #tbNtf:hover{background:#e2e4e9}
+/* ===== Меню опций ===== */
+.mnu{position:absolute;z-index:200;width:280px;background:#fff;border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,.14),0 0 2px rgba(0,0,0,.06);padding:8px 0 12px;font-size:16px;line-height:20px;color:#000;letter-spacing:-.01em}
+.mi{height:32px;margin:0 8px;padding:0 12px;border-radius:16px;display:flex;align-items:center;gap:10px;cursor:pointer;white-space:nowrap;position:relative}
+.mi+.mi{margin-top:6px}
+.mi:hover,.mi.open{background:#f1f2f6}
+.mi .ic{width:22px;height:24px;flex:none;display:grid;place-items:center;overflow:visible}
+.mi .ic svg{display:block}
+.mi .ic img{width:24px;height:24px;max-width:none}
+.mi .lb{flex:0 1 auto;overflow:hidden;text-overflow:ellipsis}
+.mi .sub{color:#b5b9c6}
+.mi:has(.ar){padding-right:2px}
+.mi .ar{margin-left:auto;width:28px;height:28px;flex:none;display:grid;place-items:center;border-radius:50%;color:#656c87}
+.mi .ar:hover{background:#fff;color:#313e78;box-shadow:0 0 0 2px #eceef3}
+.mi .chk{margin-left:auto;color:#f47843;font-size:12px}
+.msep{height:24px;margin:0 8px;padding:0 16px 0 12px;display:flex;align-items:center;gap:8px}
+.msep:after{content:"";flex:1;height:1px;background:#eaeaea}
+.msep.t{padding-left:44px;height:48px}
+.msep span{font-size:12px;line-height:16px;color:#8991a9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:190px}
+.mhead{display:flex;align-items:center;gap:10px;margin:10px 20px 6px;font-size:13px;color:#8991a9;white-space:nowrap}
+.mhead span{overflow:hidden;text-overflow:ellipsis;max-width:200px}
+.mhead i{flex:1;height:1px;background:#eaeaea;min-width:16px}
+.mclose{position:absolute;right:-14px;top:8px;width:28px;height:28px;border-radius:50%;background:#d0d0d0;display:grid;place-items:center;cursor:pointer;z-index:2}
+.mclose:hover{background:#c2c2c2}
+.mmore{margin:8px auto 0;width:40px;height:14px;border-radius:7px;background:#f2f2f2;display:grid;place-items:center;cursor:pointer;color:#8991a9}
+.mmore:hover{background:#e6e6e6}
+.mnu.subm{width:auto;min-width:210px}
+.mnu.subm .mi{padding-right:16px}
+.mnu.subm .mi.two{height:auto;min-height:44px;flex-direction:column;align-items:flex-start;justify-content:center;gap:1px;padding:5px 16px 6px 12px}
+.mnu.subm .mi.two+.mi.two{margin-top:4px}
+.mnu.subm .mi.two .hint{max-width:180px;line-height:16px}
+.mnu.subm{min-width:0;width:max-content;max-width:214px}
+.mnu.subm .hint{color:#b5b9c6;font-size:13px;max-width:170px;overflow:hidden;text-overflow:ellipsis}
+.toast{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);background:#313e78;color:#fff;font-size:14px;padding:9px 16px;border-radius:18px;z-index:300;opacity:0;transition:opacity .2s;pointer-events:none;white-space:nowrap}
+.toast.on{opacity:1}
 </style>
 </head>
 <body>
@@ -508,23 +749,20 @@ kbd{font:inherit;background:#fff;border:1px solid var(--border);border-radius:4p
 <path d="M8.01562 0C8.29688 0 8.53125 0.109375 8.71875 0.328125C8.90625 0.515625 9 0.75 9 1.03125V7.03125H15C15.2812 7.03125 15.5156 7.125 15.7031 7.3125C15.9219 7.5 16.0312 7.73438 16.0312 8.01562C16.0312 8.29688 15.9219 8.53125 15.7031 8.71875C15.5156 8.90625 15.2812 9 15 9H9V15C9 15.2812 8.90625 15.5312 8.71875 15.75C8.53125 15.9375 8.29688 16.0312 8.01562 16.0312C7.73438 16.0312 7.5 15.9375 7.3125 15.75C7.125 15.5312 7.03125 15.2812 7.03125 15V9H1.03125C0.75 9 0.5 8.90625 0.28125 8.71875C0.09375 8.53125 0 8.29688 0 8.01562C0 7.73438 0.09375 7.5 0.28125 7.3125C0.5 7.125 0.75 7.03125 1.03125 7.03125H7.03125V1.03125C7.03125 0.75 7.125 0.515625 7.3125 0.328125C7.5 0.109375 7.73438 0 8.01562 0Z" fill="#0085F2"/>
 </svg></button>
    <button class="tb plain" id="tbMode" style="top:104px" title="Лента / документ"><span id="modeIco"></span></button>
-   <button class="tb plain" style="top:142px" title="Сохранить"><svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M15 0C15.5312 0 16.4844 0.875 17.8594 2.625C19.2656 4.34375 19.9688 5.46875 19.9688 6V18C19.9688 18.5625 19.7656 19.0469 19.3594 19.4531C18.9844 19.8281 18.5312 20.0156 18 20.0156H1.96875C1.4375 20.0156 0.96875 19.8281 0.5625 19.4531C0.1875 19.0469 0 18.5625 0 18V2.01562C0 1.45312 0.1875 0.984375 0.5625 0.609375C0.96875 0.203125 1.4375 0 1.96875 0H15ZM3.98438 7.03125C3.98438 7.28125 4.07812 7.51562 4.26562 7.73438C4.48438 7.92188 4.71875 8.01562 4.96875 8.01562H13.9688C14.25 8.01562 14.4844 7.92188 14.6719 7.73438C14.8906 7.51562 15 7.28125 15 7.03125V2.01562C15 1.73438 14.8906 1.5 14.6719 1.3125C14.4844 1.125 14.25 1.03125 13.9688 1.03125H4.96875C4.71875 1.03125 4.48438 1.125 4.26562 1.3125C4.07812 1.5 3.98438 1.73438 3.98438 2.01562V7.03125ZM10.9688 7.03125V2.01562H12.9844V7.03125H10.9688ZM18 11.0156C18 10.7344 17.8906 10.5 17.6719 10.3125C17.4844 10.125 17.25 10.0312 16.9688 10.0312H3C2.71875 10.0312 2.46875 10.125 2.25 10.3125C2.0625 10.5 1.96875 10.7344 1.96875 11.0156V17.0156C1.96875 17.2969 2.0625 17.5312 2.25 17.7188C2.46875 17.9062 2.71875 18 3 18H16.9688C17.25 18 17.4844 17.9062 17.6719 17.7188C17.8906 17.5312 18 17.2969 18 17.0156V11.0156Z" fill="#656C87"/>
-</svg></button>
-   <button class="tb plain" style="top:180px" title="Настройки"><svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <button class="tb plain" style="top:142px" title="Настройки"><svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M9.51562 11.9531C10.0781 11.9531 10.5469 11.7656 10.9219 11.3906C11.3281 10.9844 11.5312 10.5156 11.5312 9.98438C11.5312 9.42188 11.3281 8.95312 10.9219 8.57812C10.5469 8.17188 10.0781 7.96875 9.51562 7.96875C8.95312 7.96875 8.46875 8.17188 8.0625 8.57812C7.6875 8.95312 7.5 9.42188 7.5 9.98438C7.5 10.5156 7.6875 10.9844 8.0625 11.3906C8.46875 11.7656 8.95312 11.9531 9.51562 11.9531ZM2.48438 8.39062C2.89062 8.92188 3.09375 9.53125 3.09375 10.2188C3.09375 10.875 2.89062 11.4688 2.48438 12L1.07812 13.875L0.28125 13.2656L1.6875 11.3906C1.96875 11.0469 2.10938 10.6562 2.10938 10.2188C2.10938 9.75 1.96875 9.34375 1.6875 9L0 6.79688L0.09375 6.51562C0.46875 5.45312 1.03125 4.48438 1.78125 3.60938L1.96875 3.375L4.6875 3.75H4.96875C5.3125 3.75 5.65625 3.65625 6 3.46875C6.34375 3.25 6.59375 2.9375 6.75 2.53125L7.73438 0.140625L8.01562 0.09375C8.26562 0.03125 8.5 0 8.71875 0H10.125C10.3438 0 10.5781 0.03125 10.8281 0.09375L11.1094 0.140625L12.1406 2.53125C12.2969 2.9375 12.5469 3.25 12.8906 3.46875C13.2344 3.65625 13.5781 3.75 13.9219 3.75H14.2031L16.6875 3.42188L16.8281 4.40625L14.3438 4.73438H14.0156C13.4844 4.73438 12.9375 4.59375 12.375 4.3125C11.8438 4 11.4531 3.53125 11.2031 2.90625L10.4062 1.03125C10.0938 1 9.76562 0.984375 9.42188 0.984375C9.10938 0.984375 8.78125 1 8.4375 1.03125L7.6875 2.90625C7.4375 3.53125 7.03125 4 6.46875 4.3125C5.9375 4.59375 5.40625 4.73438 4.875 4.73438H4.54688L2.39062 4.45312C1.89062 5.07812 1.46875 5.79688 1.125 6.60938L2.48438 8.39062ZM9.51562 6.98438C10.3281 6.98438 11.0312 7.28125 11.625 7.875C12.2188 8.46875 12.5156 9.17188 12.5156 9.98438C12.5156 10.7969 12.2188 11.5 11.625 12.0938C11.0312 12.6875 10.3281 12.9844 9.51562 12.9844C8.70312 12.9844 8 12.6875 7.40625 12.0938C6.8125 11.5 6.51562 10.7969 6.51562 9.98438C6.51562 9.17188 6.8125 8.46875 7.40625 7.875C8 7.28125 8.70312 6.98438 9.51562 6.98438ZM18.8438 13.4062L18.75 13.6875C18.4375 14.5625 17.9688 15.375 17.3438 16.125L17.2031 16.3594L14.5781 15.9844H14.2969C13.9531 15.9844 13.6094 16.0938 13.2656 16.3125C12.9219 16.5 12.6719 16.7969 12.5156 17.2031L11.4375 19.7812L11.1562 19.8281C10.5938 19.9219 10.0156 19.9688 9.42188 19.9688C8.89062 19.9688 8.34375 19.9219 7.78125 19.8281L7.5 19.7812L6.46875 17.25C6.3125 16.8438 6.04688 16.5469 5.67188 16.3594C5.32812 16.1406 4.98438 16.0312 4.64062 16.0312H4.35938L2.0625 16.3594L1.96875 15.375L4.21875 15.0469H4.54688C5.10938 15.0469 5.65625 15.2031 6.1875 15.5156C6.75 15.7969 7.15625 16.25 7.40625 16.875L8.20312 18.8906C8.64062 18.9219 9.0625 18.9375 9.46875 18.9375C9.90625 18.9375 10.3281 18.9219 10.7344 18.8906L11.5781 16.8281C11.8281 16.2031 12.2188 15.75 12.75 15.4688C13.3125 15.1562 13.8438 15 14.3438 15H14.7188L16.7344 15.2812C16.9219 15.0312 17.0938 14.7656 17.25 14.4844C17.4062 14.1719 17.5625 13.875 17.7188 13.5938L16.5 11.9531C16.0625 11.4219 15.8438 10.8281 15.8438 10.1719C15.8438 9.48438 16.0625 8.875 16.5 8.34375L17.9531 6.375L18.75 6.98438L17.2969 8.95312C17.0156 9.29688 16.875 9.70312 16.875 10.1719C16.875 10.6094 17.0156 11 17.2969 11.3438L18.8438 13.4062Z" fill="#656C87"/>
 </svg></button>
-   <i class="tsep" style="top:209px"></i>
-   <button class="tb plain" style="top:238px" title="Ссылка на статью"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <i class="tsep" style="top:171px"></i>
+   <button class="tb plain" id="tbLink" style="top:200px" title="Ссылка на статью"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M6.14062 15.6094L9.9375 11.8125L10.6406 12.5156L6.84375 16.3594C6.0625 17.1406 5.125 17.5312 4.03125 17.5312C2.96875 17.5312 2.01562 17.1406 1.17188 16.3594C0.390625 15.5469 0 14.5938 0 13.5C0 12.4062 0.390625 11.4688 1.17188 10.6875L5.01562 6.89062L5.71875 7.59375L1.92188 11.3906C1.32812 11.9844 1.03125 12.6875 1.03125 13.5C1.03125 14.3125 1.32812 15.0156 1.92188 15.6094C2.57812 16.2031 3.28125 16.5 4.03125 16.5C4.84375 16.5 5.54688 16.2031 6.14062 15.6094ZM6.89062 4.96875L10.6875 1.17188C11.4688 0.390625 12.4062 0 13.5 0C14.0312 0 14.5312 0.09375 15 0.28125C15.5 0.46875 15.9531 0.765625 16.3594 1.17188C17.1406 1.98438 17.5312 2.9375 17.5312 4.03125C17.5312 5.125 17.1406 6.0625 16.3594 6.84375L12.5625 10.6406L11.8594 9.9375L15.6562 6.14062C16.25 5.54688 16.5469 4.84375 16.5469 4.03125C16.5469 3.1875 16.25 2.46875 15.6562 1.875C15.375 1.5625 15.0469 1.34375 14.6719 1.21875C14.2969 1.0625 13.9219 0.984375 13.5469 0.984375C12.7031 0.984375 11.9844 1.28125 11.3906 1.875L7.59375 5.67188L6.89062 4.96875ZM6.65625 11.6719L5.95312 10.9688L11.0156 5.95312L11.7188 6.65625L6.65625 11.6719Z" fill="#656C87"/>
 </svg></button>
-   <button class="tb plain" style="top:276px" title="Редактировать статью"><svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <button class="tb plain" id="tbEdit" style="top:238px" title="Редактировать статью"><svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M4.6875 15.3281L0 16.3125L1.125 11.3906L12.2344 0C13.2344 0.15625 14.0469 0.625 14.6719 1.40625C15.2969 2.15625 15.6562 3 15.75 3.9375L4.6875 15.3281ZM4.17188 14.3906L2.01562 11.9531L1.5 14.25L2.0625 14.8594L4.17188 14.3906ZM2.01562 18V17.0156H16.0312V18H2.01562Z" fill="#656C87"/>
 </svg></button>
-   <button class="tb plain" style="top:314px" title="Еще"><svg width="5" height="18" viewBox="0 0 5 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <button class="tb plain" id="tbMore" style="top:276px" title="Еще"><svg width="5" height="18" viewBox="0 0 5 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M4.03125 15.9844V16.0312C4.03125 16.2812 3.96875 16.5312 3.84375 16.7812C3.75 17 3.60938 17.2031 3.42188 17.3906C3.23438 17.5781 3.01562 17.7188 2.76562 17.8125C2.54688 17.9062 2.29688 17.9531 2.01562 17.9531C1.73438 17.9531 1.46875 17.9062 1.21875 17.8125C1 17.7188 0.796875 17.5781 0.609375 17.3906C0.421875 17.2031 0.265625 17 0.140625 16.7812C0.046875 16.5312 0 16.2812 0 16.0312V15.9844C0 15.4219 0.1875 14.9531 0.5625 14.5781C0.96875 14.1719 1.45312 13.9688 2.01562 13.9688C2.57812 13.9688 3.04688 14.1719 3.42188 14.5781C3.82812 14.9531 4.03125 15.4219 4.03125 15.9844ZM4.03125 9C4.03125 9.28125 3.96875 9.54688 3.84375 9.79688C3.75 10.0156 3.60938 10.2031 3.42188 10.3594C3.23438 10.5469 3.01562 10.7031 2.76562 10.8281C2.54688 10.9219 2.29688 10.9688 2.01562 10.9688C1.73438 10.9688 1.46875 10.9219 1.21875 10.8281C1 10.7031 0.796875 10.5469 0.609375 10.3594C0.421875 10.2031 0.265625 10.0156 0.140625 9.79688C0.046875 9.54688 0 9.28125 0 9C0 8.4375 0.1875 7.96875 0.5625 7.59375C0.96875 7.1875 1.45312 6.98438 2.01562 6.98438C2.57812 6.98438 3.04688 7.1875 3.42188 7.59375C3.82812 7.96875 4.03125 8.4375 4.03125 9ZM4.03125 1.96875V2.01562C4.03125 2.26562 3.96875 2.51562 3.84375 2.76562C3.75 2.98438 3.60938 3.1875 3.42188 3.375C3.23438 3.5625 3.01562 3.71875 2.76562 3.84375C2.54688 3.9375 2.29688 3.98438 2.01562 3.98438C1.73438 3.98438 1.46875 3.9375 1.21875 3.84375C1 3.71875 0.796875 3.5625 0.609375 3.375C0.421875 3.1875 0.265625 2.98438 0.140625 2.76562C0.046875 2.51562 0 2.26562 0 2.01562V1.96875C0 1.4375 0.1875 0.984375 0.5625 0.609375C0.96875 0.203125 1.45312 0 2.01562 0C2.57812 0 3.04688 0.203125 3.42188 0.609375C3.82812 0.984375 4.03125 1.4375 4.03125 1.96875Z" fill="#656C87"/>
 </svg></button>
-   <span class="hgrp" data-h="tbar"><i class="tsep" style="top:343px"></i><button class="hb tb plain" style="top:372px" title="Назад по истории"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5.5 3.5L2.5 6.5l3 3" stroke="currentColor" stroke-width="1.1"/><path d="M2.8 6.5H10a3.5 3.5 0 0 1 0 7H6.5" stroke="currentColor" stroke-width="1.1"/></svg></button><button class="hf tb plain" style="top:410px" title="Вперед по истории"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10.5 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.1"/><path d="M13.2 6.5H6a3.5 3.5 0 0 0 0 7h3.5" stroke="currentColor" stroke-width="1.1"/></svg></button></span>
+   <span class="hgrp" data-h="tbar"><i class="tsep" style="top:305px"></i><button class="hb tb plain" style="top:334px" title="Назад по истории"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5.5 3.5L2.5 6.5l3 3" stroke="currentColor" stroke-width="1.1"/><path d="M2.8 6.5H10a3.5 3.5 0 0 1 0 7H6.5" stroke="currentColor" stroke-width="1.1"/></svg></button><button class="hf tb plain" style="top:372px" title="Вперед по истории"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10.5 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.1"/><path d="M13.2 6.5H6a3.5 3.5 0 0 0 0 7h3.5" stroke="currentColor" stroke-width="1.1"/></svg></button></span>
    <span class="hdot" data-hint="ntf" style="position:absolute;left:29px;z-index:3" id="ntfHint"></span>
    <button class="ntfpill" id="ntfPill" title="Свернуть центр уведомлений"><svg width="5" height="11" viewBox="0 0 5 11" fill="none"><path d="M0.5 0.5L4.3 5.5 0.5 10.5" stroke="currentColor" stroke-width="1"/></svg></button>
    <button class="tb circ cal" style="top:734px" title="Календарь"><svg width="12" height="9.4" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -581,22 +819,13 @@ kbd{font:inherit;background:#fff;border:1px solid var(--border);border-radius:4p
 <path d="M5.70313 13.4453C5.8886 13.1671 6.20083 13 6.53518 13H9.46482C9.79917 13 10.1114 13.1671 10.2969 13.4453L10.9635 14.4453C11.4066 15.1099 10.9302 16 10.1315 16H5.86852C5.06982 16 4.59343 15.1099 5.03647 14.4453L5.70313 13.4453ZM6.53518 14H9.46482L10.1315 15H5.86852L6.53518 14Z" fill-rule="evenodd" clip-rule="evenodd" fill="currentColor"/>
 </svg></button>
    </div>
-   <div class="swcap"><span>1024х768</span><span>монитор</span></div>
+   <div class="swcap" id="swcap"></div>
   </div>
   <section class="pg">
    <div class="ph">Экраны</div>
    <div class="pitems" style="display:flex;flex-direction:column;gap:4px">
     <div class="pb"><div class="rad ro">Реестр баз знаний</div></div>
     <div class="pb"><div class="rad on">База знаний</div></div>
-   </div>
-  </section>
-  <section class="pg fold" id="histSec">
-   <div class="ph exp" id="histExp">История действий<svg class="expch" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#8991A9" stroke-width="1.2"/></svg></div>
-   <div class="pb" id="hists">
-    <div class="rad" data-hist="page">В шапке страницы</div>
-    <div class="rad" data-hist="sbar">В шапке контента</div>
-    <div class="rad" data-hist="tbar">В тулбаре</div>
-    <div class="rad" data-hist="pager">В пейджинге</div>
    </div>
   </section>
   <section class="pg">
@@ -612,6 +841,33 @@ kbd{font:inherit;background:#fff;border:1px solid var(--border);border-radius:4p
    </div>
    <div class="pb lnks"><a class="lnk" href="https://www.figma.com/proto/3zVSPRtGWbSklfdbQiQilA/%D0%A1%D1%82%D0%B0%D1%80%D1%82%D0%BE%D0%B2%D0%B0%D1%8F-%D0%91%D0%97?node-id=1067-179443&amp;viewport=-2066%2C-463%2C0.41&amp;t=Tvk6wAjitEAHbwyi-8&amp;scaling=contain&amp;content-scaling=responsive&amp;starting-point-node-id=1067%3A178941&amp;page-id=1067%3A178940&amp;hide-ui=1" target="_blank" rel="noopener">Заполнение стартовой статьи<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M9.5 2.5h4v4M13.5 2.5L7.5 8.5M11.5 9v4.5h-9v-9H7" stroke="#8991A9" stroke-width="1"/></svg></a><a class="lnk" href="https://www.figma.com/proto/3zVSPRtGWbSklfdbQiQilA/%D0%A1%D1%82%D0%B0%D1%80%D1%82%D0%BE%D0%B2%D0%B0%D1%8F-%D0%91%D0%97?node-id=1818-132888&amp;t=oZxnlCEsi1MhSB1g-8&amp;scaling=contain&amp;content-scaling=responsive&amp;page-id=1067%3A178940&amp;starting-point-node-id=1818%3A132888&amp;show-proto-sidebar=1&amp;hide-ui=1" target="_blank" rel="noopener">Создание папки<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M9.5 2.5h4v4M13.5 2.5L7.5 8.5M11.5 9v4.5h-9v-9H7" stroke="#8991A9" stroke-width="1"/></svg></a></div>
    <div class="pb lnks"><a class="lnk" href="https://www.figma.com/proto/LbjyWRjQFNyg4KGZsO06AK/%D0%9F%D0%BE%D0%B8%D1%81%D0%BA-%D0%B2-%D0%B1%D0%B0%D0%B7%D0%B5-%D0%B7%D0%BD%D0%B0%D0%BD%D0%B8%D0%B9-ver.4-%D0%B0%D0%B2%D0%B3%D1%83%D1%81%D1%82-26?node-id=10969-112680&amp;t=0gUnMiP5BUcSKHTi-8&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;page-id=10969%3A110144&amp;starting-point-node-id=10969%3A113862&amp;hide-ui=1" target="_blank" rel="noopener">Поиск<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M9.5 2.5h4v4M13.5 2.5L7.5 8.5M11.5 9v4.5h-9v-9H7" stroke="#8991A9" stroke-width="1"/></svg></a></div>
+  </section>
+  <section class="pg fold" id="histSec">
+   <div class="ph exp" id="histExp">Кнопки истории действий<svg class="expch" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#8991A9" stroke-width="1.2"/></svg></div>
+   <div class="pb" id="hists">
+    <div class="rad" data-hist="page">В шапке страницы</div>
+    <div class="rad" data-hist="sbar">В шапке контента</div>
+    <div class="rad" data-hist="tbar">В тулбаре</div>
+    <div class="rad" data-hist="pager">В пейджинге</div>
+   </div>
+  </section>
+  <section class="pg" id="fvSec" style="display:none">
+   <div class="ph exp" id="fvExp">Папки в ленте<svg class="expch" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#8991A9" stroke-width="1.2"/></svg></div>
+   <div class="pb" id="fvars">
+    <div class="rad wrap on" data-fv="bold">1. Все уровни жирным заголовком</div>
+    <div class="rad wrap" data-fv="typo">2. Типографика по убыванию</div>
+    <div class="rad wrap" data-fv="crumbs">3. Папки-крошки</div>
+    <div class="rad wrap" data-fv="ladder">4. Папки лесенкой, с фоном</div>
+    <div class="rad wrap sub" data-fv="ladderIndent">С отступами</div>
+    <div class="rad wrap sub" data-fv="ladderPlain">Без фона</div>
+    <div class="rad wrap" data-fv="tabsWhite">5. Папки-ярлыки, белые</div>
+    <div class="rad wrap sub" data-fv="tabsGrey">Серые</div>
+    <div class="rad wrap sub" data-fv="tabsColor">Цветные</div>
+    <div class="rad wrap" data-fv="notes">6. Папки-сноски</div>
+    <div class="rad wrap" data-fv="lastWin">7. Только последний уровень, остальные в окошке</div>
+    <div class="rad wrap" data-fv="lastCrumbs">8. Только последний уровень, остальные в крошках</div>
+    <div class="rad wrap" data-fv="blocks">9. Папки-блоки</div>
+   </div>
   </section>
   <section class="pg g6">
    <div class="ph">Раскладка</div>
@@ -715,6 +971,15 @@ ${P('Для мобильного устройства используется �
 ${P('<a class="l">Последние изменения</a>')}
 `;
 
+const FONT_TEXT = `
+<h2 style="margin-top:0">Введение</h2>
+${P('Основа любого интерфейса - шрифт. Шрифт - это квант выводимой информации и будет таковым до тех пор, пока мы не разучимся читать, или перейдём на общение друг с другом Gif-мемами или смайликами. Хороший проектировщик всегда понимает, что такое шрифт, как он строится и, главное, что он обрабатывается различными программами и операционными системами по-разному. Это знание даёт ответ на вопрос: почему шрифт в программе прототипирования может отличаться в других средах, различных разрешениях и ПО.')}
+${P('Этот небольшой документ раскроет основные детали, правила и особенности использования шрифтов в нашей работе, достаточных для общего понимания результатов рабочего процесса.')}
+<h2>Общее понятие шрифтового формата</h2>
+${P('Так повелось, что существует несколько шрифтовых форматов, каждый со своими особенностями и областью применения:')}
+${L(['<b>TTF</b> - универсальный формат, поддерживается всеми системами;','<b>OTF</b> - расширенные типографские возможности: лигатуры, альтернативные начертания;','<b>WOFF и WOFF2</b> - сжатые форматы для веба, загружаются быстрее.'])}
+${P('В интерфейсах используйте WOFF2 с запасным вариантом WOFF. Для макетов в программе прототипирования устанавливайте шрифт в формате OTF или TTF.')}
+`;
 function stub(title, parent){
   return `<p class="lead">Раздел "${title}" входит в "${parent}". Здесь собраны правила, примеры и ссылки на компоненты.</p>
 ${P('Статья описывает назначение, варианты отображения и поведение. Для каждого варианта приводятся размеры, отступы и состояния: default, hover, focus, active, disabled.')}
@@ -726,7 +991,7 @@ ${P('Если стандартного решения недостаточно, 
 }
 
 let uid=0;
-const N = (title, opts={}, children=[]) => ({id:opts.id||('n'+(++uid)), title, children, open:!!opts.open, html:opts.html, h1:opts.h1, dim:opts.dim, folder:!!opts.folder});
+const N = (title, opts={}, children=[]) => ({id:opts.id||('n'+(++uid)), title, children, open:!!opts.open, html:opts.html, h1:opts.h1, dim:opts.dim, folder:!!opts.folder, pure:!!opts.folder && !opts.html});
 const kids = (...t) => t.map(x=>N(x));
 
 const TREE = N('Стандарты интерфейса',{id:'root',open:true,h1:'О базе знаний'},[
@@ -753,13 +1018,26 @@ const TREE = N('Стандарты интерфейса',{id:'root',open:true,h1
   N('Механизмы Saby приложений',{id:'mech',folder:true},[N('Конструктор фреймов',{id:'m1'}),N('Конфигурация приложений',{id:'m2'}),N('Прочее',{id:'m3'})]),
   N('Общие прикладные компоненты',{id:'common',folder:true},[N('Выбор адресата',{id:'c1'}),N('Режим работ',{id:'c2'}),N('Настройка периодичности',{id:'c3'}),N('Шаблоны шапок страниц для внешнего пользователя',{id:'c4'}),N('Панель выбора языка',{id:'c5'})]),
   N('Тех. решения',{id:'tech',folder:true},kids('Кэширование','Логирование')),
-  N('Документы',{id:'docs',folder:true},kids('Регламенты'))
+  N('Документы',{id:'docs',folder:true},[
+    N('Общее',{id:'d_gen',folder:true},[
+      N('Руководства и статьи',{id:'d_guides',folder:true},[
+        N('Работа с текстом',{id:'d_text',folder:true},[
+          N('Основные понятия',{id:'d_basics',folder:true},[
+            N('Шрифт',{id:'d_font',folder:true},[N('Шрифтовые форматы',{id:'d_fontfmt',html:FONT_TEXT})]),
+            N('Изображения'), N('Отступы')
+          ]),
+          N('Правила работы с динамическими данными')
+        ])
+      ])
+    ]),
+    N('Регламенты')
+  ])
 ]);
 
 // индексы
 const BY = {}; const ORDER = []; const PARENT = {};
 (function walk(n,p){ BY[n.id]=n; PARENT[n.id]=p; ORDER.push(n.id); n.children.forEach(c=>walk(c,n)); })(TREE,null);
-ORDER.forEach(id=>{ const n=BY[id]; if(!n.html && id!=='root') n.html=stub(n.title, PARENT[id]?PARENT[id].title:''); });
+ORDER.forEach(id=>{ const n=BY[id]; if(!n.html && id!=='root') n.html = n.pure ? `<p class="lead">Папка содержит:</p><div class="nested">${n.children.map(c=>`<a data-go="${c.id}">${c.title}</a>`).join('')}</div>` : stub(n.title, PARENT[id]?PARENT[id].title:''); });
 
 const fw = BY.fw, mech=BY.mech, common=BY.common;
 const col = (n,items,more)=>`<div><h4 data-go="${n.id}" title="${n.title}">${n.h1||n.title}</h4>${items.map(c=>`<a data-go="${c.id}" title="${c.title}">${c.title}</a>`).join('')}${more?`<a class="more" data-go="${n.id}">Показать все</a>`:''}</div>`;
@@ -904,7 +1182,7 @@ function cardHTML(id){
 function renderContent(){
   $('.content').classList.toggle('docmode', S.mode==='doc');
   if(S.mode==='feed'){
-    scroller.innerHTML = ORDER.map(cardHTML).join('') + `<div class="feed-end">Конец раздела "Стандарты интерфейса"</div>`;
+    scroller.innerHTML = feedHTML() + `<div class="feed-end">Конец раздела "Стандарты интерфейса"</div>`;
   } else {
         scroller.innerHTML = cardHTML(S.current);
   }
@@ -914,19 +1192,20 @@ scroller.addEventListener('click', e=>{
   const g=e.target.closest('[data-go]'); if(g){ e.preventDefault(); go(g.dataset.go); return; }
   const t=e.target.closest('[data-cardtop]'); if(t){ go(t.dataset.cardtop,{nohist:true}); return; }
   const lk=e.target.closest('.like'); if(lk) lk.classList.toggle('liked');
+  const fr=e.target.closest('.frow,.fpr'); if(fr && !e.target.closest('.fopts')) go(fr.dataset.id);
 });
 let lockSpy=false;
 function scrollToCard(id, smooth){
-  const c = scroller.querySelector(`.card[data-id="${id}"]`); if(!c) return;
+  const c = elFor(id); if(!c) return;
   lockSpy = true;
-  scroller.scrollTo({top:c.offsetTop - scroller.offsetTop - (S.histAt==='sbar'?($('#sbar').offsetHeight-2):0), behavior:smooth?'smooth':'auto'});
+  scroller.scrollTo({top:(c.getBoundingClientRect().top - scroller.getBoundingClientRect().top)/currentScale() + scroller.scrollTop - (S.histAt==='sbar'?($('#sbar').offsetHeight-2):0), behavior:smooth?'smooth':'auto'});
   clearTimeout(scrollToCard.t); scrollToCard.t=setTimeout(()=>{lockSpy=false; onScroll();}, smooth?600:50);
 }
 function go(id, o={}){
   if(!BY[id]) return;
   const changed = id!==S.current; S.current=id;
   if(!o.nohist && changed){ S.hist = S.hist.slice(0,S.hpos+1); S.hist.push(id); S.hpos=S.hist.length-1; }
-  if(S.mode==='doc'){ renderContent(); scroller.scrollTop=0; } else scrollToCard(id, true);
+  if(S.mode==='doc'){ renderContent(); scroller.scrollTop=0; } else scrollToCard(id, !o.instant);
   highlightToc(true); updatePager(); updateSticky();
 }
 const currentScale = () => parseFloat(($('#proto').style.transform.match(/scale\(([^)]+)\)/)||[0,1])[1]);
@@ -938,7 +1217,7 @@ function updateSticky(){
   $('.content').classList.toggle('attop', scroller.scrollTop <= 0);
   { const k=currentScale(), t=scroller.getBoundingClientRect().top + ($('#sbar').offsetHeight)*k;
     scroller.querySelectorAll('.card').forEach(c=>{ const r=c.getBoundingClientRect(); c.classList.toggle('undersbar', on && scroller.scrollTop>0 && r.top <= t && r.bottom > t); }); }
-  { const h=scroller.querySelector(`.card[data-id="${S.current}"] h1`), sb=$('#sbar').getBoundingClientRect();
+  { const h=scroller.querySelector(`.card[data-id="${S.current}"] h1`) || scroller.querySelector(`.frow[data-id="${S.current}"]`), sb=$('#sbar').getBoundingClientRect();
     $('#sbar').classList.toggle('notitle', !!h && h.getBoundingClientRect().bottom > sb.bottom); }
   $('#bshadow').classList.toggle('on', scroller.scrollTop + scroller.clientHeight < scroller.scrollHeight - 1);
   const n=BY[S.current]; const t=n.h1||n.title;
@@ -951,9 +1230,9 @@ function onScroll(){
   if(S.mode!=='feed' || lockSpy) return;
   const top = scroller.getBoundingClientRect().top + 60*currentScale();
   let cur = ORDER[0];
-  for(const c of scroller.querySelectorAll('.card')){ if(c.getBoundingClientRect().top <= top) cur=c.dataset.id; else break; }
+  for(const c of scroller.querySelectorAll('.card,.frow')){ if(c.getBoundingClientRect().top <= top) cur=c.dataset.id; else break; }
   if(scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight-4) cur = ORDER[ORDER.length-1];
-  if(cur!==S.current){ S.current=cur; highlightToc(true); updatePager(); updateSticky(); }
+  if(cur!==S.current){ S.current=cur; if(MENU) closeMenus(); highlightToc(true); updatePager(); updateSticky(); }
 }
 scroller.addEventListener('scroll', onScroll, {passive:true});
 
@@ -1006,8 +1285,14 @@ const toggle = (k,v) => { S[k] = v===undefined ? !S[k] : v; syncUI(); };
 $('#accBurg').onclick=()=>{ toggle('acc'); $('#accBurg').title = S.acc?'Свернуть аккордеон':'Развернуть аккордеон'; };
 
 $('#btnToc').onclick=()=>{ $('#work').classList.remove('tocov'); clearTimeout(ovT); toggle('toc'); $('#btnToc .hint')?.remove(); };
-$('#tbNtf').onclick=()=>toggle('ntf');
-$('#ntfPill').onclick=()=>toggle('ntf');
+$('#tbNtf').insertAdjacentHTML('beforeend','<span class="tbx"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M1 1l12 12M13 1L1 13" stroke="#656C87" stroke-width="1.4" stroke-linecap="round"/></svg></span>');
+S.ntf1024=false;
+const setNtf1024 = v => { S.ntf1024=v; $('#proto').classList.toggle('ntfopen', S.screen==='1024' && v); $('#tbNtf').title = (S.screen==='1024' && v) ? 'Закрыть центр уведомлений' : 'Центр уведомлений'; syncPill1024(); };
+function syncPill1024(){ if(S.screen!=='1024') return; $('#ntfPill').classList.toggle('closed',!S.ntf1024); $('#ntfPill').title = S.ntf1024?'Свернуть центр уведомлений':'Развернуть центр уведомлений'; }
+$('#tbNtf').onclick=e=>{ if(S.screen==='1024'){ e.stopPropagation(); setNtf1024(!S.ntf1024); } else toggle('ntf'); };
+document.addEventListener('click',e=>{ if(S.ntf1024 && S.screen==='1024' && !e.target.closest('#ntf,#tbNtf,#ntfPill,#panel')) setNtf1024(false); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape' && S.ntf1024) setNtf1024(false); });
+$('#ntfPill').onclick=e=>{ if(S.screen==='1024'){ e.stopPropagation(); setNtf1024(!S.ntf1024); } else toggle('ntf'); };
 document.querySelectorAll('[data-tg]').forEach(b=>b.onclick=()=>toggle(b.dataset.tg));
 document.querySelectorAll('.ngrp').forEach(g=>g.onclick=()=>g.classList.toggle('closed'));
 document.querySelectorAll('[data-scr]').forEach(b=>b.onclick=()=>{ S.screen=b.dataset.scr; S.layout='custom'; syncUI(); });
@@ -1035,6 +1320,8 @@ function syncUI(){
   highlightToc(false); fit(); updatePager();
 }
 function fit(){
+  if(fitPhone()) return;
+  $('#proto').classList.toggle('s1024', S.screen==='1024'); if(S.screen!=='1024') S.ntf1024=false; $('#proto').classList.toggle('ntfopen', S.screen==='1024' && S.ntf1024); if(typeof syncPill1024==='function') syncPill1024();
   const app=$('#app');
   const w = S.screen==='1024'?1024:1600, h = S.screen==='1024'?768:900;
   app.style.width=w+'px'; app.style.height=h+'px';
@@ -1053,6 +1340,398 @@ function fit(){
 }
 window.addEventListener('resize', fit);
 new ResizeObserver(()=>{ const w=$('#work'), rw=w.offsetWidth + $('#tbar').offsetWidth; w.style.setProperty('--rowW', rw+'px'); w.classList.toggle('roomy', rw >= 1400); }).observe($('#work'));
+
+
+/* ================= ПАПКИ В ЛЕНТЕ ================= */
+S.fv='bold';
+const isPure = id => !!BY[id].pure;
+const depthOf = id => crumbsOf(id).length;
+const CHV = `<svg class="fch" width="6" height="10" viewBox="0 0 6 10" fill="none"><path d="M1 1l4 4-4 4" stroke="currentColor" stroke-width="1"/></svg>`;
+const FOPTS = id => `<span class="fopts"><button title="Ссылка на папку" data-flink="${id}">${ICON.link}</button><button title="Еще" data-fmore="${id}"><svg width="4" height="16" viewBox="0 0 5 18"><circle cx="2.5" cy="2" r="2" fill="#656C87"/><circle cx="2.5" cy="9" r="2" fill="#656C87"/><circle cx="2.5" cy="16" r="2" fill="#656C87"/></svg></button></span>`;
+const FCOLORS = ['#e7f0fb','#fdf2e3','#f6f9e5','#fdf2e3','#f9eef4','#e7f0fb'];
+const FICON = `<svg width="20" height="18" viewBox="0 0 20 18" fill="none"><path d="M1 1h8M4 5h8M7 9h8" stroke="#8991a9" stroke-width="1.3"/><path d="M11 12l6 4-2.6.4L13 18.5z" fill="#47c4c4"/></svg>`;
+function elFor(id){
+  const q = x => scroller.querySelector(`.card[data-id="${x}"],.frow[data-id="${x}"]`);
+  let i=ORDER.indexOf(id); while(i>=0 && i<ORDER.length){ const el=q(ORDER[i]); if(el) return el; i++; } return null;
+}
+function runHTML(run){
+  const v=S.fv, T=id=>BY[id].title, last=run[run.length-1];
+  if(v==='bold'||v==='typo'){
+    const SZ=[44,40,36,32,28,24];
+    return `<div class="fgrp fbigs">${run.map((id,k)=>`<div class="frow fbig" data-id="${id}" style="font-size:${v==='bold'?44:SZ[Math.min(k,5)]}px">${T(id)}</div>`).join('')}</div>`;
+  }
+  if(v==='crumbs') return run.map(id=>{ const d=depthOf(id)-1;
+    return `<div class="frow fpill fcrumb" data-id="${id}"><span class="ftx">${'<span class="ell">...</span>'.concat(CHV).repeat(d)}${T(id)}</span>${FOPTS(id)}</div>`; }).join('');
+  if(v==='ladder') return run.map((id,k)=>`<div class="frow fpill fladder" data-id="${id}"><span class="ftx" style="margin-left:${k*15}px">${k?'<i class="corner"></i>':''}${T(id)}</span>${FOPTS(id)}</div>`).join('');
+  if(v==='ladderIndent') return run.map((id,k)=>`<div class="frow fpill findent${k?' sub':''}" data-id="${id}" style="margin-left:${k*22}px"><span class="ftx fixed">${T(id)}</span>${FOPTS(id)}</div>`).join('');
+  if(v==='ladderPlain') return `<div class="fgrp fplain">${run.map((id,k)=>`<div class="frow fpl" data-id="${id}"><span class="ftx" style="margin-left:${k*15}px">${k?'<i class="corner"></i>':''}${T(id)}</span></div>`).join('')}</div>`;
+  if(v.startsWith('tabs')) return `<div class="fgrp ftabs ${v}">${run.map(id=>`<div class="frow ftab" data-id="${id}" ${v==='tabsColor'?`style="background:${FCOLORS[depthOf(id)%FCOLORS.length]}"`:''}><span class="ftx">${T(id)}</span>${FOPTS(id)}</div>`).join('')}</div>`;
+  if(v==='notes'){ let h=''; for(let k=run.length-1;k>=0;k--){ const id=run[k]; h=`<div class="fnote${k?' in':''}"><div class="frow fnrow" data-id="${id}"><span class="ftx fixed">${T(id)}</span>${FOPTS(id)}</div>${h}</div>`; } return `<div class="fgrp fnotes">${h}</div>`; }
+  if(v==='lastWin'){
+    const anc=crumbsOf(last).filter(p=>p.id!=='root');
+    return `<div class="frow fcardrow flast" data-id="${last}"><span class="fwin">${FICON}<span class="fpop">${anc.map((p,k)=>`<span class="fpr" data-id="${p.id}" style="padding-left:${12+k*14}px">${k?'<i class="corner"></i>':''}${p.title}</span>`).join('')}</span></span><span class="fbt">${T(last)}</span></div>`;
+  }
+  if(v==='lastCrumbs'){
+    const anc=crumbsOf(last).filter(p=>p.id!=='root');
+    return `<div class="frow fhead" data-id="${last}"><div class="fcr">${anc.map(p=>`<a data-go="${p.id}">${p.title}</a>`).join(CHV)}</div><div class="fht">${T(last)}</div></div>`;
+  }
+  if(v==='blocks') return `<div class="fgrp fblocks">${run.map(id=>`<div class="frow fblk" data-id="${id}"><span class="ftx">${T(id)}</span>${FOPTS(id)}</div>`).join('')}</div>`;
+  return '';
+}
+function feedHTML(){
+  let out='', i=0;
+  while(i<ORDER.length){
+    if(isPure(ORDER[i])){ const run=[]; while(i<ORDER.length && isPure(ORDER[i])) run.push(ORDER[i++]); out+=runHTML(run); }
+    else out+=cardHTML(ORDER[i++]);
+  }
+  return out;
+}
+new ResizeObserver(()=>{ const w=scroller.clientWidth-12; scroller.style.setProperty('--fpad', (w>=1400?112:w>=1200?88:w>=1000?72:24)+'px'); }).observe(scroller);
+document.querySelectorAll('[data-fv]').forEach(r=>r.onclick=()=>{
+  S.fv=r.dataset.fv; document.querySelectorAll('[data-fv]').forEach(x=>x.classList.toggle('on',x===r));
+  if(S.mode!=='feed') setMode('feed'); else renderContent();
+  // показываем пример: переход к глубокой ветке, мастер синхронизируется сам
+  requestAnimationFrame(()=>go('docs',{instant:true}));
+});
+$('#fvExp').onclick=()=>$('#fvSec').classList.toggle('fold');
+/* ================= МЕНЮ ОПЦИЙ ================= */
+const ICON = {"changes": "<svg width=\"23\" height=\"19\" viewBox=\"0 0 23 19\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M12.5156 0C13.8281 0 15.0625 0.25 16.2188 0.75C17.375 1.25 18.375 1.9375 19.2188 2.8125C20.0938 3.65625 20.7812 4.65625 21.2812 5.8125C21.7812 6.96875 22.0312 8.20312 22.0312 9.51562C22.0312 10.8281 21.7812 12.0625 21.2812 13.2188C20.7812 14.3438 20.0938 15.3438 19.2188 16.2188C18.375 17.0625 17.375 17.7344 16.2188 18.2344C15.0625 18.7344 13.8281 18.9844 12.5156 18.9844C11.1406 18.9844 9.84375 18.7188 8.625 18.1875C7.4375 17.625 6.42188 16.875 5.57812 15.9375C5.64062 15.7812 5.71875 15.6406 5.8125 15.5156C5.9375 15.3906 6.07812 15.2812 6.23438 15.1875C7.01562 16.0312 7.95312 16.7188 9.04688 17.25C10.1406 17.75 11.3125 18 12.5625 18C14.9062 18 16.9062 17.1719 18.5625 15.5156C20.25 13.8281 21.0938 11.7969 21.0938 9.42188C21.0938 7.07812 20.25 5.07812 18.5625 3.42188C16.9062 1.73438 14.9062 0.890625 12.5625 0.890625C10.2812 0.890625 8.3125 1.6875 6.65625 3.28125C5 4.84375 4.125 6.75 4.03125 9H8.01562L4.03125 13.0312L0 9H3C3.0625 7.75 3.35938 6.57812 3.89062 5.48438C4.42188 4.39062 5.10938 3.4375 5.95312 2.625C6.79688 1.8125 7.78125 1.17188 8.90625 0.703125C10.0312 0.234375 11.2344 0 12.5156 0ZM13.0312 4.26562V9.70312L16.5 12.1406L15.6094 13.3594L11.5312 10.5V4.26562H13.0312Z\" fill=\"#656C87\"/>\n</svg>", "report": "<svg width=\"11\" height=\"12\" viewBox=\"0 0 11 12\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M10.0312 12H8.01562L7.35938 9.98438H2.67188L2.01562 12H0L4.03125 0H6L10.0312 12ZM6.70312 7.96875L5.01562 3L3.32812 7.96875H6.70312Z\" fill=\"#656C87\"/>\n</svg>", "access": "<svg width=\"20\" height=\"18\" viewBox=\"0 0 20 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M0 18V15.8906C0 15.5781 0.34375 15.2031 1.03125 14.7656C1.75 14.3281 2.70312 13.8906 3.89062 13.4531C5.07812 12.9844 5.89062 12.5312 6.32812 12.0938C6.76562 11.625 6.98438 10.9844 6.98438 10.1719C6.98438 9.67188 6.84375 9.35938 6.5625 9.23438C6.3125 9.10938 6.10938 8.60938 5.95312 7.73438C5.89062 7.39062 5.76562 7.21875 5.57812 7.21875H5.48438C5.26562 7.21875 5.125 6.8125 5.0625 6C5.0625 5.65625 5.1875 5.375 5.4375 5.15625L5.34375 4.54688C5.28125 4.17188 5.23438 3.79688 5.20312 3.42188V3.23438C5.20312 2.76562 5.42188 2.10938 5.85938 1.26562C6.29688 0.421875 7.34375 0 9 0C10.625 0 11.6562 0.4375 12.0938 1.3125C12.5625 2.15625 12.7969 2.82812 12.7969 3.32812V3.42188C12.7656 3.79688 12.6875 4.375 12.5625 5.15625L12.7031 5.29688H12.75C12.8438 5.42188 12.8906 5.65625 12.8906 6C12.8281 6.8125 12.6875 7.21875 12.4688 7.21875H12.375C12.1875 7.21875 12.0625 7.39062 12 7.73438C11.8438 8.60938 11.625 9.10938 11.3438 9.23438C11.0938 9.35938 10.9688 9.67188 10.9688 10.1719C10.9688 10.9844 11.1875 11.625 11.625 12.0938C12.0938 12.5312 12.9062 12.9844 14.0625 13.4531C15.25 13.8906 16.2031 14.3281 16.9219 14.7656C17.6406 15.2031 18 15.5781 18 15.8906V18H10.9688L9 15L10.9688 13.9688L9 12L6.98438 13.9688L9 15L6.98438 18H0ZM18.0469 12.7031C18.6406 12.9219 19.1094 13.1406 19.4531 13.3594C19.7969 13.5781 19.9688 13.7656 19.9688 13.9219V15H18.7031C18.5156 14.75 18.2188 14.4844 17.8125 14.2031C17.4062 13.8906 16.8281 13.5469 16.0781 13.1719L16.5 12.9844L15.4688 12L14.8125 12.6562L14.625 12.5625C14.5625 12.5312 14.5 12.5156 14.4375 12.5156C14.3125 12.4531 14.2031 12.4062 14.1094 12.375C14.0469 12.3438 13.9688 12.3125 13.875 12.2812C14.0938 12.125 14.25 11.9531 14.3438 11.7656C14.4375 11.5781 14.4844 11.3438 14.4844 11.0625C14.4844 10.8125 14.4219 10.6562 14.2969 10.5938C14.1719 10.5312 14.0625 10.2812 13.9688 9.84375C13.9375 9.6875 13.875 9.60938 13.7812 9.60938H13.7344C13.6406 9.60938 13.5781 9.40625 13.5469 9C13.5469 8.84375 13.5781 8.73438 13.6406 8.67188V8.625H13.6875V8.57812L13.6406 8.25C13.6094 8.0625 13.5938 7.875 13.5938 7.6875V7.3125C13.625 7.28125 13.6406 7.23438 13.6406 7.17188C13.6719 7.07812 13.7031 7 13.7344 6.9375C13.8594 6.6875 14.0469 6.46875 14.2969 6.28125C14.5781 6.09375 14.9688 6 15.4688 6C16.3125 6 16.8438 6.21875 17.0625 6.65625C17.2812 7.0625 17.3906 7.375 17.3906 7.59375V7.6875C17.3594 7.875 17.3125 8.17188 17.25 8.57812L17.3438 8.67188C17.4062 8.73438 17.4375 8.84375 17.4375 9C17.4062 9.40625 17.3438 9.60938 17.25 9.60938L17.2031 9.5625C17.1094 9.5625 17.0312 9.65625 16.9688 9.84375C16.9062 10.2812 16.7969 10.5312 16.6406 10.5938C16.5156 10.6562 16.4531 10.8125 16.4531 11.0625C16.4531 11.4688 16.5625 11.7969 16.7812 12.0469C17.0312 12.2656 17.4531 12.4844 18.0469 12.7031Z\" fill=\"#656C87\"/>\n</svg>", "discuss": "<svg width=\"20\" height=\"17\" viewBox=\"0 0 20 17\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M3.51562 14.9062C3.85938 14.7812 4.17188 14.5938 4.45312 14.3438C4.76562 14.0938 5.01562 13.8125 5.20312 13.5C5.29688 13.2188 5.46875 13 5.71875 12.8438C5.96875 12.6875 6.25 12.6094 6.5625 12.6094H6.98438L6.89062 12.5625C7.39062 12.6875 7.89062 12.7812 8.39062 12.8438C8.92188 12.875 9.45312 12.8906 9.98438 12.8906H10.2188C11.375 12.8906 12.4844 12.7344 13.5469 12.4219C14.6094 12.0781 15.5938 11.6094 16.5 11.0156V10.9688C17.1875 10.5625 17.7344 10.0156 18.1406 9.32812C18.5781 8.60938 18.8281 7.82812 18.8906 6.98438C18.8594 6.14062 18.625 5.375 18.1875 4.6875C17.75 3.96875 17.1875 3.40625 16.5 3L16.5469 3.04688C15.6406 2.42188 14.6406 1.9375 13.5469 1.59375C12.4844 1.25 11.375 1.07812 10.2188 1.07812H9.60938C8.42188 1.07812 7.28125 1.26562 6.1875 1.64062C5.125 1.98438 4.15625 2.46875 3.28125 3.09375C2.59375 3.53125 2.03125 4.09375 1.59375 4.78125C1.1875 5.46875 0.953125 6.23438 0.890625 7.07812V7.125C0.953125 7.9375 1.20312 8.6875 1.64062 9.375C2.07812 10.0312 2.625 10.5781 3.28125 11.0156C3.5 11.1406 3.67188 11.3125 3.79688 11.5312C3.92188 11.75 3.98438 11.9844 3.98438 12.2344V12.375C3.98438 12.8125 3.9375 13.25 3.84375 13.6875C3.75 14.125 3.625 14.5312 3.46875 14.9062H3.51562ZM9.98438 13.9219C9.39062 13.8906 8.82812 13.8438 8.29688 13.7812C7.76562 13.7188 7.26562 13.625 6.79688 13.5H6.65625C6.5625 13.5 6.46875 13.5312 6.375 13.5938C6.28125 13.6562 6.21875 13.7188 6.1875 13.7812V13.8281C5.84375 14.4844 5.34375 15.0156 4.6875 15.4219C4.0625 15.8281 3.34375 16.0312 2.53125 16.0312C2.5 16.0312 2.45312 16.0312 2.39062 16.0312C2.35938 16 2.32812 15.9844 2.29688 15.9844C2.23438 15.9844 2.17188 15.9844 2.10938 15.9844C2.07812 15.9531 2.03125 15.8906 1.96875 15.7969C1.96875 15.7656 1.95312 15.7344 1.92188 15.7031C1.92188 15.6719 1.92188 15.6406 1.92188 15.6094C1.92188 15.5781 1.9375 15.5469 1.96875 15.5156V15.4219C2.28125 14.9531 2.51562 14.4531 2.67188 13.9219C2.85938 13.3594 2.96875 12.7812 3 12.1875C3 12.0938 2.96875 12.0156 2.90625 11.9531C2.875 11.8594 2.82812 11.7812 2.76562 11.7188V11.6719C1.95312 11.1719 1.29688 10.5156 0.796875 9.70312C0.296875 8.85938 0.03125 7.92188 0 6.89062C0.0625 5.89062 0.34375 4.96875 0.84375 4.125C1.375 3.28125 2.0625 2.60938 2.90625 2.10938H2.85938C3.82812 1.45312 4.89062 0.9375 6.04688 0.5625C7.20312 0.1875 8.42188 0 9.70312 0H10.3125C11.5625 0 12.7656 0.203125 13.9219 0.609375C15.0781 0.984375 16.125 1.51562 17.0625 2.20312H17.1094C17.9219 2.70312 18.5781 3.375 19.0781 4.21875C19.6094 5.0625 19.9062 5.98438 19.9688 6.98438V7.03125C19.9062 8.03125 19.6094 8.95312 19.0781 9.79688C18.5781 10.6094 17.9062 11.2812 17.0625 11.8125L17.1094 11.7656C16.1406 12.4531 15.0625 12.9844 13.875 13.3594C12.7188 13.7344 11.5 13.9219 10.2188 13.9219H9.98438Z\" fill=\"#656C87\"/>\n</svg>", "print": "<svg width=\"21\" height=\"20\" viewBox=\"0 0 21 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M13.9688 7.03125H0.984375V5.01562C1.04688 4.98438 1.17188 4.92188 1.35938 4.82812C1.54688 4.70312 1.79688 4.54688 2.10938 4.35938C2.45312 4.17188 2.78125 4 3.09375 3.84375C3.40625 3.6875 3.70312 3.54688 3.98438 3.42188L4.96875 3V1.03125L6 0H13.9688L15.0469 1.03125V3L16.0312 3.42188C16.3125 3.54688 16.5938 3.6875 16.875 3.84375C17.1875 4 17.5156 4.17188 17.8594 4.35938C18.2031 4.54688 18.4688 4.70312 18.6562 4.82812C18.8438 4.92188 18.9688 4.98438 19.0312 5.01562V7.03125H17.0156V6H16.0312V7.03125H15.0469V6H13.9688V7.03125ZM12.9844 3L10.9688 1.03125H6.98438V3H12.9844ZM19.0312 8.01562C19.2812 8.01562 19.5 8.125 19.6875 8.34375C19.9062 8.53125 20.0156 8.75 20.0156 9V13.0312C20.0156 13.3125 19.9219 13.5469 19.7344 13.7344C19.5469 13.9219 19.3125 14.0156 19.0312 14.0156H17.0156L18.0469 19.0312H1.96875L3 14.0156H0.984375C0.703125 14.0156 0.46875 13.9219 0.28125 13.7344C0.09375 13.5469 0 13.3125 0 13.0312V9C0 8.71875 0.09375 8.48438 0.28125 8.29688C0.46875 8.10938 0.703125 8.01562 0.984375 8.01562H19.0312ZM3.98438 10.0312V9H1.96875V10.0312H3.98438ZM16.0312 17.0156L13.9688 10.0312H6L3.98438 17.0156H7.96875L9 16.0312H10.9688L12 17.0156H16.0312ZM6.98438 12V11.0156H12.9844V12H6.98438ZM6.98438 14.0156V13.0312H12.9844V14.0156H6.98438Z\" fill=\"#656C87\"/>\n</svg>", "del": "<svg width=\"20\" height=\"17\" viewBox=\"0 0 20 17\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M11.8125 7.3125C13.2812 8.71875 14.6719 10.2188 15.9844 11.8125C17.2969 13.4062 18.5 15.0625 19.5938 16.7812C19.0938 16.125 18.5312 15.4844 17.9062 14.8594C17.2812 14.2031 16.5938 13.5938 15.8438 13.0312C14 11.5625 12.1094 10.1562 10.1719 8.8125C8.35938 10.5938 6.1875 12.5938 3.65625 14.8125C2.5 15.9062 1.53125 16.4531 0.75 16.4531C0.625 16.4531 0.5 16.4375 0.375 16.4062C0.125 16.1562 0 15.8281 0 15.4219C0 14.9844 0.171875 14.4531 0.515625 13.8281C1.01562 13.1719 1.53125 12.5625 2.0625 12C2.625 11.4062 3.20312 10.8438 3.79688 10.3125C4.39062 9.78125 5 9.26562 5.625 8.76562C6.25 8.23438 6.89062 7.71875 7.54688 7.21875C5.89062 6.03125 3.875 4.625 1.5 3C1.125 2.78125 0.8125 2.48438 0.5625 2.10938C0.34375 1.73438 0.234375 1.3125 0.234375 0.84375V0.609375C0.234375 0.546875 0.25 0.484375 0.28125 0.421875C0.5 0.140625 0.828125 0 1.26562 0C1.92188 0 2.82812 0.34375 3.98438 1.03125C5.10938 1.84375 6.1875 2.625 7.21875 3.375C8.25 4.125 9.1875 4.875 10.0312 5.625C11.4062 4.75 12.8906 3.85938 14.4844 2.95312C16.0781 2.04688 17.7188 1.15625 19.4062 0.28125C19.0625 0.59375 18.6094 0.984375 18.0469 1.45312C17.5156 1.89062 16.9688 2.35938 16.4062 2.85938C14.8438 4.35938 13.3125 5.84375 11.8125 7.3125Z\" fill=\"#C2140A\"/>\n</svg>", "sub": "<svg width=\"18\" height=\"20\" viewBox=\"0 0 18 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M0 16.5V15.4688L3 9.98438V6C3 5.15625 3.15625 4.375 3.46875 3.65625C3.78125 2.9375 4.20312 2.3125 4.73438 1.78125C5.29688 1.21875 5.9375 0.78125 6.65625 0.46875C7.375 0.15625 8.15625 0 9 0C9.84375 0 10.625 0.15625 11.3438 0.46875C12.0625 0.78125 12.6875 1.21875 13.2188 1.78125C13.7812 2.3125 14.2188 2.9375 14.5312 3.65625C14.8438 4.375 15 5.15625 15 6V9.98438L18 15.4688V16.5H0ZM14.0156 6C14.0156 5.3125 13.875 4.67188 13.5938 4.07812C13.3438 3.45312 12.9844 2.92188 12.5156 2.48438C12.0781 2.01562 11.5469 1.65625 10.9219 1.40625C10.3281 1.125 9.6875 0.984375 9 0.984375C8.3125 0.984375 7.65625 1.125 7.03125 1.40625C6.4375 1.65625 5.90625 2.01562 5.4375 2.48438C5 2.92188 4.64062 3.45312 4.35938 4.07812C4.10938 4.67188 3.98438 5.3125 3.98438 6V9.98438L0.984375 15.4688H17.0156L14.0156 9.98438V6ZM9 18.9844C9.46875 18.9844 9.875 18.8438 10.2188 18.5625C10.5938 18.2812 10.8281 17.9219 10.9219 17.4844H11.9531C11.8281 18.2031 11.4844 18.7969 10.9219 19.2656C10.3906 19.7344 9.75 19.9688 9 19.9688C8.25 19.9688 7.59375 19.7344 7.03125 19.2656C6.5 18.7969 6.17188 18.2031 6.04688 17.4844H7.07812C7.17188 17.9219 7.39062 18.2812 7.73438 18.5625C8.10938 18.8438 8.53125 18.9844 9 18.9844Z\" fill=\"#656C87\"/>\n</svg>", "copy": "<svg width=\"21\" height=\"21\" viewBox=\"0 0 21 21\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M19.4062 7.45312C19.625 7.48438 19.7812 7.57812 19.875 7.73438C19.9688 7.89062 20.0156 8.03125 20.0156 8.15625C20.0156 8.21875 20 8.29688 19.9688 8.39062L17.0156 19.4531C16.9531 19.6406 16.8438 19.7812 16.6875 19.875C16.5312 19.9688 16.3906 20.0156 16.2656 20.0156C16.2031 20.0156 16.125 20 16.0312 19.9688L7.92188 17.8125C7.73438 17.75 7.57812 17.6406 7.45312 17.4844C7.35938 17.3281 7.3125 17.1875 7.3125 17.0625C7.3125 17 7.32812 16.9375 7.35938 16.875L7.875 15L4.26562 15.9844C4.17188 16.0156 4.09375 16.0312 4.03125 16.0312C3.90625 16.0312 3.76562 15.9844 3.60938 15.8906C3.45312 15.7969 3.34375 15.6562 3.28125 15.4688L0.046875 3.42188C0.015625 3.35938 0 3.29688 0 3.23438C0 3.10938 0.046875 2.96875 0.140625 2.8125C0.265625 2.65625 0.421875 2.54688 0.609375 2.48438L9.70312 0.046875C9.79688 0.015625 9.875 0 9.9375 0C10.0625 0 10.2031 0.046875 10.3594 0.140625C10.5156 0.234375 10.625 0.390625 10.6875 0.609375L11.9531 5.4375L19.4062 7.45312ZM4.54688 14.4375L12.375 12.375L9.46875 1.54688L1.64062 3.65625L4.54688 14.4375ZM18.3281 8.625L12.375 6.98438L13.875 12.6094C13.9062 12.7031 13.9219 12.7812 13.9219 12.8438C13.9219 12.9688 13.875 13.1094 13.7812 13.2656C13.6875 13.3906 13.5312 13.4844 13.3125 13.5469L9.42188 14.625L8.85938 16.5938L15.7031 18.4688L18.3281 8.625Z\" fill=\"#656C87\"/>\n</svg>", "cut": "<svg width=\"20\" height=\"22\" viewBox=\"0 0 20 22\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M3.89062 15.3281C4.23438 15.1406 4.5 14.8906 4.6875 14.5781C4.875 14.2656 4.96875 13.9219 4.96875 13.5469C4.96875 13.3906 4.95312 13.2344 4.92188 13.0781C4.89062 12.9219 4.84375 12.7656 4.78125 12.6094C4.59375 12.2969 4.34375 12.0469 4.03125 11.8594C3.71875 11.6406 3.375 11.5312 3 11.5312C2.4375 11.5312 1.95312 11.7344 1.54688 12.1406C1.17188 12.5156 0.984375 12.9844 0.984375 13.5469C0.984375 14.1094 1.17188 14.5938 1.54688 15C1.95312 15.375 2.4375 15.5625 3 15.5625C3.15625 15.5625 3.3125 15.5469 3.46875 15.5156C3.625 15.4531 3.76562 15.3906 3.89062 15.3281ZM12.9844 18.9844C12.9844 18.4531 12.7812 18 12.375 17.625C12 17.2188 11.5312 17.0156 10.9688 17.0156C10.4375 17.0156 9.96875 17.2188 9.5625 17.625C9.1875 18 9 18.4531 9 18.9844C9 19.5469 9.1875 20.0312 9.5625 20.4375C9.96875 20.8125 10.4375 21 10.9688 21C11.5312 21 12 20.8125 12.375 20.4375C12.7812 20.0312 12.9844 19.5469 12.9844 18.9844ZM10.9688 9C10.8438 9 10.7344 9.04688 10.6406 9.14062C10.5469 9.23438 10.5 9.35938 10.5 9.51562C10.5 9.64062 10.5469 9.75 10.6406 9.84375C10.7344 9.9375 10.8438 9.98438 10.9688 9.98438C11.125 9.98438 11.25 9.9375 11.3438 9.84375C11.4375 9.75 11.4844 9.64062 11.4844 9.51562C11.4844 9.35938 11.4375 9.23438 11.3438 9.14062C11.25 9.04688 11.125 9 10.9688 9ZM19.4531 3.98438C19.5156 4.14062 19.5625 4.29688 19.5938 4.45312C19.625 4.57812 19.6406 4.73438 19.6406 4.92188C19.6406 5.29688 19.5469 5.64062 19.3594 5.95312C19.1719 6.26562 18.9062 6.51562 18.5625 6.70312L12 10.0781V16.1719C12.5625 16.3594 13.0312 16.7031 13.4062 17.2031C13.7812 17.6719 13.9688 18.2188 13.9688 18.8438V19.0312C13.9688 19.8438 13.6719 20.5312 13.0781 21.0938C12.5156 21.6875 11.8125 21.9844 10.9688 21.9844C10.1562 21.9844 9.45312 21.6875 8.85938 21.0938C8.26562 20.5312 7.96875 19.8438 7.96875 19.0312V18.7969C7.96875 18.1719 8.15625 17.625 8.53125 17.1562C8.90625 16.6562 9.39062 16.3281 9.98438 16.1719V11.0625L6 13.125V13.6406C6 14.4219 5.70312 15.1094 5.10938 15.7031C4.54688 16.2969 3.84375 16.5938 3 16.5938C2.1875 16.5938 1.48438 16.2969 0.890625 15.7031C0.296875 15.1094 0 14.4062 0 13.5938C0 12.75 0.296875 12.0469 0.890625 11.4844C1.48438 10.8906 2.1875 10.5938 3 10.5938C3.40625 10.5938 3.78125 10.6719 4.125 10.8281C4.46875 10.9531 4.76562 11.125 5.01562 11.3438L19.4531 3.98438ZM12 6L9.98438 6.98438V2.01562C9.98438 1.45312 10.0625 0.984375 10.2188 0.609375C10.4062 0.203125 11 0 12 0V6Z\" fill=\"#656C87\"/>\n</svg>", "move": "<svg width=\"18\" height=\"15\" viewBox=\"0 0 18 15\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M15.9844 3C16.5469 3 17.0156 3.20312 17.3906 3.60938C17.7969 3.98438 18 4.45312 18 5.01562V12C18 12.5625 17.7969 13.0469 17.3906 13.4531C17.0156 13.8281 16.5469 14.0156 15.9844 14.0156H12V11.0156H15L11.0156 6L6.98438 11.0156H9.98438V14.0156H2.01562C1.45312 14.0156 0.96875 13.8281 0.5625 13.4531C0.1875 13.0469 0 12.5625 0 12V2.01562C0 1.45312 0.1875 0.984375 0.5625 0.609375C0.96875 0.203125 1.45312 0 2.01562 0H6.98438C7.54688 0 8.01562 0.203125 8.39062 0.609375C8.79688 0.984375 9 1.45312 9 2.01562V3H15.9844Z\" fill=\"#656C87\"/>\n</svg>", "download": "<svg width=\"20\" height=\"21\" viewBox=\"0 0 20 21\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M15 0C15.5312 0 16.4844 0.875 17.8594 2.625C19.2656 4.34375 19.9688 5.46875 19.9688 6V18C19.9688 18.5625 19.7656 19.0469 19.3594 19.4531C18.9844 19.8281 18.5312 20.0156 18 20.0156H1.96875C1.4375 20.0156 0.96875 19.8281 0.5625 19.4531C0.1875 19.0469 0 18.5625 0 18V2.01562C0 1.45312 0.1875 0.984375 0.5625 0.609375C0.96875 0.203125 1.4375 0 1.96875 0H15ZM3.98438 7.03125C3.98438 7.28125 4.07812 7.51562 4.26562 7.73438C4.48438 7.92188 4.71875 8.01562 4.96875 8.01562H13.9688C14.25 8.01562 14.4844 7.92188 14.6719 7.73438C14.8906 7.51562 15 7.28125 15 7.03125V2.01562C15 1.73438 14.8906 1.5 14.6719 1.3125C14.4844 1.125 14.25 1.03125 13.9688 1.03125H4.96875C4.71875 1.03125 4.48438 1.125 4.26562 1.3125C4.07812 1.5 3.98438 1.73438 3.98438 2.01562V7.03125ZM10.9688 7.03125V2.01562H12.9844V7.03125H10.9688ZM18 11.0156C18 10.7344 17.8906 10.5 17.6719 10.3125C17.4844 10.125 17.25 10.0312 16.9688 10.0312H3C2.71875 10.0312 2.46875 10.125 2.25 10.3125C2.0625 10.5 1.96875 10.7344 1.96875 11.0156V17.0156C1.96875 17.2969 2.0625 17.5312 2.25 17.7188C2.46875 17.9062 2.71875 18 3 18H16.9688C17.25 18 17.4844 17.9062 17.6719 17.7188C17.8906 17.5312 18 17.2969 18 17.0156V11.0156Z\" fill=\"#656C87\"/>\n</svg>", "tag": "<svg width=\"18\" height=\"21\" viewBox=\"0 0 18 21\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M16.5938 1.07812C16.5938 1.04688 16.5781 1.03125 16.5469 1.03125H9.75L1.26562 9.70312C1.20312 9.79688 1.14062 9.90625 1.07812 10.0312C1.04688 10.125 1.03125 10.2344 1.03125 10.3594C1.03125 10.4844 1.04688 10.6094 1.07812 10.7344C1.14062 10.8281 1.20312 10.9219 1.26562 11.0156L6.51562 16.3125C6.60938 16.4062 6.71875 16.4844 6.84375 16.5469C6.96875 16.5781 7.09375 16.5938 7.21875 16.5938C7.34375 16.5938 7.45312 16.5781 7.54688 16.5469C7.67188 16.4844 7.78125 16.4062 7.875 16.3125L16.5938 7.40625V1.07812ZM13.3125 13.7812L15.0469 12L12.0938 19.7344V19.7812C11.9375 20.125 11.6875 20.4062 11.3438 20.625C11.0312 20.875 10.6719 21 10.2656 21C10.1406 21 10.0156 20.9844 9.89062 20.9531C9.79688 20.9531 9.6875 20.9375 9.5625 20.9062L2.4375 18.1406C2.0625 17.9844 1.76562 17.75 1.54688 17.4375C1.32812 17.125 1.21875 16.7656 1.21875 16.3594C1.21875 16.2344 1.21875 16.1094 1.21875 15.9844C1.25 15.8594 1.29688 15.75 1.35938 15.6562L1.64062 14.8594L2.4375 15.6094L2.25 16.0312C2.25 16.0625 2.23438 16.1094 2.20312 16.1719C2.20312 16.2344 2.20312 16.2969 2.20312 16.3594C2.20312 16.5469 2.25 16.7188 2.34375 16.875C2.46875 17.0312 2.60938 17.1406 2.76562 17.2031L9.9375 19.9688C10 19.9688 10.0469 19.9844 10.0781 20.0156C10.1406 20.0156 10.2031 20.0156 10.2656 20.0156C10.4844 20.0156 10.6719 19.9688 10.8281 19.875C10.9844 19.75 11.0938 19.5938 11.1562 19.4062L13.3125 13.7812ZM16.5 0C16.8125 0 17.0625 0.109375 17.25 0.328125C17.4688 0.546875 17.5781 0.796875 17.5781 1.07812V7.82812L8.57812 17.0156C8.39062 17.2031 8.17188 17.3438 7.92188 17.4375C7.70312 17.5312 7.46875 17.5781 7.21875 17.5781C6.9375 17.5781 6.67188 17.5312 6.42188 17.4375C6.20312 17.3438 6 17.2031 5.8125 17.0156L0.5625 11.7188C0.40625 11.5625 0.265625 11.375 0.140625 11.1562C0.046875 10.9062 0 10.6406 0 10.3594C0 10.1094 0.046875 9.875 0.140625 9.65625C0.265625 9.40625 0.40625 9.1875 0.5625 9L9.32812 0H16.5ZM15 3.23438C15 3.57812 14.875 3.875 14.625 4.125C14.4062 4.34375 14.125 4.45312 13.7812 4.45312C13.4375 4.45312 13.1406 4.34375 12.8906 4.125C12.6719 3.875 12.5625 3.57812 12.5625 3.23438C12.5625 2.89062 12.6719 2.60938 12.8906 2.39062C13.1406 2.14062 13.4375 2.01562 13.7812 2.01562C14.125 2.01562 14.4062 2.14062 14.625 2.39062C14.875 2.60938 15 2.89062 15 3.23438Z\" fill=\"#656C87\"/>\n</svg>", "edit": "<svg width=\"17\" height=\"18\" viewBox=\"0 0 17 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M4.6875 15.3281L0 16.3125L1.125 11.3906L12.2344 0C13.2344 0.15625 14.0469 0.625 14.6719 1.40625C15.2969 2.15625 15.6562 3 15.75 3.9375L4.6875 15.3281ZM4.17188 14.3906L2.01562 11.9531L1.5 14.25L2.0625 14.8594L4.17188 14.3906ZM2.01562 18V17.0156H16.0312V18H2.01562Z\" fill=\"#656C87\"/>\n</svg>", "rename": "<svg width=\"20\" height=\"16\" viewBox=\"0 0 20 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M3.98438 12V12.9844H0V3H3.98438V3.98438H0.984375V12H3.98438ZM1.96875 5.01562H3.98438V11.0156H1.96875V5.01562ZM7.96875 0.984375H6V15H7.96875V15.9844H3V15H4.96875V0.984375H3V0H7.96875V0.984375ZM6.98438 5.01562H18V11.0156H6.98438V5.01562ZM6.98438 3H19.9688V12.9844H6.98438V12H18.9844V3.98438H6.98438V3Z\" fill=\"#656C87\"/>\n</svg>", "link": "<svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M6.14062 15.6094L9.9375 11.8125L10.6406 12.5156L6.84375 16.3594C6.0625 17.1406 5.125 17.5312 4.03125 17.5312C2.96875 17.5312 2.01562 17.1406 1.17188 16.3594C0.390625 15.5469 0 14.5938 0 13.5C0 12.4062 0.390625 11.4688 1.17188 10.6875L5.01562 6.89062L5.71875 7.59375L1.92188 11.3906C1.32812 11.9844 1.03125 12.6875 1.03125 13.5C1.03125 14.3125 1.32812 15.0156 1.92188 15.6094C2.57812 16.2031 3.28125 16.5 4.03125 16.5C4.84375 16.5 5.54688 16.2031 6.14062 15.6094ZM6.89062 4.96875L10.6875 1.17188C11.4688 0.390625 12.4062 0 13.5 0C14.0312 0 14.5312 0.09375 15 0.28125C15.5 0.46875 15.9531 0.765625 16.3594 1.17188C17.1406 1.98438 17.5312 2.9375 17.5312 4.03125C17.5312 5.125 17.1406 6.0625 16.3594 6.84375L12.5625 10.6406L11.8594 9.9375L15.6562 6.14062C16.25 5.54688 16.5469 4.84375 16.5469 4.03125C16.5469 3.1875 16.25 2.46875 15.6562 1.875C15.375 1.5625 15.0469 1.34375 14.6719 1.21875C14.2969 1.0625 13.9219 0.984375 13.5469 0.984375C12.7031 0.984375 11.9844 1.28125 11.3906 1.875L7.59375 5.67188L6.89062 4.96875ZM6.65625 11.6719L5.95312 10.9688L11.0156 5.95312L11.7188 6.65625L6.65625 11.6719Z\" fill=\"#656C87\"/>\n</svg>", "unpub": "<svg width=\"20\" height=\"21\" viewBox=\"0 0 20 21\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M1.96875 17.0156L2.4375 13.9219C2.71875 11.8906 3.76562 10.25 5.57812 9L8.0625 11.5312C5.0625 11.9688 3.03125 13.7969 1.96875 17.0156ZM0 1.07812L1.07812 0L19.9688 18.9375L18.8906 20.0156L0 1.07812ZM11.25 15V14.1094L11.7188 14.5781L11.25 15ZM14.8125 12L10.3594 7.54688C10.5156 7.54688 10.6562 7.54688 10.7812 7.54688C10.9375 7.51562 11.0938 7.5 11.25 7.5L10.9688 4.03125L18 9L14.8125 12Z\" fill=\"#656C87\"/>\n</svg>", "crown": "<img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAIAAABvFaqvAAACF0lEQVR4XmP8//8/AzUAEzUMAYGhaNCt24+ePH1FMAQIe23Fur0r1+2h1KBbtx59//bj69eft+48wm8WARcdO3XZx8vG2lx38/YjhA168+7j23cfMdW9effx5u1H1ua6lhY6jx6/wqUGIg5y0cWLt5s75h07eRnNrC3bjlhZ6DIwMHBxcrg4mGAqOHbycnPn/Bu3Qb4GGWRpofOfgXHl2r3I7n/z7uOxk5etzEAGMTAwODua7N1/+tv3nxDut+8/V67ds3Lt3u/ffmioyEEN4uLksDLXsTbXffzkZe+kZRCn3r71yMpCV1iYH6KTi5PDQFdt74HTDAwgO3onLWVkZPTztIGrgQa2oa7a42cvs1KD1VTkesBmbdpxxNfDBtmzVua6e/efvnDpVu+kZZbmumFBznsOnraEOZkFolRNTe710o+37jzy9bIRFuZv6pgvJysGdw5cjYy0+Mq1e7NSg2RlxG/desTwn0FdFeQvEPgPA5u2Hl65dg+E9/rNh0ePX8Kl4ODR4xdfv/6AcOcv3nLkxCW4FCIdOTuaHDtxCRKcIsL8sjJimAlCVkaci4sdHNg/zl+6DQlmCEAYxMXJISMtTjAFQ8DFi7c11OSQ/Y6Ssv08bSDxQhAcPXVZT1cVWRk0sOHB+WjOq83bCOQGBgaGt28/WptDkxgEMKIVtRcu3X789CVBFwkJ8RMwiGxAuDwiEgw+gwD8WxKROMNryAAAAABJRU5ErkJggg==\" width=\"24\" height=\"24\" alt=\"\">", "restore": "<img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAIAAABvFaqvAAACLUlEQVR4Xq2UPWzTUBSFbxFSYi8uNgpD4mwxk2krEQLBQyt3aYqXVipSYUBILAydOrAxMDF0YShDhzCQgSVDIYWhCJBCilWGuJ6wWYidIZZt4cUvmYKMQ3FdO86QMz7d9+nc35nhcAjT0IVpQDxNDXQx0ZFlOZbt+GFMIR8XHwty0eDjp+PDL9+R2w9+vl1i71Q4iiRCxJnIYitqp1prWJbDFPLz1xgcS10miU7XUNRf7RMVAIQKJ6xwQVYEqH2i7O7VKZJ4cH/16rlcTMvZ3avr3V6IFQaZtvPseRVPp7a3Nikq7P9Ur143WqJ8d53nF4v+Y7hr7w6ayO2PpwDAxjpPksTbg6aLBhEg03Zaoly+yY7x4gvH0g/vrXoN+XwcAZIkr5C3brCJM+GNApPHsLTysxPp6DcA0Lkrk4AAgCIJTev5waM5kiTVRX29awCAJCkAkKMzdDaBiOMpvXu2RkOAaq3xQ/V8VmuN/fdN6tLsJL5wLHUmtfm5Ar94/fTn9tYmjo8ixkjTDZoeuf7ffqHC5f7mIlS4xK4BwNE3GaH+HFsIFxvH0o8frZVLbGj2I2Xazv6HJgAssIwfEL1r4+Wiwc6LmqYbwS2J3f6WKANAuRSeKUXtvKkfarqxvFQMeo919OTpS9t2KIpYYBk6mwHwjLRlxe/s8lJxY40PGo8FmZZzJMpfRdn+d9V8MYW8sMKdvwrJNdL0HkID03bobIYiZ+PGIhk0oaZ2/P8Ai1Xl84/im8cAAAAASUVORK5CYII=\" width=\"24\" height=\"24\" alt=\"\">", "settings": "<svg width=\"19\" height=\"20\" viewBox=\"0 0 19 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M9.51562 11.9531C10.0781 11.9531 10.5469 11.7656 10.9219 11.3906C11.3281 10.9844 11.5312 10.5156 11.5312 9.98438C11.5312 9.42188 11.3281 8.95312 10.9219 8.57812C10.5469 8.17188 10.0781 7.96875 9.51562 7.96875C8.95312 7.96875 8.46875 8.17188 8.0625 8.57812C7.6875 8.95312 7.5 9.42188 7.5 9.98438C7.5 10.5156 7.6875 10.9844 8.0625 11.3906C8.46875 11.7656 8.95312 11.9531 9.51562 11.9531ZM2.48438 8.39062C2.89062 8.92188 3.09375 9.53125 3.09375 10.2188C3.09375 10.875 2.89062 11.4688 2.48438 12L1.07812 13.875L0.28125 13.2656L1.6875 11.3906C1.96875 11.0469 2.10938 10.6562 2.10938 10.2188C2.10938 9.75 1.96875 9.34375 1.6875 9L0 6.79688L0.09375 6.51562C0.46875 5.45312 1.03125 4.48438 1.78125 3.60938L1.96875 3.375L4.6875 3.75H4.96875C5.3125 3.75 5.65625 3.65625 6 3.46875C6.34375 3.25 6.59375 2.9375 6.75 2.53125L7.73438 0.140625L8.01562 0.09375C8.26562 0.03125 8.5 0 8.71875 0H10.125C10.3438 0 10.5781 0.03125 10.8281 0.09375L11.1094 0.140625L12.1406 2.53125C12.2969 2.9375 12.5469 3.25 12.8906 3.46875C13.2344 3.65625 13.5781 3.75 13.9219 3.75H14.2031L16.6875 3.42188L16.8281 4.40625L14.3438 4.73438H14.0156C13.4844 4.73438 12.9375 4.59375 12.375 4.3125C11.8438 4 11.4531 3.53125 11.2031 2.90625L10.4062 1.03125C10.0938 1 9.76562 0.984375 9.42188 0.984375C9.10938 0.984375 8.78125 1 8.4375 1.03125L7.6875 2.90625C7.4375 3.53125 7.03125 4 6.46875 4.3125C5.9375 4.59375 5.40625 4.73438 4.875 4.73438H4.54688L2.39062 4.45312C1.89062 5.07812 1.46875 5.79688 1.125 6.60938L2.48438 8.39062ZM9.51562 6.98438C10.3281 6.98438 11.0312 7.28125 11.625 7.875C12.2188 8.46875 12.5156 9.17188 12.5156 9.98438C12.5156 10.7969 12.2188 11.5 11.625 12.0938C11.0312 12.6875 10.3281 12.9844 9.51562 12.9844C8.70312 12.9844 8 12.6875 7.40625 12.0938C6.8125 11.5 6.51562 10.7969 6.51562 9.98438C6.51562 9.17188 6.8125 8.46875 7.40625 7.875C8 7.28125 8.70312 6.98438 9.51562 6.98438ZM18.8438 13.4062L18.75 13.6875C18.4375 14.5625 17.9688 15.375 17.3438 16.125L17.2031 16.3594L14.5781 15.9844H14.2969C13.9531 15.9844 13.6094 16.0938 13.2656 16.3125C12.9219 16.5 12.6719 16.7969 12.5156 17.2031L11.4375 19.7812L11.1562 19.8281C10.5938 19.9219 10.0156 19.9688 9.42188 19.9688C8.89062 19.9688 8.34375 19.9219 7.78125 19.8281L7.5 19.7812L6.46875 17.25C6.3125 16.8438 6.04688 16.5469 5.67188 16.3594C5.32812 16.1406 4.98438 16.0312 4.64062 16.0312H4.35938L2.0625 16.3594L1.96875 15.375L4.21875 15.0469H4.54688C5.10938 15.0469 5.65625 15.2031 6.1875 15.5156C6.75 15.7969 7.15625 16.25 7.40625 16.875L8.20312 18.8906C8.64062 18.9219 9.0625 18.9375 9.46875 18.9375C9.90625 18.9375 10.3281 18.9219 10.7344 18.8906L11.5781 16.8281C11.8281 16.2031 12.2188 15.75 12.75 15.4688C13.3125 15.1562 13.8438 15 14.3438 15H14.7188L16.7344 15.2812C16.9219 15.0312 17.0938 14.7656 17.25 14.4844C17.4062 14.1719 17.5625 13.875 17.7188 13.5938L16.5 11.9531C16.0625 11.4219 15.8438 10.8281 15.8438 10.1719C15.8438 9.48438 16.0625 8.875 16.5 8.34375L17.9531 6.375L18.75 6.98438L17.2969 8.95312C17.0156 9.29688 16.875 9.70312 16.875 10.1719C16.875 10.6094 17.0156 11 17.2969 11.3438L18.8438 13.4062Z\" fill=\"#656C87\"/>\n</svg>", "create": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 17 17\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M8.01562 0C8.29688 0 8.53125 0.109375 8.71875 0.328125C8.90625 0.515625 9 0.75 9 1.03125V7.03125H15C15.2812 7.03125 15.5156 7.125 15.7031 7.3125C15.9219 7.5 16.0312 7.73438 16.0312 8.01562C16.0312 8.29688 15.9219 8.53125 15.7031 8.71875C15.5156 8.90625 15.2812 9 15 9H9V15C9 15.2812 8.90625 15.5312 8.71875 15.75C8.53125 15.9375 8.29688 16.0312 8.01562 16.0312C7.73438 16.0312 7.5 15.9375 7.3125 15.75C7.125 15.5312 7.03125 15.2812 7.03125 15V9H1.03125C0.75 9 0.5 8.90625 0.28125 8.71875C0.09375 8.53125 0 8.29688 0 8.01562C0 7.73438 0.09375 7.5 0.28125 7.3125C0.5 7.125 0.75 7.03125 1.03125 7.03125H7.03125V1.03125C7.03125 0.75 7.125 0.515625 7.3125 0.328125C7.5 0.109375 7.73438 0 8.01562 0Z\" fill=\"#656C87\"/>\n</svg>"};
+const typeOf = id => id==='root' ? 'start' : (BY[id].folder ? 'folder' : 'article');
+const CHEV_R = `<svg width="7" height="12" viewBox="0 0 7 12" fill="none"><path d="M1 1l5 5-5 5" stroke="currentColor" stroke-width="1.1"/></svg>`;
+const CHEV_D = `<svg width="12" height="7" viewBox="0 0 12 7" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.1"/></svg>`;
+const CHEV_U = `<svg width="12" height="7" viewBox="0 0 12 7" fill="none"><path d="M1 6l5-5 5 5" stroke="currentColor" stroke-width="1.1"/></svg>`;
+const XSVG = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.7917 10.875C11.9306 10.9861 12 11.1389 12 11.3333C12 11.5278 11.9306 11.6806 11.7917 11.7917C11.7361 11.875 11.6667 11.9306 11.5833 11.9583C11.5 11.9861 11.4167 12 11.3333 12C11.25 12 11.1667 11.9861 11.0833 11.9583C11 11.9306 10.9306 11.875 10.875 11.7917L6 6.95833L1.125 11.7917C1.06944 11.875 1 11.9306 0.916667 11.9583C0.833333 11.9861 0.75 12 0.666667 12C0.583333 12 0.5 11.9861 0.416667 11.9583C0.333333 11.9306 0.263889 11.875 0.208333 11.7917C0.0694444 11.6806 0 11.5278 0 11.3333C0 11.1389 0.0694444 10.9861 0.208333 10.875L5.04167 6L0.208333 1.125C0.0694444 1.01389 0 0.861111 0 0.666667C0 0.472222 0.0694444 0.319444 0.208333 0.208333C0.319444 0.0694444 0.472222 0 0.666667 0C0.861111 0 1.01389 0.0694444 1.125 0.208333L6 5.04167L10.875 0.208333C10.9861 0.0694444 11.1389 0 11.3333 0C11.5278 0 11.6806 0.0694444 11.7917 0.208333C11.9306 0.319444 12 0.472222 12 0.666667C12 0.861111 11.9306 1.01389 11.7917 1.125L6.95833 6L11.7917 10.875Z" fill="white"/></svg>`;
+const IT = {
+  create:{lb:'Создать',ar:'sub'}, view:{lb:'Вид',ar:'sub'}, settings:{lb:'Настройки'},
+  link:{lb:'Ссылка/Поделиться',ar:1}, edit:{lb:'Редактировать'}, download:{lb:'Скачать',ar:1},
+  rename:{lb:'Переименовать'}, unpub:{lb:'Снять с публикации'}, tag:{lb:'Пометить тегом'},
+  move:{lb:'Переместить',ar:1}, crown:{lb:'Добавить файл-описание'}, cut:{lb:'Вырезать'},
+  copy:{lb:'Копировать'}, sub:{lb:'Подписаться'}, del:{lb:'Удалить'}, print:{lb:'Распечатать'},
+  discuss:{lb:'Обсудить'}, access:{lb:'Доступ'}, changes:{lb:'Изменения',sub:'Сравнить'},
+  report:{lb:'Сообщить об ошибке'}
+};
+const icOf = k => k==='view' ? (S.mode==='feed'?MODE_FEED:MODE_DOC) : ICON[k];
+// меню статьи (ховер и ПКМ) - как в макете, свернутое и развернутое
+const CARD_MENU = {
+  start:{s:[['link','edit','download','rename','unpub'],['tag','copy','sub','del'],['report']],
+         f:[['link','edit','download','rename','unpub'],['tag','copy','sub','del','print'],['discuss','access','changes','report']]},
+  article:{s:[['link','edit','download','rename','unpub'],['tag','move','cut','copy','sub','del'],['report']],
+           f:[['link','edit','download','rename','unpub'],['tag','move','cut','copy','sub','del','print'],['discuss','access','changes','report']]},
+  folder:{s:[['link','edit','download','rename','unpub'],['tag','move','crown','cut','copy','sub','del'],['report']],
+          f:[['link','edit','download','rename','unpub'],['tag','move','crown','cut','copy','sub','del','print'],['discuss','access','changes','report']]}
+};
+// общий тулбар: повторяет состав тулбара, затем общие команды, затем только для статьи
+const SPLIT = ['download','link','unpub','sub','access'];
+const TB_TOP = [['create','view','download','settings'],['link','edit']];
+const TB_COMMON = ['unpub','sub','access'];
+const ONLY_ART = t => ['rename','tag'].concat(t==='start'?[]:['move']).concat(t==='folder'?['crown']:[]).concat(t==='start'?['copy']:['cut','copy'])
+                      .concat(['print','discuss','changes','report','del']);
+const titleOf = id => BY[id].h1||BY[id].title;
+const ACT_DONE = {link:'Ссылка скопирована',download:'Скачивание началось',unpub:'Снято с публикации',sub:'Подписка оформлена',access:'Открыты настройки доступа'};
+
+const proto = $('#proto');
+let MENU=null, SUBM=null;
+const toP = r => { const k=currentScale(), pr=proto.getBoundingClientRect(); return {l:(r.left-pr.left)/k, t:(r.top-pr.top)/k, r:(r.right-pr.left)/k, b:(r.bottom-pr.top)/k}; };
+function closeMenus(){ MENU?.remove(); SUBM?.remove(); MENU=SUBM=null; }
+function toast(t){ let el=$('#toast'); if(!el){ el=document.createElement('div'); el.id='toast'; el.className='toast'; proto.appendChild(el);} el.style.bottom='auto'; if(S.screen==='375'){ el.style.left='385px'; el.style.top='748px'; } else { el.style.left=((S.screen==='1024'?1024:1600)/2)+'px'; el.style.top=((S.screen==='1024'?768:900)-64)+'px'; } if(false){} el.textContent=t; el.classList.add('on'); clearTimeout(toast.t); toast.t=setTimeout(()=>el.classList.remove('on'),1800); }
+const miHTML = (k,split) => { const it=IT[k];
+  return `<div class="mi" data-k="${k}"><span class="ic">${icOf(k)}</span><span class="lb">${it.lb}</span>${it.sub?`<span class="sub">${it.sub}</span>`:''}${it.ar||split?`<span class="ar${split?' split':''}" data-ar="${k}">${CHEV_R}</span>`:''}</div>`; };
+const listHTML = (ks,split=[]) => ks.map(k=>miHTML(k,split.includes(k))).join('');
+const groupsHTML = (gs,split=[]) => gs.filter(g=>g.length).map(g=>listHTML(g,split)).join('<div class="msep"></div>');
+const maxBottom = () => (S.screen==='1024'?768:900)-6;
+function fitTop(el, top){ const h=el.offsetHeight; return (top+h>maxBottom()) ? Math.max(6,maxBottom()-h) : top; }
+function openCardMenu(id, anchor, full, at){
+  closeMenus();
+  const t=typeOf(id), m=CARD_MENU[t];
+  const el=document.createElement('div'); el.className='mnu';
+  el._id=id;
+  el.innerHTML = `<span class="mclose">${XSVG}</span>` + groupsHTML(full?m.f:m.s, SPLIT) + `<div class="mmore" title="${full?'Свернуть':'Все команды'}">${full?CHEV_U:CHEV_D}</div>`;
+  el.querySelector('.mmore').onclick=e=>{ e.stopPropagation(); openCardMenu(id, anchor, !full, pos); };
+  el.onclick=e=>{ const mi=e.target.closest('.mi'); if(!mi) return; const k=mi.dataset.k; if(e.target.closest('.ar')){ e.stopPropagation(); if(SPLIT.includes(k)) openSub(mi); return; } closeMenus(); toast(SPLIT.includes(k) ? `${ACT_DONE[k]}: "${titleOf(id)}"` : `${IT[k].lb}: "${titleOf(id)}"`); };
+  wireSub(el, k=>SPLIT.includes(k));
+  proto.appendChild(el);
+  let pos = at;
+  if(!pos){ const a=toP(anchor.getBoundingClientRect()); pos={t:a.t-8, l:a.r-el.offsetWidth+6}; }
+  el.style.left=pos.l+'px'; el.style.top=fitTop(el,pos.t)+'px';
+  MENU=el;
+}
+const HAS_SUB = k => k==='create'||k==='view'||SPLIT.includes(k);
+function openToolbarMenu(full){
+  closeMenus();
+  const id=S.current, m=CARD_MENU[typeOf(id)];
+  const el=document.createElement('div'); el.className='mnu'; el._tb=true;
+  el.innerHTML = `<span class="mclose">${XSVG}</span>`
+    + listHTML(['create','view','settings'], SPLIT) + `<div class="msep t"><span>${titleOf(id)}</span></div>` + groupsHTML(full?m.f:m.s, SPLIT)
+    + `<div class="mmore" title="${full?'Свернуть':'Все команды'}">${full?CHEV_U:CHEV_D}</div>`;
+  el.querySelector('.mmore').onclick=e=>{ e.stopPropagation(); openToolbarMenu(!full); };
+  el.onclick=e=>{
+    const mi=e.target.closest('.mi'); if(!mi) return; const k=mi.dataset.k;
+    if(e.target.closest('[data-ar]') || IT[k].ar==='sub'){ e.stopPropagation(); if(HAS_SUB(k)) openSub(mi); return; }
+    closeMenus();
+    if(k==='settings') return toast('Настройки базы знаний');
+    toast(SPLIT.includes(k) ? `${ACT_DONE[k]}: статья "${titleOf(id)}"` : `${IT[k].lb}: "${titleOf(id)}"`);
+  };
+  el._id=id; wireSub(el, HAS_SUB);
+  proto.appendChild(el);
+  // позиционируем по верхней команде тулбара: под ней, по правому краю
+  const a=toP($('#tbNtf').getBoundingClientRect());
+  el.style.left=(a.r-el.offsetWidth+2)+'px'; el.style.top=fitTop(el,a.b+4)+'px';
+  MENU=el;
+}
+let subT;
+// наведение: подменю открывается по стрелке; уход на другой пункт закрывает его с задержкой,
+// чтобы курсор успел доехать до подменю по диагонали
+function wireSub(el, has){
+  el.addEventListener('mouseover',e=>{
+    const row=e.target.closest('.mi');
+    if(SUBM){ if(row && row.dataset.k===SUBM._k) clearTimeout(subT); else { clearTimeout(subT); subT=setTimeout(closeSub,320); } }
+    const ar=e.target.closest('.ar'); const mi=ar&&ar.closest('.mi');
+    if(mi && has(mi.dataset.k) && (!SUBM || SUBM._k!==mi.dataset.k)) openSub(mi);
+  });
+  el.addEventListener('mouseleave',()=>{ if(SUBM){ clearTimeout(subT); subT=setTimeout(closeSub,320); } });
+}
+function closeSub(){ clearTimeout(subT); SUBM?.remove(); SUBM=null; MENU?.querySelectorAll('.mi.open').forEach(x=>x.classList.remove('open')); }
+function openSub(mi){
+  clearTimeout(subT); SUBM?.remove(); MENU.querySelectorAll('.mi.open').forEach(x=>x.classList.remove('open')); mi.classList.add('open');
+  const k=mi.dataset.k, id=MENU._id||S.current;
+  const el=document.createElement('div'); el.className='mnu subm'; el._k=k;
+  let rows;
+  if(k==='create') rows=[['art','Статья'],['folder','Папка']].map(([v,l])=>`<div class="mi" data-v="${v}"><span class="lb">${l}</span></div>`).join('');
+  else if(k==='view') rows=[['feed','Лента'],['doc','Документ']].map(([v,l])=>`<div class="mi" data-v="${v}"><span class="lb">${l}</span>${S.mode===v?'<span class="chk">●</span>':''}</div>`).join('');
+  else rows=`<div class="mi two" data-v="art"><span class="lb">Статья</span><span class="hint">${titleOf(id)}</span></div><div class="mi two" data-v="kb"><span class="lb">База знаний</span><span class="hint">${BY.root.title}</span></div>`;
+  el.innerHTML=rows;
+  el.onclick=e=>{ const r=e.target.closest('.mi'); if(!r) return; const v=r.dataset.v; closeMenus();
+    if(k==='view') return setMode(v);
+    if(k==='create') return toast(`Создание: ${v==='art'?'статья':'папка'}`);
+    toast(v==='art' ? `${ACT_DONE[k]}: статья "${titleOf(id)}"` : `${ACT_DONE[k]}: база знаний "${BY.root.title}"`); };
+  proto.appendChild(el);
+  const row=toP(mi.getBoundingClientRect()), m=toP(MENU.getBoundingClientRect());
+  // по гайду: влево впритык к меню; вправо, только если слева не хватает места
+  const W=(S.screen==='1024'?1024:1600)-4, w=el.offsetWidth;
+  el.style.top=fitTop(el,row.t-8)+'px'; el.style.left=((m.l-w>=4) ? m.l-w : Math.min(m.r, W-w))+'px';
+  el.addEventListener('mouseenter',()=>clearTimeout(subT));
+  el.addEventListener('mouseleave',()=>{ clearTimeout(subT); subT=setTimeout(closeSub,320); });
+  SUBM=el;
+}
+document.addEventListener('click',e=>{
+  if(e.target.closest('.mclose')){ closeMenus(); return; }
+  if(MENU && !e.target.closest('.mnu')) closeMenus();
+});
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeMenus(); });
+$('#tbMore').addEventListener('click',e=>{ e.stopPropagation(); if(MENU && MENU._tb) closeMenus(); else openToolbarMenu(false); });
+$('#tbLink').addEventListener('click',e=>{ e.stopPropagation(); closeMenus(); toast(`Ссылка скопирована: статья "${titleOf(S.current)}"`); });
+$('#tbEdit').addEventListener('click',e=>{ e.stopPropagation(); closeMenus(); toast(`Редактирование: "${titleOf(S.current)}"`); });
+scroller.addEventListener('click',e=>{
+  const fb=e.target.closest('.fopts button'); if(fb){ e.stopPropagation(); if(fb.dataset.fmore) openCardMenu(fb.dataset.fmore,fb,false); else { closeMenus(); toast(`Ссылка скопирована: папка "${titleOf(fb.dataset.flink)}"`); } return; }
+  const b=e.target.closest('.copts button'); if(!b) return; e.stopPropagation();
+  const id=b.closest('.card').dataset.id;
+  if(b.title==='Еще') openCardMenu(id,b,false);
+  else { closeMenus(); toast(b.title==='Ссылка на статью' ? `Ссылка скопирована: статья "${titleOf(id)}"` : `Редактирование: "${titleOf(id)}"`); }
+}, true);
+scroller.addEventListener('contextmenu',e=>{
+  const c=e.target.closest('.card,.frow'); if(!c) return; e.preventDefault();
+  const k=currentScale(), pr=proto.getBoundingClientRect();
+  openCardMenu(c.dataset.id,null,false,{l:(e.clientX-pr.left)/k, t:(e.clientY-pr.top)/k});
+});
+scroller.addEventListener('scroll',()=>{ if(MENU && !MENU._tb) closeMenus(); },{passive:true});
+
+/* ================= ТЕЛЕФОН ================= */
+ICON.mark = `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.984375 11.0156V15.9844C0.984375 16.2656 1.07812 16.5156 1.26562 16.7344C1.48438 16.9219 1.73438 17.0156 2.01562 17.0156H6.98438V18H2.01562C1.45312 18 0.96875 17.8125 0.5625 17.4375C0.1875 17.0312 0 16.5469 0 15.9844V11.0156H0.984375ZM0 2.01562C0 1.45312 0.1875 0.984375 0.5625 0.609375C0.96875 0.203125 1.45312 0 2.01562 0H6.98438V0.984375H2.01562C1.73438 0.984375 1.48438 1.09375 1.26562 1.3125C1.07812 1.5 0.984375 1.73438 0.984375 2.01562V6.98438H0V2.01562ZM15.9844 0C16.5469 0 17.0156 0.203125 17.3906 0.609375C17.7969 0.984375 18 1.45312 18 2.01562V6.98438H17.0156V2.01562C17.0156 1.73438 16.9062 1.5 16.6875 1.3125C16.5 1.09375 16.2656 0.984375 15.9844 0.984375H11.0156V0H15.9844ZM18 15.9844C18 16.5469 17.7969 17.0312 17.3906 17.4375C17.0156 17.8125 16.5469 18 15.9844 18H11.0156V17.0156H15.9844C16.2656 17.0156 16.5 16.9219 16.6875 16.7344C16.9062 16.5156 17.0156 16.2656 17.0156 15.9844V11.0156H18V15.9844Z" fill="#656C87"/></svg>`;
+ICON.paste = `<svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 1v10M5 7l4 4 4-4M1 11v5h16v-5" stroke="#656C87" stroke-width="1.1"/></svg>`;
+const M_BACK=`<svg width="11" height="19" viewBox="0 0 11 19" fill="none"><path d="M9.5 1.5L2 9.5l7.5 8" stroke="#F47843" stroke-width="2.2" stroke-linecap="round"/></svg>`;
+const M_DOTS=`<svg width="4" height="18" viewBox="0 0 4 18"><circle cx="2" cy="2" r="2" fill="#656C87"/><circle cx="2" cy="9" r="2" fill="#656C87"/><circle cx="2" cy="16" r="2" fill="#656C87"/></svg>`;
+const M_GT=`<svg width="8" height="13" viewBox="0 0 8 13" fill="none"><path d="M1.5 1.5l5 5-5 5" stroke="currentColor" stroke-width="1.3"/></svg>`;
+const M_DN=`<svg width="13" height="8" viewBox="0 0 13 8" fill="none"><path d="M1.5 1.5l5 5 5-5" stroke="currentColor" stroke-width="1.3"/></svg>`;
+const M_DOC=`<svg width="24" height="25" viewBox="0 0 31 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.4062 9.59375H4.8125V8L12.8125 0H27.1875C27.625 0 28.0417 0.0833333 28.4375 0.25C28.8333 0.416667 29.1771 0.645833 29.4688 0.9375C29.7604 1.22917 29.9896 1.57292 30.1562 1.96875C30.3229 2.34375 30.4062 2.75 30.4062 3.1875V28.8125C30.4062 29.25 30.3229 29.6667 30.1562 30.0625C29.9896 30.4375 29.7604 30.7708 29.4688 31.0625C29.1771 31.3542 28.8333 31.5833 28.4375 31.75C28.0417 31.9167 27.625 32 27.1875 32H11.1875V30.4062H27.1875C27.6458 30.4062 28.0312 30.25 28.3438 29.9375C28.6562 29.625 28.8125 29.25 28.8125 28.8125V3.1875C28.8125 2.75 28.6562 2.375 28.3438 2.0625C28.0312 1.75 27.6458 1.59375 27.1875 1.59375H14.4062V9.59375ZM12.8125 8V2.25L7.0625 8H12.8125ZM17.5938 12.8125V11.1875H25.5938V12.8125H17.5938ZM17.5938 17.5938V16H25.5938V17.5938H17.5938ZM17.5938 22.4062V20.8125H25.5938V22.4062H17.5938ZM12.7188 19.4688L3.21875 32C3.26042 31.9375 3.39583 31.6771 3.625 31.2188C3.875 30.7604 4.21875 30.0938 4.65625 29.2188C5.11458 28.2812 5.58333 27.3229 6.0625 26.3438C6.5625 25.3438 7.08333 24.3125 7.625 23.25L0 11.1875L10.2812 17.8125L11.5312 15.3125L15.0938 14.2188L12.2812 18L12.7188 19.4688Z" fill="#5A49AB"/></svg>`;
+const M_TOCI=`<svg width="22" height="16" viewBox="0 0 22 16" fill="none"><circle cx="2" cy="2" r="1.6" fill="#333"/><circle cx="2" cy="8" r="1.6" fill="#333"/><circle cx="2" cy="14" r="1.6" fill="#333"/><path d="M6 2h16M6 8h16M6 14h16" stroke="#333" stroke-width="1.5"/></svg>`;
+const M_PLUS=`<svg width="26" height="26" viewBox="0 0 26 26"><path d="M13 2v22M2 13h22" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>`;
+const M_STAT=`<span style="display:flex;gap:5px;align-items:center"><svg width="18" height="11" viewBox="0 0 18 11"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="6" rx="1"/><rect x="10" y="2.5" width="3" height="8.5" rx="1"/><rect x="15" y="0" width="3" height="11" rx="1"/></svg><svg width="16" height="11" viewBox="0 0 16 11"><path d="M8 11L5.6 8.4a3.4 3.4 0 014.8 0zM3.5 6.3a6.4 6.4 0 019 0l1.5-1.5a8.5 8.5 0 00-12 0zM0.6 3.4a10.6 10.6 0 0114.8 0L16 2.8A12 12 0 000 2.8z"/></svg><svg width="26" height="12" viewBox="0 0 26 12"><rect x="0.5" y="0.5" width="22" height="11" rx="3" fill="none" stroke="#999"/><rect x="2" y="2" width="19" height="8" rx="2"/><rect x="24" y="4" width="1.5" height="4" rx=".7" fill="#999"/></svg></span>`;
+const M_CHAT=`<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M10 3.5c4 0 7 2.6 7 5.8s-3 5.7-7 5.7c-.8 0-1.6-.1-2.3-.3L4 16.5l.9-3.2C3.7 12.2 3 10.8 3 9.3 3 6.1 6 3.5 10 3.5z"/></svg>`;
+const M_HEART=`<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M10 16.5S3 12.3 3 7.6A3.6 3.6 0 0 1 10 6a3.6 3.6 0 0 1 7 1.6c0 4.7-7 8.9-7 8.9z"/></svg>`;
+const M_NAV=`<div class="m-nav"><div><svg width="22" height="22" viewBox="0 0 22 22"><path d="M2 5h18M2 11h18M2 17h18" stroke="#656C87" stroke-width="1.3"/></svg>Меню</div>${[['staff','Сотр-ки'],['docs','Док-ты'],['comp','Компании'],['mark','Марке-нг'],['cc','К-центр']].map(([k,l])=>`<div><img src="${ASSET['ic_'+k]}" alt="">${l}</div>`).join('')}</div>`;
+const SAFI=c=>`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">`;
+const M_SAF=`<div class="m-saf"><div class="m-url"><span style="font-size:13px">A<span style="font-size:16px">A</span></span><span>🔒 online.saby.ru</span><svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M14 9a6 6 0 11-2-4.5M12 1v4h-4" stroke="#333" stroke-width="1.6"/></svg></div>
+<div class="m-sbtns">${SAFI('#0a7aff')}<path d="M15 4l-8 8 8 8"/></svg>${SAFI('#c7c7cc')}<path d="M9 4l8 8-8 8"/></svg>${SAFI('#0a7aff')}<path d="M12 3v12M8 7l4-4 4 4M6 11v9h12v-9"/></svg>${SAFI('#0a7aff')}<path d="M2 5c4-1 7 0 10 2 3-2 6-3 10-2v14c-4-1-7 0-10 2-3-2-6-3-10-2zM12 7v14"/></svg>${SAFI('#0a7aff')}<rect x="7" y="3" width="14" height="14" rx="2"/><path d="M17 21H5a2 2 0 01-2-2V7"/></svg></div></div>`;
+
+const isPhone = () => S.screen==='375';
+S.pq = null;
+const feedIds = ORDER.filter(id=>id==='root' || !BY[id].folder);
+const isListing = id => id!=='root' && BY[id].folder;
+const descOf = n => { const m=(n.html||'').match(/<p class="lead">([\s\S]*?)<\/p>/); return m ? m[1].replace(/<[^>]+>/g,'') : ''; };
+const mHost=document.createElement('div'); mHost.id='phones';
+mHost.innerHTML=`<div class="m-ph" data-k="ad"></div><div class="m-ph" data-k="app"></div><div class="m-lbl" style="left:0">Адаптив</div><div class="m-lbl" style="left:395px">Мобильное приложение</div>`;
+
+const PHONES=[...mHost.querySelectorAll('.m-ph')];
+
+function mListHTML(id){ const n=BY[id], d=descOf(n);
+  return (d?`<div class="m-desc">${d}</div>`:'') + `<div class="m-list">${n.children.map(c=> c.folder
+    ? `<div class="m-li f" data-go="${c.id}"><span>${c.title}</span>${M_GT}</div>`
+    : `<div class="m-li a" data-go="${c.id}">${M_DOC}<span>${c.title}</span></div>`).join('')}</div>`; }
+const mArtHTML = id => { const n=BY[id];
+  return `<article class="m-art" data-id="${id}"><h1>${n.h1||n.title}</h1><div class="m-body">${n.html}</div><div class="m-afoot">${M_CHAT}${M_HEART}</div></article>`; };
+const plain = h => (h||'').replace(/<[^>]+>/g,' ').replace(/\$\{[^}]*\}/g,'').replace(/\s+/g,' ').trim();
+const esc = x => x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+function mResultsHTML(q){
+  const ql=q.toLowerCase(), hl=t=>t.replace(new RegExp(esc(q),'gi'),m=>`<mark>${m}</mark>`);
+  const hits=ORDER.filter(id=>id!=='root' && ((BY[id].h1||BY[id].title).toLowerCase().includes(ql) || plain(BY[id].html).toLowerCase().includes(ql))).slice(0,30);
+  if(!hits.length) return `<div class="m-empty">Ничего не найдено</div>`;
+  return hits.map(id=>{ const n=BY[id], tx=plain(n.html), i=tx.toLowerCase().indexOf(ql);
+    const sn = i<0 ? tx.slice(0,140) : (i>50?'...':'')+tx.slice(Math.max(0,i-50), i+110);
+    return `<div class="m-res" data-res="${id}"><div class="cr">${crumbsOf(id).map(p=>p.title).join(' › ')}</div><div class="t">${hl(n.h1||n.title)}</div><div class="sn">${hl(sn)}</div></div>`; }).join('');
+}
+function headOf(id){ const hid = isListing(id) ? id : (PARENT[id] ? PARENT[id].id : 'root'); return {title:BY[hid].title, ava:hid==='root'}; }
+function renderReg(el){
+  const ad=el.dataset.k==='ad', empty=S.pv==='empty';
+  el.classList.remove('sheet');
+  if(empty && !ad){ el.innerHTML=`<div class="m-na">в МП нет<br>аналогичного сценария</div>`; return; }
+  const kbKids=BY.root.children.slice(0,3).map(c=>c.title);
+  const TILES=[
+    {k:'kb',t:BY.root.title,ul:kbKids,cls:'t-kb'},
+    {k:'x1',t:'Наша компания',ul:['О компании','Общие правила работы','Продукты и направления'],cls:'t-w'},
+    {k:'x2',t:'Разработка',d:'Папка баз знаний по технической документации продуктов',cls:'t-dark'},
+    {k:'x3',t:'Сеть продаж',d:'Все о подразделении и энциклопедии по должностям. Ответственный: Директор по продажам филиальной сети',cls:'t-pale'},
+    {k:'x4',t:'Служба эксплуатации',ul:['Энциклопедии продуктов','Kubernetes в Тензоре','Описание служб'],cls:'t-grey'}];
+  const body = empty
+    ? `<div class="m-emp"><svg width="150" height="150" viewBox="0 0 150 150" fill="none" stroke="#b9bccb" stroke-width="2"><circle cx="62" cy="58" r="30"/><circle cx="62" cy="58" r="11"/><circle cx="62" cy="58" r="4" fill="#b9bccb"/><path d="M40 40c6-8 14-12 22-12M84 84c18 4 36 18 30 36-6 20-46 22-60 4"/><path d="M90 30c10-12 30-6 26 8-3 9-14 8-16 2"/></svg><div class="e1">Список баз знаний пуст</div><div class="e2"><a data-ecreate="база знаний">Создайте</a> первую базу знаний или <a data-ecreate="папка">добавьте</a> папку</div></div>`
+    : `<div class="m-tiles">${TILES.map(x=>`<div class="m-tile ${x.cls}" data-tile="${x.k}"><div class="tt">${x.t}</div>${x.ul?`<ul>${x.ul.map(i=>`<li>${i}</li>`).join('')}</ul>`:`<div class="td">${x.d}</div>`}<div class="tpic">${x.k==='kb'?`<img src="${ASSET.root}" alt="">`:''}</div></div>`).join('')}</div>`;
+  el.innerHTML = `<div class="m-top"><div class="m-status">9:41${M_STAT}</div>
+    <div class="m-big m-regh"><span>База знаний</span>${empty?'':`<button class="m-hdots">${M_DOTS}</button>`}</div>
+    ${empty?'':`<div class="m-search"><input placeholder="Найти"></div>`}</div>
+    <div class="m-scroll${empty?'':' srch'}">${body}</div>
+    <div class="m-fabs" style="bottom:${ad?190:78}px"><button class="m-plus" title="Создать">${M_PLUS}</button></div>
+    ${ad?M_NAV+M_SAF:`<div class="m-tabs"><div class="on"><svg width="24" height="20" viewBox="0 0 24 20"><path d="M1 3c4-2 8-1 11 1v15c-3-2-7-3-11-1zM23 3c-4-2-8-1-11 1v15c3-2 7-3 11-1z" fill="#333"/></svg>Знания</div><div><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#8991a9" stroke-width="1.3"><circle cx="11" cy="11" r="3.5"/><path d="M11 1.5v3M11 17.5v3M1.5 11h3M17.5 11h3M4.3 4.3l2.1 2.1M15.6 15.6l2.1 2.1M4.3 17.7l2.1-2.1M15.6 6.4l2.1-2.1"/></svg>Настройки</div></div>`}<i class="m-home"></i><div class="m-ov"></div><div class="m-sheet"></div>`;
+}
+function renderPhone(el){
+  if(S.pscreen==='reg' || S.pv==='empty') return renderReg(el);
+  const ad=el.dataset.k==='ad', id=S.current, srch=S.pq!=null, list=isListing(id), h=headOf(id);
+  const body = srch ? mResultsHTML(S.pq) : list ? mListHTML(id) : (S.mode==='feed' ? feedIds.map(mArtHTML).join('') : mArtHTML(id));
+  el.classList.remove('sheet');
+  el.innerHTML = `<div class="m-top"><div class="m-status">9:41${M_STAT}</div>
+    ${srch ? `<div class="m-big">Результаты поиска</div>` : `<div class="m-head"><button class="m-back">${M_BACK}</button>${h.ava?`<span class="m-ava"><img src="${ASSET.root}" alt=""></span>`:''}<span class="m-ht">${h.title}</span><button class="m-hdots">${M_DOTS}</button></div>`}
+    <div class="m-search"><input placeholder="Найти" value="${srch?S.pq.replace(/"/g,'&quot;'):''}">${srch?'<button class="m-clr">×</button>':''}</div></div>
+    <div class="m-scroll${srch?' srch':''}">${body}</div>
+    <div class="m-mini"><span></span></div>
+    <div class="m-fabs" style="bottom:${ad?190:24}px"><button class="m-toc" title="Оглавление">${M_TOCI}</button><button class="m-plus" title="Создать">${M_PLUS}</button></div>
+    ${ad?M_NAV+M_SAF:''}<i class="m-home"></i><div class="m-ov"></div><div class="m-sheet"></div>`;
+  const sc=el.querySelector('.m-scroll'), mini=el.querySelector('.m-mini');
+  mini.style.top=(sc.offsetTop-2)+'px';
+  if(!srch && !list && S.mode==='feed'){ const c=sc.querySelector(`.m-art[data-id="${id}"]`); if(c) sc.scrollTop=c.offsetTop; }
+  sc.onscroll=()=>mSpy(el);
+  mSpy(el);
+}
+function renderPhones(){ if(isPhone()) PHONES.forEach(renderPhone); }
+S.pscreen='kb'; S.pv='typical';
+function mSpy(el){
+  const sc=el.querySelector('.m-scroll'), mini=el.querySelector('.m-mini');
+  const arts=[...sc.querySelectorAll('.m-art')];
+  if(!arts.length){ mini.classList.remove('on'); return; }
+  let cur=arts[0];
+  for(const a of arts){ if(a.offsetTop <= sc.scrollTop+40) cur=a; else break; }
+  const h1=cur.querySelector('h1');
+  const hidden = h1.offsetTop + cur.offsetTop + h1.offsetHeight - 10 < sc.scrollTop;
+  mini.classList.toggle('on', hidden);
+  mini.querySelector('span').textContent = h1.textContent;
+  const id=cur.dataset.id;
+  if(S.mode==='feed' && id!==S.current){
+    S.current=id;
+    PHONES.forEach(p=>{ const h=headOf(id), t=p.querySelector('.m-ht'); if(t){ t.textContent=h.title; const a=p.querySelector('.m-ava'); if(a) a.style.display=h.ava?'':'none'; } });
+  }
+}
+/* шторки */
+let mOpen=new Set();
+function sheet(el, html){ el.querySelector('.m-sheet').innerHTML=`<div class="m-grab"></div>`+html; el.classList.add('sheet'); }
+function closeSheet(el){ el.classList.remove('sheet'); }
+const miRow = (k,extra='') => `<div class="m-mi" data-mk="${k}"><span class="ic">${ICON[k]||''}</span><span>${IT[k]?IT[k].lb:k}</span>${extra}</div>`;
+function tocHTML(){
+  const row=(n,lvl)=>{ const has=n.children.length, op=mOpen.has(n.id);
+    return `<div class="m-tr${n.id==='root'?' root':''}${S.current===n.id?' on':''}" data-tgo="${n.id}" style="padding-left:${n.id==='root'?24:6+lvl*24}px">${n.id!=='root'?`<span class="m-tw" data-ttw="${n.id}">${has?(op?M_DN:M_GT):''}</span>`:''}<span>${n.title}</span></div>${has&&op?n.children.map(c=>row(c,lvl+1)).join(''):''}`; };
+  return `<div class="m-sbody">${row(TREE,0)}</div>`;
+}
+function openToc(el){ mOpen=new Set(['root',...crumbsOf(S.current).map(p=>p.id)]); if(BY[S.current].children.length) mOpen.add(S.current); sheet(el,tocHTML()); requestAnimationFrame(()=>{ const a=el.querySelector('.m-tr.on'), b=el.querySelector('.m-sbody'); if(a&&b) b.scrollTop=a.offsetTop-160; }); }
+function kbMenu(el){
+  const id=S.current, g=CARD_MENU[typeOf(id)].f;
+  const row=k=> (k==='create'||k==='view') ? `<div class="m-mi" data-msub="${k}"><span class="ic">${k==='view'?(S.mode==='feed'?MODE_FEED:MODE_DOC):ICON.create}</span><span>${IT[k].lb}</span><span class="gt">${M_GT}</span></div>`
+    : SPLIT.includes(k) ? `<div class="m-mi" data-msub="${k}" data-mid="${id}"><span class="ic">${ICON[k]}</span><span>${IT[k].lb}</span>${k==='download'?'<span class="hint">7.6 МБ</span>':''}<span class="gt">${M_GT}</span></div>`
+    : miRow(k).replace('data-mk=',`data-mid="${id}" data-mk=`);
+  sheet(el, `<div class="m-sbody">${['create','view','settings'].map(row).join('')}<div class="m-msep t"><span>${titleOf(id)}</span></div>${g.map(gr=>gr.map(row).join('')).join('<div class="m-msep"></div>')}</div>`);
+}
+function regMenu(el){
+  sheet(el, `<div class="m-sbody"><div class="m-mi" data-msub="rcreate"><span class="ic">${ICON.create}</span><span>Создать</span><span class="gt">${M_GT}</span></div><div class="m-mi" data-msub="rview"><span class="ic">${MODE_FEED}</span><span>Вид</span><span class="gt">${M_GT}</span></div>${miRow('settings')}</div>`);
+}
+function subMenu(el,k,id){
+  const LB={view:'Вид',rview:'Вид',create:'Создать',rcreate:'Создать'};
+  const back=`<div class="m-stitle"><button data-mback="1">${M_BACK}</button>${LB[k]||IT[k].lb}</div>`;
+  if(k==='view') return sheet(el, back+`<div class="m-sbody">${[['feed','Лента'],['doc','Документ']].map(([v,l])=>`<div class="m-mi" data-mview="${v}"><span class="ic">${v==='feed'?MODE_FEED:MODE_DOC}</span><span>${l}</span>${S.mode===v?'<span class="chk">●</span>':''}</div>`).join('')}</div>`);
+  if(k==='rview') return sheet(el, back+`<div class="m-sbody">${['Плитка','Таблица','Список'].map((l,i)=>`<div class="m-mi" data-mcreate="${i?'вид '+l.toLowerCase()+' (пока в работе)':'вид плитка'}"><span>${l}</span>${i?'':'<span class="chk">●</span>'}</div>`).join('')}</div>`);
+  if(k==='create'||k==='rcreate') return sheet(el, back+`<div class="m-sbody">${(k==='create'?[['статья','Статья'],['папка','Папка']]:[['база знаний','База знаний'],['папка','Папка']]).map(([v,l])=>`<div class="m-mi" data-mcreate="${v}"><span class="ic">${v==='папка'?ICON.move:M_DOC.replace('width="26" height="30"','width="20" height="24"')}</span><span>${l}</span></div>`).join('')}</div>`);
+  const tid=id||S.current;
+  sheet(el, back+`<div class="m-sbody"><div class="m-mi two" data-mscope="art" data-sk="${k}" data-mid="${tid}"><span>${isListing(tid)?'Папка':'Статья'}</span><span class="hint">${titleOf(tid)}</span></div><div class="m-mi two" data-mscope="kb" data-sk="${k}"><span>База знаний</span><span class="hint">${BY.root.title}</span></div></div>`);
+}
+function createMenu(el){ sheet(el, `<div class="m-stitle">Создать</div><div class="m-sbody"><div class="m-mi" data-mcreate="статья"><span class="ic">${M_DOC.replace('width="26" height="30"','width="20" height="24"')}</span><span>Статья</span></div><div class="m-mi" data-mcreate="папка"><span class="ic">${ICON.move}</span><span>Папка</span></div></div>`); }
+
+PHONES.forEach(el=>{
+  el.addEventListener('click',e=>{
+    const t=e.target, c=sel=>t.closest(sel);
+    if(c('.m-ov')) return closeSheet(el);
+    if(c('[data-ttw]')){ const id=c('[data-ttw]').dataset.ttw; if(BY[id].children.length){ mOpen.has(id)?mOpen.delete(id):mOpen.add(id); const b=el.querySelector('.m-sbody'), st=b.scrollTop; sheet(el,tocHTML()); el.querySelector('.m-sbody').scrollTop=st; } return; }
+    if(c('[data-tgo]')){ closeSheet(el); S.pq=null; setTimeout(()=>go(c('[data-tgo]').dataset.tgo),180); return; }
+    if(c('[data-mback]')) return S.pscreen==='reg' ? regMenu(el) : kbMenu(el);
+    if(c('[data-msub]')){ const r=c('[data-msub]'); return subMenu(el,r.dataset.msub,r.dataset.mid); }
+    if(c('[data-mview]')){ closeSheet(el); setTimeout(()=>setMode(c('[data-mview]').dataset.mview),200); return; }
+    if(c('[data-mscope]')){ const r=c('[data-mscope]'); closeSheet(el); return toast(r.dataset.mscope==='kb' ? `${ACT_DONE[r.dataset.sk]}: база знаний "${BY.root.title}"` : `${ACT_DONE[r.dataset.sk]}: "${titleOf(r.dataset.mid)}"`); }
+    if(c('[data-mcreate]')){ closeSheet(el); return toast(`Создание: ${c('[data-mcreate]').dataset.mcreate}`); }
+    if(c('[data-mk]')){ const r=c('[data-mk]'), k=r.dataset.mk; closeSheet(el); return toast(k==='settings' ? 'Настройки базы знаний' : `${r.querySelector('span:nth-child(2)').textContent}: "${titleOf(r.dataset.mid||S.current)}"`); }
+    if(c('.m-sheet')) return;
+    if(c('.m-back')){ if(S.pq!=null){ S.pq=null; return renderPhones(); } if(S.current==='root'){ S.pscreen='reg'; syncMob(); return renderPhones(); } const p=PARENT[S.current]; if(p) go(p.id); return; }
+    if(c('.m-clr')){ S.pq=null; return renderPhones(); }
+    if(c('.m-hdots')) return S.pscreen==='reg' ? regMenu(el) : kbMenu(el);
+    if(c('[data-amenu]')) return artMenu(el,c('[data-amenu]').dataset.amenu);
+    if(c('.m-toc')) return openToc(el);
+    if(c('.m-plus')) return S.pscreen==='reg' ? (sheet(el,''), subMenu(el,'rcreate')) : createMenu(el);
+    if(c('[data-tile]')){ const t=c('[data-tile]').dataset.tile; if(t==='kb'){ S.pscreen='kb'; S.pq=null; syncMob(); S.current='root'; return renderPhones(); } return toast('В демо открывается только "Стандарты интерфейса"'); }
+    if(c('[data-ecreate]')) return toast(`Создание: ${c('[data-ecreate]').dataset.ecreate}`);
+    if(c('[data-res]')){ S.pq=null; return go(c('[data-res]').dataset.res); }
+    if(c('[data-go]')){ e.preventDefault(); S.pq=null; return go(c('[data-go]').dataset.go); }
+    const lk=c('.m-afoot svg:last-child'); if(lk) lk.style.color = lk.style.color ? '' : '#e55b77';
+  });
+  el.addEventListener('keydown',e=>{ if(e.target.matches('.m-search input') && e.key==='Enter'){ const q=e.target.value.trim(); if(q){ S.pq=q; renderPhones(); } } });
+});
+// навигация и режимы в телефоне
+const _go = go;
+go = function(id, o={}){
+  if(!isPhone()) return _go(id,o);
+  if(!BY[id]) return; const changed=id!==S.current; S.current=id; if(S.pscreen!=='kb'){ S.pscreen='kb'; S.pv='typical'; syncMob(); }
+  if(!o.nohist && changed){ S.hist=S.hist.slice(0,S.hpos+1); S.hist.push(id); S.hpos=S.hist.length-1; }
+  renderPhones(); highlightToc(false); updatePager();
+};
+
+document.querySelectorAll('#panel .pmain > section.pg:not(.mob)').forEach(x=>x.classList.add('dsk'));
+function syncMob(){ return;
+  document.querySelectorAll('[data-pv]').forEach(r=>r.classList.toggle('on', r.dataset.pv===S.pv));
+  document.querySelectorAll('[data-pscr]').forEach(r=>r.classList.toggle('on', r.dataset.pscr===(S.pv==='empty'?'reg':S.pscreen)));
+  const reg = S.pscreen==='reg' || S.pv==='empty';
+  $('#mModeH').textContent = reg ? 'Режим отображения реестра' : 'Режим отображения статей';
+  $('#mMode').innerHTML = reg
+    ? `<div class="rad${S.pv==='empty'?' ro':' on'}">Плитка</div><div class="rad ro">Таблица</div><div class="rad ro">Список</div>`
+    : `<div class="rad${S.mode==='feed'?' on':''}" data-pmode="feed">Лента</div><div class="rad${S.mode==='doc'?' on':''}" data-pmode="doc">Страница</div>`;
+}
+false && $('#mobSec').addEventListener('click',e=>{
+  const r=e.target.closest('.rad'); if(!r || r.classList.contains('ro')) return;
+  if(r.dataset.pv){ S.pv=r.dataset.pv; if(S.pv==='empty') S.pscreen='reg'; }
+  else if(r.dataset.pscr){ S.pscreen=r.dataset.pscr; S.pv='typical'; if(S.pscreen==='kb') S.pq=null; }
+  else if(r.dataset.pmode){ syncMob(); return setMode(r.dataset.pmode); }
+  else return;
+  syncMob(); renderPhones();
+});
+const SCAP={'375':'375х812 телефон','1024':'1024х768','1600':'1600х900 монитор'};
+let wasPhone=false;
+function fitPhone(){
+  const ph=isPhone(); $('#swcap').textContent=SCAP[S.screen]||'';
+  $('#proto').classList.toggle('phone',ph);
+  if(ph){ closeMenus(); const k=Math.min(innerWidth/1110, innerHeight/1000); $('#proto').style.transform=`scale(${k})`; syncMob(); renderPhones(); wasPhone=true; return true; }
+  if(wasPhone){ wasPhone=false; setTimeout(()=>{ renderContent(); if(S.mode==='feed') scrollToCard(S.current,false); highlightToc(true); },0); }
+  return false;
+}
 renderToc(); renderContent(); syncUI();
 </script>
 </body>
