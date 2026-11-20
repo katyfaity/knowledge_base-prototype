@@ -673,22 +673,22 @@ kbd{font:inherit;background:#fff;border:1px solid var(--border);border-radius:4p
 #tileSec,#regLinkSec{display:none!important}.lnksec{margin-top:auto}#tileSec+.lnksec{margin-top:auto}#proto.p-reg #panel .pmain>section#tileSec#tileSec,#proto.p-reg #panel .pmain>section#regLinkSec#regLinkSec{display:flex!important}
 /* новый стиль плитки БЗ (Figma "Стартовая БЗ", 2588:46084) */
 .ntiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:6px;padding-top:16px}
-.ntile{position:relative;height:100px;box-sizing:border-box;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 0 8px rgba(0,0,0,.06);cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end;transition:box-shadow .12s}
+.ntile{position:relative;height:104px;box-sizing:border-box;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 0 8px rgba(0,0,0,.06);cursor:pointer;display:flex;flex-direction:column;justify-content:flex-start;transition:box-shadow .12s}
 .ntile.blue{background:#ebf4ff}
 .ntile.lav{background:linear-gradient(-9.66deg,#f6f4ff 26.86%,#ece8ff 83.94%)}
 .ntile.violet{background:#8291ee}
 .ntile.coral{background:#fd8760}
 .ntile.violet .ntt,.ntile.coral .ntt{color:#fff}
-.ntile .nlg.ph{border:1px solid rgba(228,228,228,.15)}
+.ntile .nlg.phot{border:1px solid rgba(228,228,228,.15)}
 .ntile.pink{background:linear-gradient(-9.66deg,#fff4ff 26.86%,#ffe8ff 83.94%)}
 .ntile:hover{box-shadow:0 0 8px rgba(0,0,0,.14)}
-.ntile .nin{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:12px 16px 8px 12px}
-.ntile .nlg{width:56px;height:56px;box-sizing:border-box;border:1px solid #e4e4e4;border-radius:8px;background:#fff;overflow:hidden;display:grid;place-items:center;flex:none}
+.ntile .nin{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:12px 16px 8px 12px} /* логотип: отступ сверху = слева = 12px */
+.ntile .nlg{line-height:0;width:56px;height:56px;box-sizing:border-box;border:1px solid #e4e4e4;border-radius:8px;background:#fff;overflow:hidden;display:grid;place-items:center;flex:none}
 .ntile .nlg img{width:100%;height:100%;object-fit:cover;display:block}
 .ntile .nlg.none{opacity:0}
 .ntile .nlg.pic{border:0}
 .ntile>.clk{left:calc(50% - 12px);top:calc(50% - 12px)}
-.ntile .ntt{max-width:100%;font-size:16px;font-weight:600;letter-spacing:-.2256px;line-height:normal;color:#000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ntile .ntt{max-width:100%;font-size:16px;font-weight:600;letter-spacing:-.2256px;line-height:20px;color:#000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ntile .nact{position:absolute;right:0;top:0;height:36px;padding:0 6px;display:none;gap:12px;align-items:center;background:#f3f4f8;border-radius:0 0 0 12px;filter:drop-shadow(0 0 4px rgba(0,0,0,.14))}
 .ntile:hover .nact{display:flex}
 .ntile .nact button{width:24px;height:24px;display:grid;place-items:center;color:#656c87}
@@ -2157,7 +2157,7 @@ function renderReg(){
   regEl.innerHTML=`<div class="rmaster"><div class="rhead"><button class="rplus" id="rPlus" title="Добавить"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>${needCreate()?CLICK_HINT():''}</button><button class="pill" title="Меню"><svg width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M0 .5h14M0 4.5h14M0 8.5h14" stroke="#333"/></svg></button></div><div class="rtree">${regTreeHTML()}</div></div>
    <div class="rcol"><div class="rtop">${HOME}<span>Все базы знаний</span>${REG.path?`${RCH}<span>${REG.path}</span>`:''}<label class="search"><input autocomplete="off" placeholder="Найти"></label></div>
    <div class="rbody"><div class="rban${REG.sel==='Дизайн и стандарты'?' dsn':''}"><svg viewBox="0 0 1000 182" preserveAspectRatio="none"><g stroke="#3a4255" stroke-width=".8" fill="none" opacity=".55"><path d="M40 0L210 182M40 0L120 182M180 0L380 182M260 182L520 0"/><path d="M0 70C300 60 600 90 1000 40" opacity=".5"/><path d="M0 150C350 140 650 160 1000 110" opacity=".35"/></g></svg><h2>${REG.sel==='Все'?'Все базы знаний':REG.sel}</h2></div>
-   ${kbs.length && S.tst!=='old'?`<div class="ntiles">${kbs.map((k,i)=>`<div class="ntile ${k.tint||(k.demo?'lav':k.head?'blue':'')}" data-rkb="${i}"><div class="nin"><span class="nlg${k.nologo?' none':''}${k.img?(k.img===LOGO_PH.photo?' ph':' pic'):''}">${k.img?`<img src="${k.img}" alt="">`:k.demo?FIGMA.replace('width="58" height="86"','width="22" height="33"'):k.logo?`<img src="${ASSET.root}" alt="">`:BOOK.replace('width="16" height="14"','width="26" height="23"')}</span><div class="ntt" title="${k.title}">${k.title}</div></div>${NTILE_ACT(i)}${k.hint?CLICK_HINT():''}</div>`).join('')}</div>`
+   ${kbs.length && S.tst!=='old'?`<div class="ntiles">${kbs.map((k,i)=>`<div class="ntile ${k.tint||(k.demo?'lav':k.head?'blue':'')}" data-rkb="${i}"><div class="nin"><span class="nlg${k.nologo?' none':''}${k.img?(k.img===LOGO_PH.photo?' phot':' pic'):''}">${k.img?`<img src="${k.img}" alt="">`:k.demo?FIGMA.replace('width="58" height="86"','width="22" height="33"'):k.logo?`<img src="${ASSET.root}" alt="">`:BOOK.replace('width="16" height="14"','width="26" height="23"')}</span><div class="ntt" title="${k.title}">${k.title}</div></div>${NTILE_ACT(i)}${k.hint?CLICK_HINT():''}</div>`).join('')}</div>`
    : kbs.length?`<div class="rtiles">${kbs.map((k,i)=>`<div class="rtile${k.demo||k.img||k.nologo?' light':''}" data-rkb="${i}"><div class="cov">${k.img?`<img src="${k.img}" alt="" style="width:96px;height:96px">`:k.demo?FIGMA:(k.logo?`<img src="${ASSET.root}" alt="">`:`<span class="nob">${BOOK.replace('width="16" height="14"','width="64" height="56"')}</span>`)}</div><span class="bk">${BOOK}</span><span class="tchk" title="Отметить"></span><div class="bt"><div class="tt">${k.title}</div>${TILE_ACT(i)}</div></div>`).join('')}</div>`:`<div class="rempty">В этой папке пока нет баз знаний</div>`}</div></div>`;
 
   tintTiles();}
