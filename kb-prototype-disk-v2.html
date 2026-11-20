@@ -275,7 +275,8 @@ table.vt{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0 20px}
 .wcrumbs a:hover{color:#313e78;text-decoration:underline}
 .wcrumbs svg{flex:none}
 .toc-collapsed .wcrumbs.show{visibility:visible}
-.work.toc-collapsed.doccr .card .crumbs-top{visibility:hidden}
+/* режим документа: крошек в карточке нет никогда (при свернутом оглавлении они в шапке) */
+.content.docmode .card .crumbs-top{visibility:hidden}
 .work .search{flex:0 0 calc(var(--rowW,1000px) * .3);min-width:0;max-width:450px}
 .work.toc-collapsed.roomy .search{flex-basis:calc(var(--rowW,1000px) * .5)}
 .sbar .sb{margin-left:auto;display:flex;gap:4px;align-items:center}
