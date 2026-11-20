@@ -1835,7 +1835,7 @@ function openSub(mi){
   const k=mi.dataset.k, id=MENU._id||S.current;
   const el=document.createElement('div'); el.className='mnu subm'; el._k=k;
   let rows;
-  if(k==='create') rows=[['art','Статья'],['folder','Папка']].map(([v,l])=>`<div class="mi" data-v="${v}"><span class="lb">${l}</span></div>`).join('');
+  if(k==='create') rows=[['art','Статью'],['folder','Папку']].map(([v,l])=>`<div class="mi" data-v="${v}"><span class="lb">${l}</span></div>`).join('');
   else if(k==='view') rows=[['feed','Лента'],['doc','Документ']].map(([v,l])=>`<div class="mi" data-v="${v}"><span class="lb">${l}</span>${S.mode===v?'<span class="chk">●</span>':''}</div>`).join('');
   else { const [la,lk]=scopeLb(k, typeOf(id)==='folder'); rows=`<div class="mi two" data-v="art"><span class="lb">${la}</span><span class="hint">${titleOf(id)}</span></div><div class="mi two" data-v="kb"><span class="lb">${lk}</span><span class="hint">${BY.root.title}</span></div>`; }
   el.innerHTML=rows;
@@ -2040,11 +2040,11 @@ function subMenu(el,k,id){
   const back=`<div class="m-stitle"><button data-mback="1">${M_BACK}</button>${LB[k]||IT[k].lb}</div>`;
   if(k==='view') return sheet(el, back+`<div class="m-sbody">${[['feed','Лента'],['doc','Документ']].map(([v,l])=>`<div class="m-mi" data-mview="${v}"><span class="ic">${v==='feed'?MODE_FEED:MODE_DOC}</span><span>${l}</span>${S.mode===v?'<span class="chk">●</span>':''}</div>`).join('')}</div>`);
   if(k==='rview') return sheet(el, back+`<div class="m-sbody">${['Плитка','Таблица','Список'].map((l,i)=>`<div class="m-mi" data-mcreate="${i?'вид '+l.toLowerCase()+' (пока в работе)':'вид плитка'}"><span>${l}</span>${i?'':'<span class="chk">●</span>'}</div>`).join('')}</div>`);
-  if(k==='create'||k==='rcreate') return sheet(el, back+`<div class="m-sbody">${(k==='create'?[['статья','Статья'],['папка','Папка']]:[['база знаний','База знаний'],['папка','Папка']]).map(([v,l])=>`<div class="m-mi" data-mcreate="${v}"><span class="ic">${v==='папка'?ICON.move:M_DOC.replace('width="26" height="30"','width="20" height="24"')}</span><span>${l}</span></div>`).join('')}</div>`);
+  if(k==='create'||k==='rcreate') return sheet(el, back+`<div class="m-sbody">${(k==='create'?[['статья','Статью'],['папка','Папку']]:[['база знаний','Базу знаний'],['папка','Папку']]).map(([v,l])=>`<div class="m-mi" data-mcreate="${v}"><span class="ic">${v==='папка'?ICON.move:M_DOC.replace('width="26" height="30"','width="20" height="24"')}</span><span>${l}</span></div>`).join('')}</div>`);
   const tid=id||S.current;
   sheet(el, back+`<div class="m-sbody"><div class="m-mi two" data-mscope="art" data-sk="${k}" data-mid="${tid}"><span>${scopeLb(k,isListing(tid))[0]}</span><span class="hint">${titleOf(tid)}</span></div><div class="m-mi two" data-mscope="kb" data-sk="${k}"><span>${scopeLb(k)[1]}</span><span class="hint">${BY.root.title}</span></div></div>`);
 }
-function createMenu(el){ sheet(el, `<div class="m-stitle">Создать</div><div class="m-sbody"><div class="m-mi" data-mcreate="статья"><span class="ic">${M_DOC.replace('width="26" height="30"','width="20" height="24"')}</span><span>Статья</span></div><div class="m-mi" data-mcreate="папка"><span class="ic">${ICON.move}</span><span>Папка</span></div></div>`); }
+function createMenu(el){ sheet(el, `<div class="m-stitle">Создать</div><div class="m-sbody"><div class="m-mi" data-mcreate="статья"><span class="ic">${M_DOC.replace('width="26" height="30"','width="20" height="24"')}</span><span>Статью</span></div><div class="m-mi" data-mcreate="папка"><span class="ic">${ICON.move}</span><span>Папку</span></div></div>`); }
 
 PHONES.forEach(el=>{
   el.addEventListener('click',e=>{
