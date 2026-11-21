@@ -630,7 +630,7 @@ kbd{font:inherit;background:#fff;border:1px solid var(--border);border-radius:4p
 .ntile .nlg img{width:100%;height:100%;object-fit:cover;display:block}
 .ntile .nlg.none{opacity:0}
 .ntile .nlg.pic{border:0}
-.ntiles.vert{grid-template-columns:repeat(var(--tcols,3),1fr)} /* число колонок считает fitTiles(): ширина плитки 180..242px */
+.ntiles.vert{grid-template-columns:repeat(var(--tcols,3),1fr);gap:4px} /* число колонок считает fitTiles(): ширина плитки 180..242px */
 /* вертикальная плитка: логотип прижат к названию внизу, как в шапке БЗ; название в одну строку */
 .ntiles.vert .ntile{height:auto} /* высота по содержимому: отступ сверху = слева = 12px */
 .ntiles.vert .nin{flex:1;justify-content:flex-end;padding:12px}
@@ -2107,7 +2107,7 @@ document.querySelectorAll('[data-dst]').forEach(r=>r.onclick=()=>{
 });
 S.tst='vert';
 /* вертикальные плитки: максимум колонок, при котором плитка не шире 242px и не уже 180px */
-function fitTiles(){ const g=regEl.querySelector('.ntiles.vert'); if(!g) return; const W=g.clientWidth; let c=Math.max(1,Math.ceil((W+6)/248)); while(c>1 && (W-6*(c-1))/c<180) c--; g.style.setProperty('--tcols',c); }
+function fitTiles(){ const g=regEl.querySelector('.ntiles.vert'); if(!g) return; const W=g.clientWidth; let c=Math.max(1,Math.ceil((W+4)/246)); while(c>1 && (W-4*(c-1))/c<180) c--; g.style.setProperty('--tcols',c); }
 new ResizeObserver(fitTiles).observe(regEl);
 document.querySelectorAll('[data-tst]').forEach(r=>r.onclick=()=>{ S.tst=r.dataset.tst; document.querySelectorAll('[data-tst]').forEach(x=>x.classList.toggle('on',x===r)); closeRegPops(); if(S.dscreen==='reg') renderReg(); });
 document.querySelector('[data-dsc="kbcreate"]').onclick=e=>{ e.stopPropagation(); if(S.dscreen!=='reg') setDScreen('reg'); regCreateDlg(); };
