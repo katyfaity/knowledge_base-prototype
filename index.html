@@ -1921,7 +1921,7 @@ function openToolbarMenu(full){
   const toolbarGroups=gs=>gs.map(g=>g.filter(k=>!['rename','move','cut','copy','report','tag'].includes(k))).filter(g=>g.length);
   const el=document.createElement('div'); el.className='mnu'; el._tb=true;
   el.innerHTML = `<span class="mclose">${XSVG}</span>`
-    + listHTML(['create','view'], TB_SPLIT) + groupsHTML(toolbarGroups(full?m.f:m.s), TB_SPLIT)
+    + listHTML(['create','view','settings'], TB_SPLIT) + groupsHTML(toolbarGroups(full?m.f:m.s), TB_SPLIT)
     + `<div class="mmore" title="${full?'Свернуть':'Все команды'}">${full?CHEV_U:CHEV_D}</div>`;
   el.querySelector('.mmore').onclick=e=>{ e.stopPropagation(); openToolbarMenu(!full); };
   el.onclick=e=>{
