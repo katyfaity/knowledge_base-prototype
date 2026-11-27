@@ -871,9 +871,10 @@ kbd{font:inherit;background:#fff;border:1px solid var(--border);border-radius:4p
 .mkm-menu{width:280px}
 .mnu.context-menu{width:340px}
 .mkm-menu .mclose{top:8px}
-.mkm-submenu{width:max-content;min-width:0;max-width:none}
+.mkm-submenu{box-sizing:border-box}
 .mkm-submenu .mi{gap:8px}
-.mkm-submenu .mi:has(.ar){padding-right:8px}
+.mkm-submenu .mi:has(.ar){width:calc(100% - 16px);box-sizing:border-box;padding-right:2px}
+.mkm-submenu .mi[data-k="download"] .ar{position:absolute;right:2px;margin-left:0}
 .mkm-menu:has(.mi[data-k="link"].open) .mclose,.mnu.context-menu:has(.mi:first-of-type.open) .mclose{display:none}
 .view-submenu{width:132px;min-width:132px;max-width:132px;padding:8px 0}
 .mnu.subm.view-submenu .mi.view-option{height:36px;margin:0 8px;padding:0 12px;gap:6px;border-radius:18px;font-size:16px}
@@ -2043,6 +2044,9 @@ function openMKMSub(mi){
   el.innerHTML=['download','print','access'].map(k=>miHTML(k)).join('')+`<div class="mi" data-k="kbsettings"><span class="ic">${ICON.settings}</span><span class="lb">Настройки</span></div>`;
   el.onclick=e=>{ const row=e.target.closest('.mi'); if(!row) return; const k=row.dataset.k; closeMenus(); if(k==='kbsettings') return openKBSettings(); if(k==='download') return downloadActiveArticle(); toast(`${IT[k]?.lb||'Настройка'}: «${BY.root.title}»`); };
   proto.appendChild(el);
+  const longestLabel=Math.max(...[...el.querySelectorAll('.mi .lb')].map(lb=>lb.scrollWidth));
+  const submenuWidth=Math.ceil(longestLabel+8+28+8+22+8+12+16);
+  el.style.width=`${submenuWidth}px`; el.style.minWidth=`${submenuWidth}px`; el.style.maxWidth='none';
   const row=toP(mi.getBoundingClientRect()), menu=toP(MENU.getBoundingClientRect());
   el.style.left=menu.r+'px'; el.style.top=fitTop(el,row.t-8)+'px';
   el.addEventListener('mouseenter',()=>clearTimeout(subT));
