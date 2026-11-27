@@ -183,6 +183,8 @@ svg{display:block}
 .content.docmode #scroll{display:flex;flex-direction:column;padding-bottom:6px}
 .content.docmode .card{flex:1 0 auto;margin-bottom:0}
 .card{background:#fff;border-radius:12px;margin:0 0 6px;position:relative;box-shadow:0 0 8px rgba(0,0,0,.06)}
+.card.is-article:not([data-id="root"]) .copts{top:8px}
+.card.is-article .crumbs-top{transform:translateY(-6px)}
 
 .card .sh-old{position:sticky;top:0;z-index:5;height:48px;margin-bottom:-48px;display:flex;align-items:center;gap:8px;padding:0 24px;background:var(--bg-app);opacity:0;pointer-events:none;transition:opacity .15s}
 .card.stuck .sh{opacity:1;pointer-events:auto}
@@ -198,6 +200,48 @@ svg{display:block}
 .cbody,.cfoot{--pad:var(--kpad)}
 .cbody{padding:14px var(--pad) 8px}
 .cbody>*{max-width:820px}
+.cbody>.doc-page-layout{width:calc(100% + var(--pad));margin-right:calc(-1 * var(--pad));max-width:none;display:grid;grid-template-columns:minmax(0,1fr) 52px;column-gap:24px;position:relative;align-items:start}
+.doc-article-content{min-width:0;max-width:none}
+.doc-page-layout.is-pinned{width:calc(100% + var(--pad));grid-template-columns:minmax(0,1fr) 280px;column-gap:24px}
+.doc-page-layout.is-pinned .doc-article-content{max-width:none}
+.doc-outline{position:sticky;top:70px;grid-column:2;align-self:start;width:52px;height:auto;z-index:12;color:#8991a9;font-size:12px;line-height:16px}
+.doc-outline-rail{position:relative;top:0;right:auto;width:52px;box-sizing:border-box;display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:59px 16px 0}
+.doc-outline-line{height:2px;min-height:2px;padding:0;border-radius:1px;background:#ccc;cursor:pointer;margin-left:8px}
+.doc-outline-line.level-0{width:20px;margin-left:0}
+.doc-outline-line.level-1{width:16px;margin-left:4px}
+.doc-outline-line.level-2{width:12px;margin-left:8px}
+.doc-outline-line.active{background:#0085f2}
+.doc-outline-line:hover{background:#0085f2}
+.doc-outline-panel{display:none;position:absolute;top:0;right:0;width:280px;max-height:calc(var(--frame-h,900px) - 140px);min-height:110px;overflow:hidden;flex-direction:column;background:#fff;border:1px solid #e5e6e9;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.10);padding:8px 4px 8px;color:#8991a9;z-index:20}
+.doc-outline.is-open .doc-outline-panel{display:flex}
+.doc-outline.pinned{width:280px;height:auto}
+.doc-outline.pinned .doc-outline-rail{display:none}
+.doc-outline.pinned .doc-outline-panel{display:flex;position:relative;inset:auto;width:280px;max-height:calc(var(--frame-h,900px) - 140px);min-height:0;background:#fff}
+.doc-outline-head{display:flex;align-items:center;gap:10px;height:24px;flex:none;padding:0 4px 4px}
+.doc-outline-head-title{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#8991a9}
+.doc-outline-pin,.doc-outline-fold{width:24px;height:24px;flex:none;display:grid;place-items:center;border-radius:50%;color:#68718f;padding:0}
+.doc-outline-pin svg{transform:scaleX(-1)}
+.doc-outline.pinned .doc-outline-pin svg{transform:none}
+.doc-outline-pin:hover,.doc-outline-fold:hover{background:#f1f2f6}
+.doc-outline-close{margin-left:auto;font-size:18px;line-height:1}
+.doc-outline-current{position:relative;flex:none;width:100%;min-height:28px;padding:6px 8px 6px 12px;border-radius:4px;background:#eaf4ff;color:#111;font-weight:600;text-align:left;line-height:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.doc-outline-current:before{content:"";position:absolute;left:0;top:5px;bottom:5px;width:3px;border-radius:2px;background:#0085f2}
+.doc-outline-list{position:relative;min-height:0;overflow:auto;overscroll-behavior:contain;padding-top:2px;scrollbar-width:thin;scrollbar-color:#d5d7dc transparent}
+.doc-outline-hover-bg{position:absolute;z-index:0;top:0;left:0;right:0;width:100%;height:0;border-radius:4px;background:#eaf4ff;opacity:0;pointer-events:none;transform:translateY(0);transition:transform .16s ease,height .16s ease,opacity .1s ease}
+.doc-outline-hover-bg.visible{opacity:1}
+.doc-outline-row{position:relative;z-index:1;display:flex;align-items:stretch;min-width:0;width:100%}
+.doc-outline-disclosure{width:20px;min-width:20px;display:grid;place-items:center;flex:none;padding:0;color:#8991a9}
+.doc-outline-disclosure svg{display:block}
+.doc-outline-disclosure.is-empty{visibility:hidden}
+.doc-outline-row .doc-outline-link{flex:1;width:auto}
+.doc-outline-link{position:relative;z-index:1;display:-webkit-box;width:100%;padding:5px 8px 5px 12px;border-radius:4px;color:#8991a9!important;background:transparent;text-align:left;line-height:16px;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:2;-webkit-box-orient:vertical;transition:color .12s ease}
+.doc-outline-link.level-2{padding-left:28px}
+.doc-outline-link:hover{color:#8991a9!important;background:transparent}
+.doc-outline-disclosure:hover{color:#8991a9;background:transparent}
+.doc-outline-link.is-current{display:none}
+.doc-outline-list.is-collapsed .level-2{display:none}
+.doc-outline-link.is-hidden{display:none}
+@container (max-width:499px){.doc-page-layout,.doc-page-layout.is-pinned{width:100%;grid-template-columns:minmax(0,1fr);column-gap:0}.doc-outline{display:none}}
 .crumbs-top{position:relative;font-size:12px;color:var(--label);display:flex;align-items:center;margin:0 0 12px;height:32px;padding-right:112px;white-space:nowrap;overflow:visible;z-index:6}
 .cr-component{position:relative;min-width:0;white-space:nowrap}
 .cr-track{width:100%;min-width:0;display:flex;align-items:center;gap:2px;overflow:hidden;white-space:nowrap}
@@ -1232,13 +1276,13 @@ ${P('Если стандартного решения недостаточно, 
 }
 
 let uid=0;
-const N = (title, opts={}, children=[]) => ({id:opts.id||('n'+(++uid)), title, children, open:!!opts.open, html:opts.html, h1:opts.h1, dim:opts.dim, folder:!!opts.folder, pure:!!opts.folder && !opts.html});
+const N = (title, opts={}, children=[]) => ({id:opts.id||('n'+(++uid)), title, children, open:!!opts.open, html:opts.html, h1:opts.h1, dim:opts.dim, folder:!!opts.folder, pure:!!opts.folder && !opts.html, outline:!!opts.outline});
 const kids = (...t) => t.map(x=>N(x));
 
 const TREE = N('Стандарты интерфейса',{id:'root',open:true,h1:'О базе знаний'},[
   N('Интерфейсный фреймворк. Контролы',{id:'fw',folder:true,open:true,html:FRAMEWORK_TEXT},[
     N('Переменные и палитры',{id:'vars',folder:true,open:true,html:VARS_TEXT,dim:true},[
-      N('Глобальные переменные',{id:'globals',open:true,html:GLOBALS_TEXT},[
+      N('Глобальные переменные',{id:'globals',open:true,html:GLOBALS_TEXT,outline:true},[
         N('Отступы',{id:'offsets'}), N('Размеры изображений')
       ]),
       N('Тема оформления по умолчанию',{id:'theme'}),
@@ -1246,7 +1290,7 @@ const TREE = N('Стандарты интерфейса',{id:'root',open:true,h1
     ]),
     N('Текст и стили',{id:'text'},kids('Шрифты','Заголовки')),
     N('Изображения и подсказки',{id:'img'},kids('Иллюстрации','Подсказки')),
-    N('Экраны-заставки',{id:'splash'}),
+    N('Экраны-заставки: правила проектирования стартовых, загрузочных, приветственных и информационных экранов для веб- и мобильных приложений Saby',{id:'splash',outline:true}),
     N('Компоновочные решения',{id:'layout',folder:true},kids('Сетка','Карточки')),
     N('Элементы навигации',{},kids('Вкладки','Хлебные крошки')),
     N('Окна и диалоги',{folder:true},kids('Диалоги','Всплывающие панели')),
@@ -1264,7 +1308,7 @@ const TREE = N('Стандарты интерфейса',{id:'root',open:true,h1
       N('Руководства и статьи',{id:'d_guides',folder:true},[
         N('Работа с текстом',{id:'d_text',folder:true},[
           N('Основные понятия',{id:'d_basics',folder:true},[
-            N('Шрифт',{id:'d_font',folder:true},[N('Шрифтовые форматы',{id:'d_fontfmt',html:FONT_TEXT})]),
+            N('Шрифт',{id:'d_font',folder:true},[N('Шрифтовые форматы',{id:'d_fontfmt',html:FONT_TEXT,outline:true})]),
             N('Изображения'), N('Отступы')
           ]),
           N('Правила работы с динамическими данными')
@@ -1429,7 +1473,7 @@ function renderToc(){
   $('#tocTree').innerHTML = S.fresh ? row({id:'root',title:REG.nkb.title,children:[]},0)+`<div class="trow add" id="nAdd" style="padding-left:14px"><svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5 5.25C10.5 5.46875 10.4297 5.64844 10.2891 5.78906C10.1484 5.92969 9.96875 6 9.75 6H6V9.75C6 9.96875 5.92969 10.1484 5.78906 10.2891C5.64844 10.4297 5.46875 10.5 5.25 10.5C5.03125 10.5 4.85156 10.4297 4.71094 10.2891C4.57031 10.1484 4.5 9.96875 4.5 9.75V6H0.75C0.53125 6 0.351562 5.92969 0.210938 5.78906C0.0703125 5.64844 0 5.46875 0 5.25C0 5.03125 0.0703125 4.85156 0.210938 4.71094C0.351562 4.57031 0.53125 4.5 0.75 4.5H4.5V0.75C4.5 0.53125 4.57031 0.351562 4.71094 0.210938C4.85156 0.0703125 5.03125 0 5.25 0C5.46875 0 5.64844 0.0703125 5.78906 0.210938C5.92969 0.351562 6 0.53125 6 0.75V4.5H9.75C9.96875 4.5 10.1484 4.57031 10.2891 4.71094C10.4297 4.85156 10.5 5.03125 10.5 5.25Z" fill="currentColor"/></svg><span>Добавить</span></div>` : row(TREE,0);
 }
 function placeTreeClicks(){ if(S.fresh) return;
-  ['docs','globals'].forEach(id=>{ const r=$(`#tocTree .trow[data-id="${id}"]`); if(!r || r.querySelector('.clk')) return; const t=r.querySelector('.tt'); if(!t.offsetWidth) return;
+  ['docs','globals','splash'].forEach(id=>{ const r=$(`#tocTree .trow[data-id="${id}"]`); if(!r || r.querySelector('.clk')) return; const t=r.querySelector('.tt'); if(!t.offsetWidth) return;
     const w=Math.min(t.scrollWidth,t.clientWidth); r.insertAdjacentHTML('beforeend',CLICK_HINT()); const c=r.lastElementChild; c.style.left=(t.offsetLeft+w/2-12)+'px'; }); }
 /* маячки пустой БЗ: сначала "Редактировать" в тулбаре, после сохранения статьи - "+ Добавить" в мастере */
 function syncFreshHints(){ const t=$('#tbEdit'); t.querySelector('.clk')?.remove(); if(S.fresh && !(S.freshFilled && S.freshW)) t.insertAdjacentHTML('beforeend',CLICK_HINT());
@@ -1485,37 +1529,98 @@ function highlightToc(scrollIntoView){
 }
 
 /* ================= СТАТЬИ ================= */
+const OUTLINE_PINNED = Object.create(null);
+const OUTLINE_COLLAPSED = Object.create(null);
+const OUTLINE_GROUP_COLLAPSED = Object.create(null);
+const OUTLINE_ICONS = {
+  collapse:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13.4736 5.77625C13.3501 5.52933 13.0497 5.42913 12.8027 5.55261C12.5558 5.67609 12.4557 5.97654 12.5791 6.22351L15.4678 11.9999L12.5791 17.7762C12.4556 18.0232 12.5558 18.3236 12.8027 18.4471C13.0497 18.5706 13.3501 18.4705 13.4736 18.2235L16.4736 12.2235V11.7762L13.4736 5.77625ZM8.47363 5.77625C8.35011 5.52933 8.04969 5.42913 7.80273 5.55261C7.55578 5.67609 7.45568 5.97654 7.5791 6.22351L10.4678 11.9999L7.5791 17.7762C7.45562 18.0232 7.5558 18.3236 7.80273 18.4471C8.04972 18.5706 8.35014 18.4705 8.47363 18.2235L11.4736 12.2235V11.7762L8.47363 5.77625Z" fill="#656C87"/></svg>',
+  foldOpen:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 6.5C5 6.22386 5.22386 6 5.5 6H18.5C18.7761 6 19 6.22386 19 6.5C19 6.77614 18.7761 7 18.5 7H5.5C5.22386 7 5 6.77614 5 6.5ZM5 9.5C5 9.22386 5.22386 9 5.5 9H16.5C16.7761 9 17 9.22386 17 9.5C17 9.77614 16.7761 10 16.5 10H5.5C5.22386 10 5 9.77614 5 9.5ZM5 12.5C5 12.2239 5.22386 12 5.5 12H16.5C16.7761 12 17 12.2239 17 12.5C17 12.7761 16.7761 13 16.5 13H5.5C5.22386 13 5 12.7761 5 12.5ZM9.14645 18.0607C9.34171 18.2559 9.65829 18.2559 9.85355 18.0607L12 16.2071L14.1464 18.0607C14.3417 18.2559 14.6583 18.2559 14.8536 18.0607C15.0488 17.8654 15.0488 17.5488 14.8536 17.3536L12.3536 15.1464C12.1583 14.9512 11.8417 14.9512 11.6464 15.1464L9.14645 17.3536C8.95118 17.5488 8.95118 17.8654 9.14645 18.0607Z" fill="#8991A9"/></svg>',
+  foldClosed:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 10H4V9H16V10ZM7.5 14.5H9L12 17.4688L15 14.5H16.5L12 19L7.5 14.5ZM20 6V7H4V6H20Z" fill="#8991A9"/></svg>',
+  chevronRight:'<svg width="7" height="12" viewBox="0 0 7 12" fill="none" aria-hidden="true"><path d="M0 9.9375L4.45312 5.50781L0 1.07812L1.05469 0L6.58594 5.50781L1.05469 11.0156L0 9.9375Z" fill="currentColor"/></svg>',
+  chevronDown:'<svg width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden="true"><path d="M11.0156 1.05469L5.50781 6.58594L0 1.05469L1.07812 0L5.50781 4.47656L9.9375 0L11.0156 1.05469Z" fill="currentColor"/></svg>'
+};
+const escapeHTML = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function prepareOutline(id, html){
+  const tpl=document.createElement('template'); tpl.innerHTML=html;
+  let parent=null;
+  const items=[...tpl.content.querySelectorAll('h2,h3')].map((h,i)=>{ const hid=`outline-${id}-${i}`; h.id=hid; const level=h.tagName==='H3'?1:0; if(!level)parent=hid; return {id:hid,title:h.textContent.trim(),level,parent:level?parent:null,hasChildren:false}; });
+  items.forEach(h=>{if(!h.level)h.hasChildren=items.some(x=>x.parent===h.id);});
+  return {html:tpl.innerHTML,items};
+}
+function outlineWidgetHTML(id, items){
+  const current=items[0];
+  const hasNested=items.some(h=>h.level>0);
+  const rows=items.map(h=>h.level
+    ?`<div class="doc-outline-row level-2-row"><button class="doc-outline-link level-2${OUTLINE_COLLAPSED[id]||OUTLINE_GROUP_COLLAPSED[`${id}:${h.parent}`]?' is-hidden':''}" type="button" data-outline-go="${h.id}" data-outline-parent="${h.parent||''}">${escapeHTML(h.title)}</button></div>`
+    :`<div class="doc-outline-row">${h.hasChildren?`<button class="doc-outline-disclosure" type="button" data-outline-toggle="${h.id}" aria-label="${OUTLINE_GROUP_COLLAPSED[`${id}:${h.id}`]?'Развернуть':'Свернуть'} вложенные пункты" title="${OUTLINE_GROUP_COLLAPSED[`${id}:${h.id}`]?'Развернуть':'Свернуть'} вложенные пункты">${OUTLINE_GROUP_COLLAPSED[`${id}:${h.id}`]?OUTLINE_ICONS.chevronRight:OUTLINE_ICONS.chevronDown}</button>`:''}<button class="doc-outline-link" type="button" data-outline-go="${h.id}">${escapeHTML(h.title)}</button></div>`).join('');
+  return `<aside class="doc-outline${OUTLINE_PINNED[id]?' pinned':''}" data-outline-for="${id}" aria-label="Оглавление статьи">
+    <div class="doc-outline-rail" aria-label="Разделы статьи">${items.map((h,i)=>`<button class="doc-outline-line level-${h.level}${i===0?' active':''}" type="button" data-outline-go="${h.id}" aria-label="${escapeHTML(h.title)}" title="${escapeHTML(h.title)}"></button>`).join('')}</div>
+    <div class="doc-outline-panel" role="navigation" aria-label="Оглавление по подзаголовкам">
+      <div class="doc-outline-head"><button class="doc-outline-pin" type="button" data-outline-pin title="Закрепить оглавление" aria-label="Закрепить оглавление">${OUTLINE_ICONS.collapse}</button>${hasNested?`<button class="doc-outline-fold" type="button" data-outline-fold title="Свернуть вложенные пункты" aria-label="Свернуть вложенные пункты">${OUTLINE_COLLAPSED[id]?OUTLINE_ICONS.foldClosed:OUTLINE_ICONS.foldOpen}</button>`:''}</div>
+      <button class="doc-outline-current" type="button" data-outline-current="${current?.id||''}">${escapeHTML(current?.title||'')}</button>
+      <div class="doc-outline-list${OUTLINE_COLLAPSED[id]?' is-collapsed':''}"><div class="doc-outline-hover-bg" aria-hidden="true"></div>${rows}</div>
+    </div>
+  </aside>`;
+}
 function cardHTML(id){
   const n=BY[id]; const cr=crumbsOf(id);
   const crumbs = crumbMarkup(cr,'crumbs-top');
-  return `<article class="card" data-id="${id}">
+  const articleHead=id==='root'?kheadHTML():`${crumbs}<h1>${n.h1||n.title}</h1>`;
+  let articleBody=S.fresh&&id==='root'?freshBody():n.html;
+  let pageContent=`${articleHead}${articleBody}`;
+  if(n.outline&&id!=='root'&&!S.fresh){
+    const parsed=prepareOutline(id,articleBody);
+    articleBody=parsed.html;
+    pageContent=`<div class="doc-page-layout${OUTLINE_PINNED[id]?' is-pinned':''}" data-outline-layout="${id}"><div class="doc-article-content">${articleHead}${articleBody}</div>${outlineWidgetHTML(id,parsed.items)}</div>`;
+  }
+  return `<article class="card${n.folder?'':' is-article'}" data-id="${id}">
     <div class="copts"><button title="Ссылка на статью"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M6.14062 15.6094L9.9375 11.8125L10.6406 12.5156L6.84375 16.3594C6.0625 17.1406 5.125 17.5312 4.03125 17.5312C2.96875 17.5312 2.01562 17.1406 1.17188 16.3594C0.390625 15.5469 0 14.5938 0 13.5C0 12.4062 0.390625 11.4688 1.17188 10.6875L5.01562 6.89062L5.71875 7.59375L1.92188 11.3906C1.32812 11.9844 1.03125 12.6875 1.03125 13.5C1.03125 14.3125 1.32812 15.0156 1.92188 15.6094C2.57812 16.2031 3.28125 16.5 4.03125 16.5C4.84375 16.5 5.54688 16.2031 6.14062 15.6094ZM6.89062 4.96875L10.6875 1.17188C11.4688 0.390625 12.4062 0 13.5 0C14.0312 0 14.5312 0.09375 15 0.28125C15.5 0.46875 15.9531 0.765625 16.3594 1.17188C17.1406 1.98438 17.5312 2.9375 17.5312 4.03125C17.5312 5.125 17.1406 6.0625 16.3594 6.84375L12.5625 10.6406L11.8594 9.9375L15.6562 6.14062C16.25 5.54688 16.5469 4.84375 16.5469 4.03125C16.5469 3.1875 16.25 2.46875 15.6562 1.875C15.375 1.5625 15.0469 1.34375 14.6719 1.21875C14.2969 1.0625 13.9219 0.984375 13.5469 0.984375C12.7031 0.984375 11.9844 1.28125 11.3906 1.875L7.59375 5.67188L6.89062 4.96875ZM6.65625 11.6719L5.95312 10.9688L11.0156 5.95312L11.7188 6.65625L6.65625 11.6719Z" fill="currentColor"/>
 </svg></button><button title="Редактировать"><svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M4.6875 15.3281L0 16.3125L1.125 11.3906L12.2344 0C13.2344 0.15625 14.0469 0.625 14.6719 1.40625C15.2969 2.15625 15.6562 3 15.75 3.9375L4.6875 15.3281ZM4.17188 14.3906L2.01562 11.9531L1.5 14.25L2.0625 14.8594L4.17188 14.3906ZM2.01562 18V17.0156H16.0312V18H2.01562Z" fill="currentColor"/>
 </svg></button><button title="Еще"><svg width="5" height="18" viewBox="0 0 5 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M4.03125 15.9844V16.0312C4.03125 16.2812 3.96875 16.5312 3.84375 16.7812C3.75 17 3.60938 17.2031 3.42188 17.3906C3.23438 17.5781 3.01562 17.7188 2.76562 17.8125C2.54688 17.9062 2.29688 17.9531 2.01562 17.9531C1.73438 17.9531 1.46875 17.9062 1.21875 17.8125C1 17.7188 0.796875 17.5781 0.609375 17.3906C0.421875 17.2031 0.265625 17 0.140625 16.7812C0.046875 16.5312 0 16.2812 0 16.0312V15.9844C0 15.4219 0.1875 14.9531 0.5625 14.5781C0.96875 14.1719 1.45312 13.9688 2.01562 13.9688C2.57812 13.9688 3.04688 14.1719 3.42188 14.5781C3.82812 14.9531 4.03125 15.4219 4.03125 15.9844ZM4.03125 9C4.03125 9.28125 3.96875 9.54688 3.84375 9.79688C3.75 10.0156 3.60938 10.2031 3.42188 10.3594C3.23438 10.5469 3.01562 10.7031 2.76562 10.8281C2.54688 10.9219 2.29688 10.9688 2.01562 10.9688C1.73438 10.9688 1.46875 10.9219 1.21875 10.8281C1 10.7031 0.796875 10.5469 0.609375 10.3594C0.421875 10.2031 0.265625 10.0156 0.140625 9.79688C0.046875 9.54688 0 9.28125 0 9C0 8.4375 0.1875 7.96875 0.5625 7.59375C0.96875 7.1875 1.45312 6.98438 2.01562 6.98438C2.57812 6.98438 3.04688 7.1875 3.42188 7.59375C3.82812 7.96875 4.03125 8.4375 4.03125 9ZM4.03125 1.96875V2.01562C4.03125 2.26562 3.96875 2.51562 3.84375 2.76562C3.75 2.98438 3.60938 3.1875 3.42188 3.375C3.23438 3.5625 3.01562 3.71875 2.76562 3.84375C2.54688 3.9375 2.29688 3.98438 2.01562 3.98438C1.73438 3.98438 1.46875 3.9375 1.21875 3.84375C1 3.71875 0.796875 3.5625 0.609375 3.375C0.421875 3.1875 0.265625 2.98438 0.140625 2.76562C0.046875 2.51562 0 2.26562 0 2.01562V1.96875C0 1.4375 0.1875 0.984375 0.5625 0.609375C0.96875 0.203125 1.45312 0 2.01562 0C2.57812 0 3.04688 0.203125 3.42188 0.609375C3.82812 0.984375 4.03125 1.4375 4.03125 1.96875Z" fill="currentColor"/>
-</svg></button></div><div class="cbody">${id==='root'?kheadHTML():`${crumbs}<h1>${n.h1||n.title}</h1>`}${S.fresh&&id==='root'?freshBody():n.html}</div>
+</svg></button></div><div class="cbody">${pageContent}</div>
     <div class="cfoot"><button class="like" title="Нравится"><svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.6875 1C11.1042 1 10.5625 1.14583 10.0625 1.4375C9.58333 1.72917 9.19792 2.14583 8.90625 2.6875L8 4.09375L7.09375 2.59375C6.80208 2.09375 6.40625 1.70833 5.90625 1.4375C5.42708 1.14583 4.89583 1 4.3125 1C3.39583 1 2.61458 1.32292 1.96875 1.96875C1.32292 2.61458 1 3.38542 1 4.28125C1 4.59375 1.03125 4.88542 1.09375 5.15625C1.17708 5.40625 1.25 5.55208 1.3125 5.59375C1.5625 6.01042 1.95833 6.53125 2.5 7.15625C3.04167 7.78125 3.63542 8.4375 4.28125 9.125C4.92708 9.79167 5.58333 10.4479 6.25 11.0938C6.91667 11.7604 7.5 12.3229 8 12.7812C8.52083 12.3229 9.125 11.7604 9.8125 11.0938C10.5 10.4479 11.1667 9.79167 11.8125 9.125C12.4792 8.45833 13.0833 7.82292 13.625 7.21875C14.1458 6.59375 14.5 6.08333 14.6875 5.6875C14.7917 5.5 14.8646 5.28125 14.9062 5.03125C14.9688 4.78125 15 4.53125 15 4.28125C15 3.38542 14.6771 2.61458 14.0312 1.96875C13.3854 1.32292 12.6042 1 11.6875 1ZM11.6875 0C12.8958 0 13.9167 0.427083 14.75 1.28125C15.5833 2.13542 16 3.13542 16 4.28125C16 4.63542 15.9688 4.96875 15.9062 5.28125C15.8438 5.57292 15.7396 5.84375 15.5938 6.09375C15.3021 6.69792 14.7396 7.44792 13.9062 8.34375C13.0729 9.26042 12.2188 10.1458 11.3438 11C10.4688 11.8542 9.69792 12.5833 9.03125 13.1875L8 14.0938L7 13.1562C6.35417 12.5521 5.59375 11.8229 4.71875 10.9688C3.86458 10.0938 3.02083 9.20833 2.1875 8.3125C1.35417 7.41667 0.760417 6.67708 0.40625 6.09375C0.302083 5.88542 0.208333 5.625 0.125 5.3125C0.0416667 4.97917 0 4.63542 0 4.28125C0 3.13542 0.416667 2.13542 1.25 1.28125C2.08333 0.427083 3.10417 0 4.3125 0C5.10417 0 5.8125 0.197917 6.4375 0.59375C7.08333 0.989583 7.60417 1.48958 8 2.09375C8.39583 1.48958 8.90625 0.989583 9.53125 0.59375C10.1771 0.197917 10.8958 0 11.6875 0Z" fill="currentColor"/></svg></button><button title="Комментарии"><svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 11.1562H8.1875C9.10417 11.1562 9.97917 11.0208 10.8125 10.75C11.6458 10.4583 12.4062 10.0521 13.0938 9.53125H13.0625C13.625 9.15625 14.0729 8.67708 14.4062 8.09375C14.7604 7.48958 14.9583 6.83333 15 6.125C14.9583 5.41667 14.7708 4.77083 14.4375 4.1875C14.1042 3.60417 13.6562 3.125 13.0938 2.75V2.71875C12.4271 2.19792 11.6771 1.78125 10.8438 1.46875C10.0104 1.15625 9.125 1 8.1875 1H7.78125C6.86458 1 5.98958 1.14583 5.15625 1.4375C4.34375 1.72917 3.59375 2.125 2.90625 2.625H2.9375C2.39583 3 1.94792 3.48958 1.59375 4.09375C1.23958 4.67708 1.04167 5.32292 1 6.03125C1.02083 6.73958 1.19792 7.39583 1.53125 8C1.86458 8.58333 2.30208 9.0625 2.84375 9.4375H2.875L2.96875 9.5625C3.11458 9.70833 3.21875 9.875 3.28125 10.0625C3.36458 10.25 3.40625 10.4583 3.40625 10.6875C3.40625 11.0625 3.375 11.4271 3.3125 11.7812C3.25 12.1146 3.16667 12.4271 3.0625 12.7188C3.27083 12.6146 3.45833 12.4688 3.625 12.2812C3.8125 12.0938 3.95833 11.8854 4.0625 11.6562V11.625C4.1875 11.3958 4.36458 11.2083 4.59375 11.0625C4.82292 10.8958 5.07292 10.8125 5.34375 10.8125H5.59375C5.94792 10.9167 6.32292 11 6.71875 11.0625C7.13542 11.1042 7.5625 11.1354 8 11.1562ZM1.28125 14.0312L1.71875 13.25C1.73958 13.2292 1.78125 13.1667 1.84375 13.0625C2.01042 12.7083 2.14583 12.3333 2.25 11.9375C2.35417 11.5208 2.40625 11.1042 2.40625 10.6875C2.40625 10.6042 2.38542 10.5208 2.34375 10.4375C2.32292 10.3542 2.29167 10.2917 2.25 10.25L2.21875 10.2188C1.55208 9.73958 1.02083 9.13542 0.625 8.40625C0.229167 7.67708 0.0208333 6.88542 0 6.03125C0.0416667 5.17708 0.270833 4.38542 0.6875 3.65625C1.10417 2.92708 1.64583 2.32292 2.3125 1.84375C3.08333 1.26042 3.92708 0.8125 4.84375 0.5C5.78125 0.166667 6.75 0 7.75 0H8.21875C9.26042 0 10.2396 0.177083 11.1562 0.53125C12.0938 0.864583 12.9375 1.33333 13.6875 1.9375C14.3542 2.39583 14.8958 2.98958 15.3125 3.71875C15.7292 4.44792 15.9583 5.25 16 6.125C15.9583 7 15.7292 7.80208 15.3125 8.53125C14.8958 9.26042 14.3542 9.85417 13.6875 10.3125C12.9167 10.8958 12.0625 11.3542 11.125 11.6875C10.1875 12 9.20833 12.1562 8.1875 12.1562H8C7.54167 12.1562 7.09375 12.125 6.65625 12.0625C6.21875 12 5.78125 11.9062 5.34375 11.7812L5.4375 11.8125H5.375C5.29167 11.8125 5.20833 11.8333 5.125 11.875C5.0625 11.9167 5.01042 11.9792 4.96875 12.0625C4.78125 12.4375 4.54167 12.7708 4.25 13.0625C3.95833 13.3542 3.63542 13.5833 3.28125 13.75H3.25C3 13.8542 2.72917 13.9375 2.4375 14C2.14583 14.0417 1.85417 14.0625 1.5625 14.0625H1.4375C1.375 14.0625 1.32292 14.0521 1.28125 14.0312Z" fill="currentColor"/></svg></button><span class="views" title="Просмотры"><svg width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C8.875 0 9.70833 0.15625 10.5 0.46875C11.3125 0.78125 12.0625 1.1875 12.75 1.6875C13.4167 2.14583 13.9792 2.64583 14.4375 3.1875C14.8958 3.72917 15.375 4.30208 15.875 4.90625L16 5.0625L15.8438 5.21875C15.3021 5.76042 14.8125 6.3125 14.375 6.875C13.9583 7.41667 13.4271 7.91667 12.7812 8.375C12.0938 8.875 11.3438 9.29167 10.5312 9.625C9.71875 9.95833 8.875 10.125 8 10.125C6.16667 10.125 4.63542 9.625 3.40625 8.625C2.82292 8.125 2.28125 7.59375 1.78125 7.03125C1.30208 6.46875 0.760417 5.86458 0.15625 5.21875L0 5.0625L0.15625 4.90625C0.864583 4.15625 1.48958 3.48958 2.03125 2.90625C2.59375 2.32292 3.1875 1.8125 3.8125 1.375C5.10417 0.458333 6.5 0 8 0ZM8 1.03125C6.75 1.03125 5.58333 1.38542 4.5 2.09375C3.95833 2.44792 3.45833 2.875 3 3.375C2.54167 3.85417 2.01042 4.41667 1.40625 5.0625C1.92708 5.60417 2.38542 6.10417 2.78125 6.5625C3.17708 7.02083 3.63542 7.45833 4.15625 7.875C5.19792 8.6875 6.47917 9.09375 8 9.09375C9.54167 9.09375 10.875 8.63542 12 7.71875C12.5833 7.26042 13.0625 6.80208 13.4375 6.34375C13.8333 5.88542 14.2396 5.4375 14.6562 5C14.2188 4.52083 13.8021 4.07292 13.4062 3.65625C13.0312 3.21875 12.5625 2.78125 12 2.34375C10.8125 1.46875 9.47917 1.03125 8 1.03125ZM8 1.625C8.95833 1.625 9.76042 1.96875 10.4062 2.65625C11.0938 3.30208 11.4375 4.10417 11.4375 5.0625C11.4375 6 11.0938 6.80208 10.4062 7.46875C9.76042 8.15625 8.95833 8.5 8 8.5C7.0625 8.5 6.26042 8.15625 5.59375 7.46875C4.92708 6.82292 4.59375 6.02083 4.59375 5.0625C4.59375 4.10417 4.92708 3.30208 5.59375 2.65625C6.26042 1.96875 7.0625 1.625 8 1.625ZM8 2.65625C7.33333 2.65625 6.76042 2.88542 6.28125 3.34375C5.82292 3.82292 5.59375 4.39583 5.59375 5.0625C5.59375 5.72917 5.82292 6.30208 6.28125 6.78125C6.76042 7.23958 7.33333 7.46875 8 7.46875C8.66667 7.46875 9.23958 7.23958 9.71875 6.78125C10.1979 6.26042 10.4375 5.6875 10.4375 5.0625C10.4375 4.4375 10.1979 3.86458 9.71875 3.34375C9.23958 2.88542 8.66667 2.65625 8 2.65625Z" fill="currentColor"/></svg><span>${S.fresh?0:131}</span></span></div>
   </article>`;
 }
 function renderContent(){
+  outlineResizeObserver.disconnect();
   $('.content').classList.toggle('docmode', S.mode==='doc');
   syncFreshHints();
-  if(S.fresh){ scroller.innerHTML = cardHTML('root'); layoutAllCrumbs(); updateSticky(); return; }
+  if(S.fresh){ scroller.innerHTML = cardHTML('root'); layoutAllCrumbs(); observeDocumentOutlines(); syncDocumentOutline(); updateSticky(); return; }
   if(S.mode==='feed'){
     scroller.innerHTML = feedHTML() + `<div class="feed-end">Конец раздела "Стандарты интерфейса"</div>`;
   } else {
         scroller.innerHTML = cardHTML(S.current);
   }
-  layoutAllCrumbs(); updateSticky();
+  layoutAllCrumbs(); observeDocumentOutlines(); syncDocumentOutline(); updateSticky();
 }
 scroller.addEventListener('click', e=>{
+  const pin=e.target.closest('[data-outline-pin]');
+  if(pin){const card=pin.closest('.card'),id=card?.dataset.id;if(!card||!id)return;const next=!OUTLINE_PINNED[id];if(next&&card.clientWidth<820)return;OUTLINE_PINNED[id]=next;syncOutlinePin(card);const widget=pin.closest('.doc-outline');widget?.classList.toggle('is-open',!next);e.stopPropagation();return;}
+  const toggle=e.target.closest('[data-outline-toggle]');
+  if(toggle){const widget=toggle.closest('.doc-outline'),id=widget?.dataset.outlineFor,group=toggle.dataset.outlineToggle,key=`${id}:${group}`;if(!widget||!id)return;const collapsed=OUTLINE_GROUP_COLLAPSED[key]=!OUTLINE_GROUP_COLLAPSED[key];widget.querySelectorAll('[data-outline-parent]').forEach(row=>{if(row.dataset.outlineParent===group)row.classList.toggle('is-hidden',collapsed||!!OUTLINE_COLLAPSED[id]);});toggle.innerHTML=collapsed?OUTLINE_ICONS.chevronRight:OUTLINE_ICONS.chevronDown;toggle.title=`${collapsed?'Развернуть':'Свернуть'} вложенные пункты`;toggle.setAttribute('aria-label',toggle.title);e.stopPropagation();return;}
+  const fold=e.target.closest('[data-outline-fold]');
+  if(fold){const widget=fold.closest('.doc-outline'),id=widget?.dataset.outlineFor;if(!widget||!id)return;OUTLINE_COLLAPSED[id]=!OUTLINE_COLLAPSED[id];const collapsed=OUTLINE_COLLAPSED[id];widget.querySelector('.doc-outline-list')?.classList.toggle('is-collapsed',collapsed);fold.innerHTML=collapsed?OUTLINE_ICONS.foldClosed:OUTLINE_ICONS.foldOpen;fold.title=collapsed?'Развернуть вложенные пункты':'Свернуть вложенные пункты';fold.setAttribute('aria-label',fold.title);e.stopPropagation();return;}
+  const close=e.target.closest('[data-outline-close]');
+  if(close){close.closest('.doc-outline')?.classList.remove('is-open');e.stopPropagation();return;}
+  const jump=e.target.closest('[data-outline-go]');
+  if(jump){jumpToOutline(jump.dataset.outlineGo);e.stopPropagation();return;}
   const g=e.target.closest('[data-go]'); if(g){ e.preventDefault(); go(g.dataset.go); return; }
   const t=e.target.closest('[data-cardtop]'); if(t){ go(t.dataset.cardtop,{nohist:true}); return; }
   const lk=e.target.closest('.like'); if(lk) lk.classList.toggle('liked');
   const fr=e.target.closest('.frow,.fpr'); if(fr && !e.target.closest('.fopts')) go(fr.dataset.id);
 });
+scroller.addEventListener('pointerover',e=>{const w=e.target.closest('.doc-outline');if(w&&!w.classList.contains('pinned'))w.classList.add('is-open');});
+scroller.addEventListener('pointerout',e=>{const w=e.target.closest('.doc-outline');if(w&&!w.contains(e.relatedTarget)&&!w.classList.contains('pinned'))w.classList.remove('is-open');});
+function moveOutlineHover(link){
+  const list=link.closest('.doc-outline-list'),bg=list?.querySelector('.doc-outline-hover-bg');if(!list||!bg||link.classList.contains('is-current'))return;
+  const row=link.closest('.doc-outline-row')||link;bg.style.height=row.offsetHeight+'px';bg.style.transform=`translateY(${row.offsetTop}px)`;bg.classList.add('visible');
+}
+function clearOutlineHover(list){list?.querySelector('.doc-outline-hover-bg')?.classList.remove('visible');}
+scroller.addEventListener('pointerover',e=>{const link=e.target.closest('.doc-outline-link');if(link)moveOutlineHover(link);});
+scroller.addEventListener('pointerout',e=>{const link=e.target.closest('.doc-outline-link');if(!link)return;const list=link.closest('.doc-outline-list');if(!list?.contains(e.relatedTarget))clearOutlineHover(list);});
 let lockSpy=false;
 function scrollToCard(id, smooth){
   const c = elFor(id); if(!c) return;
@@ -1531,6 +1636,28 @@ function go(id, o={}){
   highlightToc(true); updatePager(); updateSticky();
 }
 const currentScale = () => parseFloat(($('#proto').style.transform.match(/scale\(([^)]+)\)/)||[0,1])[1]);
+const outlineResizeObserver = new ResizeObserver(entries=>entries.forEach(e=>syncOutlinePin(e.target)));
+function syncOutlinePin(card){
+  const layout=card.querySelector('.doc-page-layout'),widget=card.querySelector('.doc-outline');if(!layout||!widget)return;
+  const id=card.dataset.id,w=card.clientWidth;if(w<820&&OUTLINE_PINNED[id])OUTLINE_PINNED[id]=false;
+  const pinned=!!OUTLINE_PINNED[id]&&w>=820;layout.classList.toggle('is-pinned',pinned);widget.classList.toggle('pinned',pinned);
+  const button=widget.querySelector('[data-outline-pin]');if(button){button.title=pinned?'Открепить оглавление':w<820?'Для закрепления нужна ширина от 820 px':'Закрепить оглавление';button.setAttribute('aria-label',button.title);button.disabled=!pinned&&w<820;}
+}
+function observeDocumentOutlines(){scroller.querySelectorAll('.card[data-id]').forEach(card=>{if(card.querySelector('.doc-outline')){outlineResizeObserver.observe(card);syncOutlinePin(card);}});}
+function syncDocumentOutline(){
+  const article=scroller.querySelector(`.card[data-id="${S.current}"]`);
+  const card=article?.querySelector('.doc-outline')||scroller.querySelector('.card .doc-outline');if(!card)return;
+  const id=card.dataset.outlineFor,heads=[...card.closest('.card').querySelectorAll(`[id^="outline-${id}-"]`)];if(!heads.length)return;
+  const threshold=scroller.getBoundingClientRect().top+70*currentScale();let active=heads[0];
+  for(const h of heads){if(h.getBoundingClientRect().top<=threshold)active=h;else break;}
+  card.querySelectorAll('[data-outline-go]').forEach(b=>{const on=b.dataset.outlineGo===active.id;b.classList.toggle('active',on);b.classList.toggle('is-current',on);if(b.matches('.doc-outline-link')){if(on)b.setAttribute('aria-current','location');else b.removeAttribute('aria-current');}});
+  const current=card.querySelector('[data-outline-current]');if(current){current.dataset.outlineCurrent=active.id;current.textContent=active.textContent.trim();current.title=active.textContent.trim();}
+}
+function jumpToOutline(id){
+  const target=scroller.querySelector(`#${id}`);if(!target)return;
+  const top=(target.getBoundingClientRect().top-scroller.getBoundingClientRect().top)/currentScale()+scroller.scrollTop-70;
+  scroller.scrollTo({top:Math.max(0,top),behavior:'smooth'});
+}
 function updateSticky(){
   const on = S.histAt==='sbar' || scroller.scrollTop > 0;
   $('#sbar').classList.toggle('on', on);
@@ -1555,13 +1682,14 @@ function updateSticky(){
 }
 function onScroll(){
   updateSticky();
+  syncDocumentOutline();
   if(S.mode!=='feed' || lockSpy) return;
   if(S.fresh){ if(S.current!=='root'){ S.current='root'; updateSticky(); } return; }
   const top = scroller.getBoundingClientRect().top + 60*currentScale();
   let cur = ORDER[0];
   for(const c of scroller.querySelectorAll('.card,.frow')){ if(c.getBoundingClientRect().top <= top) cur=c.dataset.id; else break; }
   if(scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight-4) cur = ORDER[ORDER.length-1];
-  if(cur!==S.current){ S.current=cur; if(MENU) closeMenus(); highlightToc(true); updatePager(); updateSticky(); }
+  if(cur!==S.current){ S.current=cur; if(MENU) closeMenus(); highlightToc(true); updatePager(); updateSticky(); syncDocumentOutline(); }
 }
 scroller.addEventListener('scroll', onScroll, {passive:true});
 
@@ -1653,6 +1781,7 @@ function fit(){
   $('#proto').classList.toggle('s1024', S.screen==='1024'); if(S.screen!=='1024') S.ntf1024=false; $('#proto').classList.toggle('ntfopen', S.screen==='1024' && S.ntf1024); if(typeof syncPill1024==='function') syncPill1024();
   const app=$('#app');
   const w = S.screen==='1024'?1024:1600, h = S.screen==='1024'?768:900;
+  $('#proto').style.setProperty('--frame-h',h+'px');
   app.style.width=w+'px'; app.style.height=h+'px';
   $('#tbar').style.height=h+'px';
   const k=Math.min(innerWidth/1940, innerHeight/1000);
@@ -1714,7 +1843,7 @@ const IT = {
   link:{lb:'Ссылка/Поделиться',ar:1}, edit:{lb:'Редактировать'}, download:{lb:'Скачать',ar:1},
   rename:{lb:'Переименовать'}, unpub:{lb:'Снять с публикации'}, tag:{lb:'Пометить тегом'},
   move:{lb:'Переместить',ar:1}, crown:{lb:'Добавить файл-описание'}, cut:{lb:'Вырезать'},
-  copy:{lb:'Копировать'}, sub:{lb:'Подписаться'}, del:{lb:'Удалить',ar:1}, print:{lb:'Распечатать'},
+  copy:{lb:'Копировать'}, sub:{lb:'Подписаться'}, del:{lb:'Удалить'}, print:{lb:'Распечатать'},
   discuss:{lb:'Обсудить'}, access:{lb:'Доступ'}, changes:{lb:'Изменения',sub:'Сравнить'},
   report:{lb:'Сообщить об ошибке'}
 };
@@ -1735,7 +1864,7 @@ const TB_COMMON = ['unpub','sub','access'];
 const ONLY_ART = t => ['rename','tag'].concat(t==='start'?[]:['move']).concat(t==='folder'?['crown']:[]).concat(t==='start'?['copy']:['cut','copy'])
                       .concat(['print','discuss','changes','report','del']);
 const titleOf = id => BY[id].h1||BY[id].title;
-const ACT_DONE = {link:'Ссылка скопирована',download:'Скачивание началось',unpub:'Снято с публикации',sub:'Подписка оформлена',access:'Открыты настройки доступа',del:'Удаление'};
+const ACT_DONE = {link:'Ссылка скопирована',download:'Скачивание началось',unpub:'Снято с публикации',sub:'Подписка оформлена',access:'Открыты настройки доступа',print:'Печать'};
 
 const proto = $('#proto');
 let MENU=null, SUBM=null;
@@ -1783,24 +1912,26 @@ function openCardMenu(id, anchor, full, at){
   el.style.left=pos.l+'px'; el.style.top=fitTop(el,pos.t)+'px';
   MENU=el;
 }
-const HAS_SUB = k => k==='create'||k==='view'||SPLIT.includes(k)||k==='del';
+const HAS_SUB = k => k==='create'||k==='view'||SPLIT.includes(k);
+const TB_SPLIT = [...SPLIT.filter(k=>k!=='unpub'),'print'];
+const TB_HAS_SUB = k => k==='print'||(HAS_SUB(k)&&k!=='unpub');
 function openToolbarMenu(full){
   closeMenus();
   const id=S.current, m=CARD_MENU[typeOf(id)];
-  const toolbarGroups=gs=>gs.map(g=>g.filter(k=>!['rename','move','cut','copy','report'].includes(k))).filter(g=>g.length);
+  const toolbarGroups=gs=>gs.map(g=>g.filter(k=>!['rename','move','cut','copy','report','tag'].includes(k))).filter(g=>g.length);
   const el=document.createElement('div'); el.className='mnu'; el._tb=true;
   el.innerHTML = `<span class="mclose">${XSVG}</span>`
-    + listHTML(['create','view','settings'], SPLIT) + `<div class="msep"></div>` + groupsHTML(toolbarGroups(full?m.f:m.s), SPLIT)
+    + listHTML(['create','view'], TB_SPLIT) + groupsHTML(toolbarGroups(full?m.f:m.s), TB_SPLIT)
     + `<div class="mmore" title="${full?'Свернуть':'Все команды'}">${full?CHEV_U:CHEV_D}</div>`;
   el.querySelector('.mmore').onclick=e=>{ e.stopPropagation(); openToolbarMenu(!full); };
   el.onclick=e=>{
     const mi=e.target.closest('.mi'); if(!mi) return; const k=mi.dataset.k;
-    if(e.target.closest('[data-ar]') || IT[k].ar==='sub'){ e.stopPropagation(); if(HAS_SUB(k)) openSub(mi); return; }
+    if(e.target.closest('[data-ar]') || IT[k].ar==='sub'){ e.stopPropagation(); if(TB_HAS_SUB(k)) openSub(mi); return; }
     closeMenus();
     if(k==='settings') return toast('Настройки базы знаний');
     toast(SPLIT.includes(k) ? `${ACT_DONE[k]}: статья "${titleOf(id)}"` : `${IT[k].lb}: "${titleOf(id)}"`);
   };
-  el._id=id; wireSub(el, HAS_SUB);
+  el._id=id; wireSub(el, TB_HAS_SUB);
   proto.appendChild(el);
   // позиционируем по верхней команде тулбара: под ней, по правому краю
   const a=toP($('#tbNtf').getBoundingClientRect());
@@ -1811,7 +1942,7 @@ let subT;
 // согласование подписей провала с глаголом команды
 const SCOPE = {
   link:['На статью','На папку','На базу знаний'], download:['Статью','Папку','Базу знаний'],
-  unpub:['Статью','Папку','Базу знаний'], sub:['На статью','На папку','На базу знаний'], access:['К статье','К папке','К базе знаний'], del:['Статью','Папку','Базу знаний']
+  unpub:['Статью','Папку','Базу знаний'], sub:['На статью','На папку','На базу знаний'], access:['К статье','К папке','К базе знаний'], print:['Статью','Папку','Базу знаний']
 };
 const scopeLb = (k, folder) => { const x=SCOPE[k]||['Статья','Папка','База знаний']; return [folder?x[1]:x[0], x[2]]; };
 // наведение: подменю открывается по стрелке; уход на другой пункт закрывает его с задержкой,
@@ -2046,7 +2177,7 @@ function openToc(el){ mOpen=new Set(['root',...crumbsOf(S.current).map(p=>p.id)]
 function kbMenu(el){
   const id=S.current, g=CARD_MENU[typeOf(id)].f;
   const row=k=> (k==='create'||k==='view') ? `<div class="m-mi" data-msub="${k}"><span class="ic">${k==='view'?(S.mode==='feed'?MODE_FEED:MODE_DOC):ICON.create}</span><span>${IT[k].lb}</span><span class="gt">${M_GT}</span></div>`
-    : (SPLIT.includes(k)||k==='del') ? `<div class="m-mi" data-msub="${k}" data-mid="${id}"><span class="ic">${ICON[k]}</span><span>${IT[k].lb}</span>${k==='download'?'<span class="hint">7.6 МБ</span>':''}<span class="gt">${M_GT}</span></div>`
+    : (SPLIT.includes(k)||k==='print') ? `<div class="m-mi" data-msub="${k}" data-mid="${id}"><span class="ic">${ICON[k]}</span><span>${IT[k].lb}</span>${k==='download'?'<span class="hint">7.6 МБ</span>':''}<span class="gt">${M_GT}</span></div>`
     : miRow(k).replace('data-mk=',`data-mid="${id}" data-mk=`);
   sheet(el, `<div class="m-sbody">${['create','view','settings'].map(row).join('')}<div class="m-msep"></div>${g.map(gr=>gr.map(row).join('')).join('<div class="m-msep"></div>')}</div>`);
 }
