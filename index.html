@@ -2040,7 +2040,7 @@ function openMKMSub(mi){
   if(!MENU?._mkm) return;
   clearTimeout(subT); SUBM?.remove(); MENU.querySelectorAll('.mi.open').forEach(x=>x.classList.remove('open')); mi.classList.add('open');
   const el=document.createElement('div'); el.className='mnu subm mkm-submenu'; el._k='kbroot';
-  el.innerHTML=['download','print','access'].map(k=>miHTML(k)).join('')+`<div class="mi" data-k="kbsettings"><span class="ic">${ICON.settings}</span><span class="lb">Настройка</span></div>`;
+  el.innerHTML=['download','print','access'].map(k=>miHTML(k)).join('')+`<div class="mi" data-k="kbsettings"><span class="ic">${ICON.settings}</span><span class="lb">Настройки</span></div>`;
   el.onclick=e=>{ const row=e.target.closest('.mi'); if(!row) return; const k=row.dataset.k; closeMenus(); if(k==='kbsettings') return openKBSettings(); if(k==='download') return downloadActiveArticle(); toast(`${IT[k]?.lb||'Настройка'}: «${BY.root.title}»`); };
   proto.appendChild(el);
   const row=toP(mi.getBoundingClientRect()), menu=toP(MENU.getBoundingClientRect());
