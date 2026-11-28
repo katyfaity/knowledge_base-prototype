@@ -903,7 +903,10 @@ kbd{font:inherit;background:#fff;border:1px solid var(--border);border-radius:4p
 .ls-tab[aria-selected="true"]:after{opacity:1}
 .ls-actions{display:flex;flex-direction:column}
 .mnu.subm.linkshare.download-submenu{width:108px;min-width:108px;max-width:108px;padding:8px 0;border-radius:12px;overflow:hidden}
-.mnu.subm.linkshare.download-submenu.download-toolbar{width:200px;min-width:200px;max-width:200px;padding:8px 0 12px}
+.mnu.subm.linkshare.download-submenu.download-toolbar{width:max-content;min-width:0;max-width:none;padding:8px 0 12px;box-sizing:border-box}
+.download-toolbar .ls-tabs{padding-right:24px}
+.download-toolbar .ls-tab{white-space:nowrap}
+.download-toolbar .mi.ls-action{box-sizing:border-box;width:calc(100% - 16px)}
 .download-submenu.linkshare:not(.download-toolbar) .ls-panel{padding:0}
 .download-submenu.linkshare:not(.download-toolbar) .mi.ls-action{gap:8px;padding:0 8px}
 .download-submenu.linkshare:not(.download-toolbar) .mi.ls-action+.mi.ls-action{margin-top:4px}
@@ -2101,7 +2104,7 @@ function openSub(mi){
     el.classList.add('download-submenu','linkshare');
     const toolbar=!!MENU._tb;
     if(toolbar) el.classList.add('download-toolbar');
-    const tabs=toolbar?`<div class="ls-tabs" role="tablist"><button class="ls-tab" type="button" data-download-scope="article" aria-selected="true">статья</button><button class="ls-tab" type="button" data-download-scope="kb" aria-selected="false">база знаний</button></div>`:'';
+    const tabs=toolbar?`<div class="ls-tabs" role="tablist"><button class="ls-tab" type="button" data-download-scope="article" aria-selected="true">статью</button><button class="ls-tab" type="button" data-download-scope="kb" aria-selected="false">базу знаний</button></div>`:'';
     const fileIcon=DOWNLOAD_FILE_ICON;
     const pdfIcon=DOWNLOAD_PDF_ICON;
     const formats=[['pdf','PDF',pdfIcon],['file','Файл',fileIcon]];
@@ -2135,6 +2138,14 @@ function openSub(mi){
     if(k==='create') return toast(`Создание: ${v==='art'?'статья':'папка'}`);
     toast(v==='art' ? `${ACT_DONE[k]}: статья "${titleOf(id)}"` : `${ACT_DONE[k]}: база знаний "${BY.root.title}"`); };
   proto.appendChild(el);
+  if(k==='download'&&toolbar){
+    const tabsEl=el.querySelector('.ls-tabs');
+    const tabWidths=[...el.querySelectorAll('.ls-tab')].reduce((sum,tab)=>sum+tab.scrollWidth,0);
+    const tabsWidth=tabsEl?Math.ceil(tabWidths+28+24+24):0;
+    const actionsWidth=Math.ceil(Math.max(...[...el.querySelectorAll('.ls-action')].map(action=>16+24+22+10+(action.lastElementChild?.scrollWidth||0))));
+    const submenuWidth=Math.max(tabsWidth,actionsWidth);
+    el.style.width=`${submenuWidth}px`; el.style.minWidth=`${submenuWidth}px`; el.style.maxWidth='none';
+  }
   const row=toP(mi.getBoundingClientRect()), m=toP(MENU.getBoundingClientRect());
   // по гайду: влево впритык к меню; вправо, только если слева не хватает места
   const W=(S.screen==='1024'?1024:1600)-4, w=el.offsetWidth;
